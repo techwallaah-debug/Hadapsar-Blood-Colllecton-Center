@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Hadapsar Blood Collection Center</title>
+    <meta name="description" content="Contact Hadapsar Blood Collection Center. Phone, WhatsApp, email, and booking form available.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-[Open+Sans]">
+
+<!-- Navigation Bar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.svg" alt="Hadapsar Blood Collection Center" class="h-12 w-12">
+                <div>
+                    <h1 class="text-red-700 font-[Poppins] font-bold text-lg">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
+                </div>
+            </div>
+
+            <button id="menuBtn" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+
+            <div id="navMenu" class="hidden md:flex md:items-center md:space-x-8">
+                <a href="index.html" class="text-gray-700 hover:text-red-700 font-medium transition">Home</a>
+                <a href="about.html" class="text-gray-700 hover:text-red-700 font-medium transition">About</a>
+                <a href="services.html" class="text-gray-700 hover:text-red-700 font-medium transition">Services</a>
+                <a href="tests.html" class="text-gray-700 hover:text-red-700 font-medium transition">Tests</a>
+                <a href="gallery.html" class="text-gray-700 hover:text-red-700 font-medium transition">Gallery</a>
+                <a href="testimonials.html" class="text-gray-700 hover:text-red-700 font-medium transition">Reviews</a>
+                <a href="contact.html" class="bg-red-700 text-white px-6 py-2 rounded-full hover:bg-red-800 transition font-medium">Contact</a>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 border-t">
+            <a href="index.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Home</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">About</a>
+            <a href="services.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Services</a>
+            <a href="tests.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Tests</a>
+            <a href="gallery.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Gallery</a>
+            <a href="testimonials.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Reviews</a>
+            <a href="contact.html" class="block py-2 px-4 text-red-700 font-bold">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Animated Hero Section -->
+<section class="relative bg-gradient-to-br from-green-700 to-teal-800 text-white py-24 overflow-hidden">
+    <!-- Background Blobs -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-green-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute bottom-0 left-20 w-72 h-72 bg-teal-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-400"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fade-in-up">
+            <h1 class="font-[Poppins] font-bold text-5xl md:text-6xl mb-4">Get In Touch</h1>
+            <p class="text-green-100 text-xl max-w-2xl mx-auto">We're here to help! Reach out to us for all your blood collection and testing needs</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <!-- Phone -->
+            <div class="contact-info-box animate-fade-in-up animation-delay-200">
+                <i class="fas fa-phone"></i>
+                <h3 class="font-[Poppins] font-bold text-xl">Call Us</h3>
+                <p class="text-xl font-bold mt-2">+91 93569 55601</p>
+                <p class="text-sm mt-2 opacity-90">Monday - Sunday, 6 AM - 10 AM, 4 PM - 7 PM</p>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="contact-info-box animate-fade-in-up animation-delay-400">
+                <i class="fab fa-whatsapp"></i>
+                <h3 class="font-[Poppins] font-bold text-xl">WhatsApp</h3>
+                <p class="text-sm mt-4">Quick booking and inquiries</p>
+                <a href="https://wa.me/919356955601" class="inline-block bg-white text-red-700 px-6 py-2 rounded font-bold hover:bg-gray-100 transition mt-4">Start Chat</a>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-info-box animate-fade-in-up animation-delay-600">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3 class="font-[Poppins] font-bold text-xl">Location</h3>
+                <p class="text-sm mt-4">Hadapsar, Pune<br>Maharashtra, India</p>
+                <p class="text-xs mt-2 opacity-90">Service areas: Hadapsar, Mundhwa, Kharadi, Magarpatta</p>
+            </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="mb-16 animate-fade-in-up">
+            <h2 class="font-[Poppins] font-bold text-2xl text-gray-900 mb-4">Find Us on Map</h2>
+            <div class="bg-gray-300 rounded-lg overflow-hidden h-96 flex items-center justify-center shadow-lg hover:shadow-2xl transition duration-300">
+                <div class="text-center text-gray-600">
+                    <i class="fas fa-map text-6xl mb-4"></i>
+                    <p>Google Map Embed (Replace with actual map)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Form -->
+<section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="booking" class="font-[Poppins] font-bold text-3xl text-gray-900 mb-2 animate-fade-in-up">Book an Appointment</h2>
+        <p class="text-gray-600 mb-8 animate-fade-in-up animation-delay-200">Fill the form below to book a home visit or clinic appointment</p>
+
+        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 animate-fade-in-up animation-delay-400">
+            <form id="bookingForm" method="POST" action="php/contact-handler.php">
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Your full name">
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="10-digit phone number" oninput="formatPhoneNumber(this)">
+                </div>
+
+                <!-- Email (Optional) -->
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com">
+                </div>
+
+                <!-- Service Type -->
+                <div class="form-group">
+                    <label for="serviceType">Service Type *</label>
+                    <select id="serviceType" name="serviceType" required>
+                        <option value="">-- Select Service --</option>
+                        <option value="home_visit">Home Visit</option>
+                        <option value="clinic_visit">Clinic Visit</option>
+                        <option value="corporate">Corporate Testing</option>
+                    </select>
+                </div>
+
+                <!-- Test Type -->
+                <div class="form-group">
+                    <label for="testType">Test Type *</label>
+                    <select id="testType" name="testType" required>
+                        <option value="">-- Select Test --</option>
+                        <option value="cbc">CBC (Complete Blood Count)</option>
+                        <option value="thyroid">Thyroid Profile</option>
+                        <option value="lipid">Lipid Profile</option>
+                        <option value="liver">Liver Function Tests</option>
+                        <option value="kidney">Kidney Function Tests</option>
+                        <option value="glucose">Blood Glucose</option>
+                        <option value="vitamin_d">Vitamin D</option>
+                        <option value="covid">COVID-19 Test</option>
+                        <option value="other">Other / Multiple Tests</option>
+                    </select>
+                </div>
+
+                <!-- Preferred Date -->
+                <div class="form-group">
+                    <label for="preferredDate">Preferred Date *</label>
+                    <input type="date" id="preferredDate" name="preferredDate" required>
+                </div>
+
+                <!-- Preferred Time -->
+                <div class="form-group">
+                    <label for="preferredTime">Preferred Time Slot *</label>
+                    <select id="preferredTime" name="preferredTime" required>
+                        <option value="">-- Select Time --</option>
+                        <option value="morning_6_8">6:00 AM - 8:00 AM</option>
+                        <option value="morning_8_10">8:00 AM - 10:00 AM</option>
+                        <option value="evening_4_5">4:00 PM - 5:00 PM</option>
+                        <option value="evening_5_7">5:00 PM - 7:00 PM</option>
+                    </select>
+                </div>
+
+                <!-- Address (For Home Visits) -->
+                <div class="form-group">
+                    <label for="address">Address (Required for Home Visit)</label>
+                    <textarea id="address" name="address" placeholder="Enter your complete address"></textarea>
+                </div>
+
+                <!-- Special Requirements -->
+                <div class="form-group">
+                    <label for="requirements">Special Requirements or Questions</label>
+                    <textarea id="requirements" name="requirements" placeholder="Any special requests or health conditions we should know?"></textarea>
+                </div>
+
+                <!-- Consent -->
+                <div class="form-group">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" name="consent" required>
+                        <span>I agree to the terms and conditions</span>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit w-full">Book Appointment</button>
+
+                <p class="text-gray-600 text-sm mt-4">
+                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                    We'll confirm your appointment via phone call or WhatsApp within 2 hours.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[Poppins] font-bold text-3xl text-gray-900 mb-8">Frequently Asked Questions</h2>
+
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-700">
+                <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
+                    <i class="fas fa-question-circle text-red-700 mr-2"></i>Do I need fasting for blood tests?
+                </h3>
+                <p class="text-gray-600">It depends on the test. Most routine tests require 10-12 hours fasting. Some tests don't require fasting. We'll inform you during booking.</p>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-700">
+                <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
+                    <i class="fas fa-question-circle text-red-700 mr-2"></i>How long does home collection take?
+                </h3>
+                <p class="text-gray-600">Usually 5-10 minutes. Our technologist will come with sterile equipment, collect the sample, and leave. Total time is minimal.</p>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-700">
+                <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
+                    <i class="fas fa-question-circle text-red-700 mr-2"></i>When will I get my reports?
+                </h3>
+                <p class="text-gray-600">Reports are usually ready within 24-48 hours. You'll receive a WhatsApp notification and digital copy first, followed by physical reports.</p>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-700">
+                <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
+                    <i class="fas fa-question-circle text-red-700 mr-2"></i>Is the collection process painful?
+                </h3>
+                <p class="text-gray-600">No, we use expert technique for painless collection. Our experience ensures minimal discomfort during blood withdrawal.</p>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-700">
+                <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
+                    <i class="fas fa-question-circle text-red-700 mr-2"></i>What areas do you cover for home visits?
+                </h3>
+                <p class="text-gray-600">We cover Hadapsar, Mundhwa, Kharadi, and Magarpatta. For other areas, please call and we'll check availability.</p>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-700">
+                <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
+                    <i class="fas fa-question-circle text-red-700 mr-2"></i>Can I get the reports interpreted?
+                </h3>
+                <p class="text-gray-600">Yes, basic interpretation is provided with reports. For detailed medical advice, consult with your doctor.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Operating Hours Banner -->
+<section class="bg-red-700 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h3 class="font-[Poppins] font-bold text-2xl mb-4">We're Open</h3>
+        <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+            <div>
+                <p class="text-sm opacity-90">Morning</p>
+                <p class="text-2xl font-bold">6:00 AM - 10:00 AM</p>
+            </div>
+            <div class="hidden sm:block text-2xl opacity-50">|</div>
+            <div>
+                <p class="text-sm opacity-90">Evening</p>
+                <p class="text-2xl font-bold">4:00 PM - 7:00 PM</p>
+            </div>
+            <div class="hidden sm:block text-2xl opacity-50">|</div>
+            <div>
+                <p class="text-sm opacity-90">Call for Emergencies</p>
+                <p class="text-xl font-bold">+91 93569 55601</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h3 class="font-[Poppins] font-bold text-lg mb-4">Hadapsar Blood Center</h3>
+                <p class="text-gray-300 text-sm">Professional blood collection and testing with home visit service.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Quick Links</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                    <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition">About</a></li>
+                    <li><a href="services.html" class="hover:text-white transition">Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Services</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                    <li><a href="services.html#home-visit" class="hover:text-white transition">Home Collection</a></li>
+                    <li><a href="services.html#clinic" class="hover:text-white transition">Clinic Collection</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Contact</h4>
+                <div class="text-sm text-gray-300 space-y-3">
+                    <p><i class="fas fa-phone text-red-400"></i> +91 93569 55601</p>
+                    <p><i class="fas fa-clock text-red-400"></i> 6 AM - 10 AM, 4 PM - 7 PM</p>
+                </div>
+            </div>
+        </div>
+        <hr class="border-blue-800 my-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <p>&copy; 2024 Hadapsar Blood Collection Center. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

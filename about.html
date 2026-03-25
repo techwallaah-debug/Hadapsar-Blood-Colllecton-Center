@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hadapsar Blood Collection Center</title>
+    <meta name="description" content="Learn about Dr. Pannu Bhaware and Hadapsar Blood Collection Center. Professional, certified blood collection service.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-[Open+Sans]">
+
+<!-- Navigation Bar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.svg" alt="Hadapsar Blood Collection Center" class="h-12 w-12">
+                <div>
+                    <h1 class="text-red-700 font-[Poppins] font-bold text-lg">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
+                </div>
+            </div>
+
+            <button id="menuBtn" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+
+            <div id="navMenu" class="hidden md:flex md:items-center md:space-x-8">
+                <a href="index.html" class="text-gray-700 hover:text-red-700 font-medium transition">Home</a>
+                <a href="about.html" class="text-gray-700 hover:text-red-700 font-medium transition">About</a>
+                <a href="services.html" class="text-gray-700 hover:text-red-700 font-medium transition">Services</a>
+                <a href="tests.html" class="text-gray-700 hover:text-red-700 font-medium transition">Tests</a>
+                <a href="gallery.html" class="text-gray-700 hover:text-red-700 font-medium transition">Gallery</a>
+                <a href="testimonials.html" class="text-gray-700 hover:text-red-700 font-medium transition">Reviews</a>
+                <a href="contact.html" class="bg-red-700 text-white px-6 py-2 rounded-full hover:bg-red-800 transition font-medium">Contact</a>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 border-t">
+            <a href="index.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Home</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">About</a>
+            <a href="services.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Services</a>
+            <a href="tests.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Tests</a>
+            <a href="gallery.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Gallery</a>
+            <a href="testimonials.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Reviews</a>
+            <a href="contact.html" class="block py-2 px-4 text-red-700 font-bold">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Animated Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-900 to-blue-800 text-white py-24 overflow-hidden">
+    <!-- Background Blobs -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute bottom-0 left-20 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-400"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fade-in-up">
+            <h1 class="font-[Poppins] font-bold text-5xl md:text-6xl mb-4">About Our Center</h1>
+            <p class="text-blue-100 text-xl max-w-2xl mx-auto">Meet the certified professional behind Hadapsar's trusted blood collection service</p>
+        </div>
+    </div>
+</section>
+
+<!-- Doctor Profile Section -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Photo -->
+            <div class="flex justify-center animate-fade-in-up animation-delay-200">
+                <div class="bg-gray-300 rounded-lg overflow-hidden w-80 h-80 flex items-center justify-center shadow-2xl transform transition hover:scale-105 hover:shadow-2xl duration-300">
+                    <div class="text-center text-gray-600">
+                        <i class="fas fa-user-doctor text-6xl mb-4"></i>
+                        <p>Dr. Pannu Bhaware Photo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="animate-fade-in-up animation-delay-400">
+                <h2 class="font-[Poppins] font-bold text-4xl text-gray-900 mb-4 gradient-text">Dr. Pannu Bhaware</h2>
+                <div class="bg-gradient-to-r from-red-600 to-red-700 text-white inline-block px-6 py-3 rounded-full font-bold mb-6 shadow-lg">
+                    <i class="fas fa-certificate mr-2"></i>B.Sc. MLT (Medical Laboratory Technologist)
+                </div>
+
+                <h3 class="font-[Poppins] font-bold text-2xl text-gray-900 mb-4">Professional Qualifications</h3>
+                <ul class="space-y-3 mb-6 text-gray-700">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                        <span>B.Sc. Medical Laboratory Technology</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                        <span>Certified Medical Laboratory Technologist</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                        <span>Years of experience in blood collection and diagnostics</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                        <span>Specialized in phlebotomy and laboratory procedures</span>
+                    </li>
+                </ul>
+
+                <h3 class="font-[Poppins] font-bold text-2xl text-gray-900 mb-4">Specializations</h3>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="badge badge-primary">Blood Collection</span>
+                    <span class="badge badge-primary">Blood Processing</span>
+                    <span class="badge badge-primary">Diagnostics</span>
+                    <span class="badge badge-success">Home Visits</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[Poppins] font-bold text-3xl text-center text-gray-900 mb-12 animate-fade-in-up">Our Mission & Vision</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Mission -->
+            <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl border-l-4 border-red-700 transform transition hover:scale-105 duration-300 animate-fade-in-up animation-delay-200">
+                <h3 class="font-[Poppins] font-bold text-2xl text-gray-900 mb-4">
+                    <i class="fas fa-bullseye text-red-700 mr-2"></i>Our Mission
+                </h3>
+                <p class="text-gray-700 text-lg">
+                    "Make diagnostics accessible to every household through professional, hygienic blood testing with personalized home visit service."
+                </p>
+                <div class="mt-6 space-y-3 text-gray-600">
+                    <p><i class="fas fa-heart text-red-600 mr-2"></i> Patient-first approach</p>
+                    <p><i class="fas fa-heart text-red-600 mr-2"></i> Affordable quality testing</p>
+                    <p><i class="fas fa-heart text-red-600 mr-2"></i> Hygienic practices</p>
+                    <p><i class="fas fa-heart text-red-600 mr-2"></i> Quick, accurate results</p>
+                </div>
+            </div>
+
+            <!-- Vision -->
+            <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl border-l-4 border-blue-900 transform transition hover:scale-105 duration-300 animate-fade-in-up animation-delay-400">
+                <h3 class="font-[Poppins] font-bold text-2xl text-gray-900 mb-4">
+                    <i class="fas fa-star text-blue-900 mr-2"></i>Our Vision
+                </h3>
+                <p class="text-gray-700 text-lg">
+                    "Become Pune's most trusted diagnostic center known for professionalism, innovation, and patient care excellence."
+                </p>
+                <div class="mt-6 space-y-3 text-gray-600">
+                    <p><i class="fas fa-star text-blue-900 mr-2"></i> Trusted by thousands</p>
+                    <p><i class="fas fa-star text-blue-900 mr-2"></i> Technology-driven service</p>
+                    <p><i class="fas fa-star text-blue-900 mr-2"></i> Expanding coverage areas</p>
+                    <p><i class="fas fa-star text-blue-900 mr-2"></i> Community health focus</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Dr. Pannu Bhaware -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[Poppins] font-bold text-3xl text-center text-gray-900 mb-12 animate-fade-in-up">Why Choose Dr. Pannu Bhaware?</h2>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <div class="flex gap-4 animate-fade-in-up animation-delay-200">
+                    <div class="flex-shrink-0">
+                        <div class="text-red-700 text-2xl">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">Certified Professional</h4>
+                        <p class="text-gray-600">Fully qualified B.Sc. MLT with proper certification and continuous training.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 animate-fade-in-up animation-delay-400">
+                    <div class="flex-shrink-0">
+                        <div class="text-red-700 text-2xl">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">Painless Collection</h4>
+                        <p class="text-gray-600">Specialized technique for comfortable, painless blood collection experience.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 animate-fade-in-up animation-delay-600">
+                    <div class="flex-shrink-0">
+                        <div class="text-red-700 text-2xl">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">Hygiene Standards</h4>
+                        <p class="text-gray-600">Strict adherence to sterilization and hygiene protocols at all times.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="text-red-700 text-2xl">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">Home Visit Service</h4>
+                        <p class="text-gray-600">Convenient home collection service for elderly and busy professionals.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="text-red-700 text-2xl">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">Fast Reporting</h4>
+                        <p class="text-gray-600">Quick turnaround time with digital reports via WhatsApp for convenience.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="text-red-700 text-2xl">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">Patient Trust</h4>
+                        <p class="text-gray-600">Trusted by thousands of patients across Hadapsar and nearby areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="py-16 bg-gradient-to-br from-red-700 to-red-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[Poppins] font-bold text-3xl text-center mb-12 animate-fade-in-up">Experience & Achievements</h2>
+
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+            <div class="animate-fade-in-up animation-delay-200">
+                <div class="text-4xl font-bold mb-2 stat-counter" data-count="10">0</div>
+                <p class="text-lg">Years of Experience</p>
+            </div>
+            <div class="animate-fade-in-up animation-delay-400">
+                <div class="text-4xl font-bold mb-2 stat-counter" data-count="5000">0</div>
+                <p class="text-lg">Satisfied Patients</p>
+            </div>
+            <div class="animate-fade-in-up animation-delay-600">
+                <div class="text-4xl font-bold mb-2 stat-counter" data-count="50">0</div>
+                <p class="text-lg">Types of Tests</p>
+            </div>
+            <div class="animate-fade-in-up animation-delay-800">
+                <div class="text-4xl font-bold mb-2">4</div>
+                <p class="text-lg">Coverage Areas</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Areas -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-[Poppins] font-bold text-3xl text-center text-gray-900 mb-12 animate-fade-in-up">Service Coverage Areas</h2>
+
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+            <div class="bg-gradient-to-br from-red-700 to-red-800 text-white p-8 rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 animate-fade-in-up animation-delay-200">
+                <div class="text-3xl mb-4"><i class="fas fa-map-marker-alt"></i></div>
+                <h3 class="font-[Poppins] font-bold text-xl mb-2">Hadapsar</h3>
+                <p>Primary service area with clinic and home visits</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-red-700 to-red-800 text-white p-8 rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 animate-fade-in-up animation-delay-400">
+                <div class="text-3xl mb-4"><i class="fas fa-map-marker-alt"></i></div>
+                <h3 class="font-[Poppins] font-bold text-xl mb-2">Mundhwa</h3>
+                <p>Home visit service available</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-red-700 to-red-800 text-white p-8 rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 animate-fade-in-up animation-delay-600">
+                <div class="text-3xl mb-4"><i class="fas fa-map-marker-alt"></i></div>
+                <h3 class="font-[Poppins] font-bold text-xl mb-2">Kharadi</h3>
+                <p>Home visit service available</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-red-700 to-red-800 text-white p-8 rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 animate-fade-in-up animation-delay-800">
+                <div class="text-3xl mb-4"><i class="fas fa-map-marker-alt"></i></div>
+                <h3 class="font-[Poppins] font-bold text-xl mb-2">Magarpatta</h3>
+                <p>Home visit service available</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-[Poppins] font-bold text-3xl mb-6 animate-fade-in-up">Ready to Get Your Blood Test Done?</h2>
+        <p class="text-lg mb-8 animate-fade-in-up animation-delay-200">Contact us for professional, hygienic blood collection at your doorstep.</p>
+        <a href="contact.html" class="bg-red-700 text-white px-8 py-3 rounded-full font-bold hover:bg-red-800 transition inline-block transform hover:scale-110 duration-300 animate-fade-in-up animation-delay-400">Get In Touch</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h3 class="font-[Poppins] font-bold text-lg mb-4">Hadapsar Blood Center</h3>
+                <p class="text-gray-300 text-sm">Professional blood collection and testing with home visit service.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Quick Links</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                    <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                    <li><a href="services.html" class="hover:text-white transition">Services</a></li>
+                    <li><a href="tests.html" class="hover:text-white transition">Tests</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Services</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                    <li><a href="services.html#home-visit" class="hover:text-white transition">Home Collection</a></li>
+                    <li><a href="services.html#clinic" class="hover:text-white transition">Clinic Collection</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Contact</h4>
+                <div class="text-sm text-gray-300 space-y-3">
+                    <p><i class="fas fa-phone text-red-400"></i> +91 93569 55601</p>
+                    <p><i class="fas fa-clock text-red-400"></i> 6 AM - 10 AM, 4 PM - 7 PM</p>
+                </div>
+            </div>
+        </div>
+        <hr class="border-blue-800 my-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <p>&copy; 2024 Hadapsar Blood Collection Center. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

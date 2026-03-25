@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="200" height="250">
+  <!-- Blood Drop -->
+  <defs>
+    <linearGradient id="dropGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8483B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Drop shape -->
+  <path d="M 200 80 C 200 80 160 140 160 180 C 160 220 180 240 200 240 C 220 240 240 220 240 180 C 240 140 200 80 200 80 Z" 
+        fill="url(#dropGradient)" stroke="none"/>
+  
+  <!-- White Cross -->
+  <g fill="white">
+    <!-- Vertical bar -->
+    <rect x="185" y="150" width="30" height="70" rx="2"/>
+    <!-- Horizontal bar -->
+    <rect x="160" y="175" width="80" height="30" rx="2"/>
+  </g>
+  
+  <!-- Blue Swoosh Left -->
+  <path d="M 150 200 Q 120 220 100 260 Q 90 280 100 300 Q 130 280 160 240" 
+        fill="none" stroke="#1A3C6E" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+  
+  <!-- Blue Swoosh Right -->
+  <path d="M 250 200 Q 280 220 300 260 Q 310 280 300 300 Q 270 280 240 240" 
+        fill="none" stroke="#1A3C6E" stroke-width="20" stroke-linecap="round" opacity="0.8"/>
+  
+  <!-- Light shine on drop -->
+  <ellipse cx="185" cy="120" rx="15" ry="25" fill="white" opacity="0.3"/>
+</svg>

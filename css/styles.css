@@ -1,0 +1,592 @@
+/* Custom Colors */
+:root {
+    --primary-red: #C0392B;
+    --secondary-blue: #1A3C6E;
+    --white: #FFFFFF;
+    --light-gray: #F2F3F4;
+    --dark-gray: #2C3E50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #C0392B 0%, #A93226 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M100,50 Q150,100 100,150 Q50,100 100,50" fill="rgba(255,255,255,0.1)"/></svg>');
+    background-size: 200px 200px;
+    opacity: 0.1;
+}
+
+.hero-section > div {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== ANIMATIONS ========== */
+
+/* Blob Animation */
+@keyframes blob {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+    animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+    animation-delay: 0.6s;
+}
+
+.animation-delay-800 {
+    animation-delay: 0.8s;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Count Up Animation */
+@keyframes countUp {
+    0% {
+        counter-set: num var(--num-start);
+    }
+    100% {
+        counter-set: num var(--num-end);
+    }
+}
+
+.stat-counter {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Scale Hover Animation */
+.scale-on-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scale-on-hover:hover {
+    transform: scale(1.05);
+}
+
+/* Smooth Transitions */
+a, button {
+    transition: all 0.3s ease;
+}
+
+/* Cards Hover Effect */
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary-red);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #A93226;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(192, 57, 43, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-blue);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #0F2847;
+    transform: translateY(-2px);
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Test Menu */
+.test-category {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--primary-red);
+}
+
+.test-item {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.test-item:last-child {
+    border-bottom: none;
+}
+
+.test-item:hover {
+    background-color: #f9f9f9;
+    padding-left: 24px;
+}
+
+.test-item h4 {
+    color: var(--primary-red);
+    margin-bottom: 8px;
+}
+
+.test-item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.test-info {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dotted #ddd;
+    font-size: 13px;
+}
+
+.fasting {
+    color: #C0392B;
+    font-weight: 600;
+}
+
+.non-fasting {
+    color: #27AE60;
+    font-weight: 600;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    background-color: var(--primary-red);
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #A93226;
+    transform: translateY(-2px);
+}
+
+/* Testimonial Carousel Styles */
+.splide {
+    --splide-track-padding: 0px;
+}
+
+.splide__slide {
+    padding: 10px;
+}
+
+.testimonial-carousel .splide__pagination {
+    bottom: -40px;
+}
+
+.splide__pagination__page.is-active {
+    background: var(--primary-red);
+}
+
+.splide__pagination__page {
+    background: #ddd;
+}
+
+/* Gallery Carousel Styles */
+.gallery-carousel .splide__slide {
+    padding: 10px;
+}
+
+.gallery-carousel .splide__pagination {
+    bottom: -40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .gallery-item img {
+        height: 150px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .splide__slide {
+        padding: 5px !important;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Testimonial Cards */
+.testimonial {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.stars {
+    color: #FFC107;
+    margin-bottom: 12px;
+}
+
+/* Contact Section */
+.contact-info-box {
+    background: linear-gradient(135deg, #C0392B 0%, #A93226 100%);
+    color: white;
+    padding: 24px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.3);
+}
+
+.contact-info-box i {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.contact-info-box h3 {
+    margin-bottom: 8px;
+}
+
+/* Mobile Menu Toggle */
+@media (max-width: 768px) {
+    nav {
+        position: sticky;
+        top: 0;
+    }
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 32px;
+}
+
+.breadcrumb a {
+    color: var(--primary-red);
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.badge-primary {
+    background-color: #FFE0E0;
+    color: var(--primary-red);
+}
+
+.badge-success {
+    background-color: #E0F7E0;
+    color: #27AE60;
+}
+
+/* Feature Cards Animation */
+.feature-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.feature-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.feature-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.feature-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Glow Effect */
+.glow {
+    box-shadow: 0 0 20px rgba(192, 57, 43, 0.2);
+}
+
+.glow:hover {
+    box-shadow: 0 0 30px rgba(192, 57, 43, 0.4);
+}
+
+/* Text Gradient */
+.gradient-text {
+    background: linear-gradient(135deg, #C0392B, #1A3C6E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Counter Animation */
+.number-counter {
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}

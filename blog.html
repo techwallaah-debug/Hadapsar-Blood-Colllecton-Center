@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & News - Hadapsar Blood Collection Center</title>
+    <meta name="description" content="Latest health tips, blood test insights, and medical news from Hadapsar Blood Collection Center.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-[Open+Sans]">
+
+<!-- Navigation Bar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.svg" alt="Hadapsar Blood Collection Center" class="h-12 w-12">
+                <div>
+                    <h1 class="text-red-700 font-[Poppins] font-bold text-lg">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
+                </div>
+            </div>
+
+            <button id="menuBtn" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+
+            <div id="navMenu" class="hidden md:flex md:items-center md:space-x-8">
+                <a href="index.html" class="text-gray-700 hover:text-red-700 font-medium transition">Home</a>
+                <a href="about.html" class="text-gray-700 hover:text-red-700 font-medium transition">About</a>
+                <a href="services.html" class="text-gray-700 hover:text-red-700 font-medium transition">Services</a>
+                <a href="tests.html" class="text-gray-700 hover:text-red-700 font-medium transition">Tests</a>
+                <a href="blog.html" class="text-red-700 font-bold transition">Blog</a>
+                <a href="glossary.html" class="text-gray-700 hover:text-red-700 font-medium transition">Glossary</a>
+                <a href="contact.html" class="bg-red-700 text-white px-6 py-2 rounded-full hover:bg-red-800 transition font-medium">Contact</a>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden pb-4 pt-2 border-t">
+            <a href="index.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Home</a>
+            <a href="about.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">About</a>
+            <a href="services.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Services</a>
+            <a href="tests.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Tests</a>
+            <a href="blog.html" class="block py-2 px-4 text-red-700 font-bold">Blog</a>
+            <a href="glossary.html" class="block py-2 px-4 text-gray-700 hover:text-red-700">Glossary</a>
+            <a href="contact.html" class="block py-2 px-4 text-red-700 font-bold">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Animated Hero Section -->
+<section class="relative bg-gradient-to-br from-orange-700 to-red-800 text-white py-24 overflow-hidden">
+    <!-- Background Blobs -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute bottom-0 left-20 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-400"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-fade-in-up">
+            <h1 class="font-[Poppins] font-bold text-5xl md:text-6xl mb-4">Health Tips & News</h1>
+            <p class="text-orange-100 text-xl max-w-2xl mx-auto">Stay informed with the latest health insights and blood testing advice</p>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Filter Bar -->
+        <div class="mb-12 animate-fade-in-up">
+            <h2 class="font-[Poppins] font-bold text-3xl text-gray-900 mb-6">Latest Articles</h2>
+            <div class="flex flex-wrap gap-2">
+                <button class="blog-filter px-4 py-2 rounded-full bg-red-700 text-white font-medium" data-category="all">All Articles</button>
+                <button class="blog-filter px-4 py-2 rounded-full bg-gray-200 hover:bg-red-700 hover:text-white transition font-medium" data-category="health">Health Tips</button>
+                <button class="blog-filter px-4 py-2 rounded-full bg-gray-200 hover:bg-red-700 hover:text-white transition font-medium" data-category="testing">Test Info</button>
+                <button class="blog-filter px-4 py-2 rounded-full bg-gray-200 hover:bg-red-700 hover:text-white transition font-medium" data-category="news">News</button>
+            </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Post 1: Importance of Regular Health Checkups -->
+            <article class="blog-post bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 overflow-hidden border-t-4 border-red-700 animate-fade-in-up animation-delay-200" data-category="health">
+                <div class="h-48 bg-gradient-to-br from-red-700 to-red-800 flex items-center justify-center">
+                    <i class="fas fa-heartbeat text-white text-6xl opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs bg-red-100 text-red-700 px-3 py-1 rounded-full font-bold">Health Tips</span>
+                        <span class="text-xs text-gray-500">March 15, 2024</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-gray-900 mb-3">Importance of Regular Health Checkups</h3>
+                    <p class="text-gray-600 mb-4">Regular health checkups can help detect potential health issues early. Learn why annual blood tests are crucial for maintaining good health.</p>
+                    <a href="#" class="inline-block text-red-700 font-bold hover:text-red-800 transition">Read More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </article>
+
+            <!-- Post 2: Understanding Blood Test Results -->
+            <article class="blog-post bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 overflow-hidden border-t-4 border-blue-700 animate-fade-in-up animation-delay-400" data-category="testing">
+                <div class="h-48 bg-gradient-to-br from-blue-700 to-blue-800 flex items-center justify-center">
+                    <i class="fas fa-flask-vial text-white text-6xl opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-bold">Test Info</span>
+                        <span class="text-xs text-gray-500">March 10, 2024</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-gray-900 mb-3">Understanding Your Blood Test Results</h3>
+                    <p class="text-gray-600 mb-4">ABC tests can be confusing. We break down the most common blood tests and what the results mean for your health.</p>
+                    <a href="#" class="inline-block text-blue-700 font-bold hover:text-blue-800 transition">Read More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </article>
+
+            <!-- Post 3: Fasting for Blood Tests -->
+            <article class="blog-post bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 overflow-hidden border-t-4 border-green-700 animate-fade-in-up animation-delay-600" data-category="testing">
+                <div class="h-48 bg-gradient-to-br from-green-700 to-green-800 flex items-center justify-center">
+                    <i class="fas fa-utensils text-white text-6xl opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">Test Info</span>
+                        <span class="text-xs text-gray-500">March 5, 2024</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-gray-900 mb-3">Do You Really Need to Fast Before Blood Tests?</h3>
+                    <p class="text-gray-600 mb-4">Fasting guidelines vary by test type. Discover which tests require fasting and how to prepare properly for accurate results.</p>
+                    <a href="#" class="inline-block text-green-700 font-bold hover:text-green-800 transition">Read More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </article>
+
+            <!-- Post 4: Cholesterol Management -->
+            <article class="blog-post bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 overflow-hidden border-t-4 border-yellow-700 animate-fade-in-up animation-delay-800" data-category="health">
+                <div class="h-48 bg-gradient-to-br from-yellow-700 to-yellow-800 flex items-center justify-center">
+                    <i class="fas fa-apple-alt text-white text-6xl opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full font-bold">Health Tips</span>
+                        <span class="text-xs text-gray-500">February 28, 2024</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-gray-900 mb-3">Managing Cholesterol Naturally</h3>
+                    <p class="text-gray-600 mb-4">High cholesterol is a silent risk factor. Learn lifestyle changes and dietary tips to improve your lipid profile naturally.</p>
+                    <a href="#" class="inline-block text-yellow-700 font-bold hover:text-yellow-800 transition">Read More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </article>
+
+            <!-- Post 5: Diabetes Prevention -->
+            <article class="blog-post bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 overflow-hidden border-t-4 border-cyan-700 animate-fade-in-up" data-category="health">
+                <div class="h-48 bg-gradient-to-br from-cyan-700 to-cyan-800 flex items-center justify-center">
+                    <i class="fas fa-droplet text-white text-6xl opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full font-bold">Health Tips</span>
+                        <span class="text-xs text-gray-500">February 20, 2024</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-gray-900 mb-3">Diabetes Prevention: Early Detection Matters</h3>
+                    <p class="text-gray-600 mb-4">Diabetes affects millions. Early detection through regular blood glucose tests and lifestyle changes can prevent complications.</p>
+                    <a href="#" class="inline-block text-cyan-700 font-bold hover:text-cyan-800 transition">Read More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </article>
+
+            <!-- Post 6: Latest Health News -->
+            <article class="blog-post bg-white rounded-lg shadow-lg hover:shadow-2xl transform transition hover:scale-105 duration-300 overflow-hidden border-t-4 border-purple-700 animate-fade-in-up" data-category="news">
+                <div class="h-48 bg-gradient-to-br from-purple-700 to-purple-800 flex items-center justify-center">
+                    <i class="fas fa-newspaper text-white text-6xl opacity-50"></i>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full font-bold">News</span>
+                        <span class="text-xs text-gray-500">February 15, 2024</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-gray-900 mb-3">New Advances in Blood Testing Technology</h3>
+                    <p class="text-gray-600 mb-4">Recent advances in diagnostic technology are making blood tests more accurate and faster. Learn how we're adopting latest innovations.</p>
+                    <a href="#" class="inline-block text-purple-700 font-bold hover:text-purple-800 transition">Read More <i class="fas fa-arrow-right ml-2"></i></a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-16 bg-gradient-to-r from-red-700 to-red-800 text-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-[Poppins] font-bold text-3xl mb-4 animate-fade-in-up">Stay Updated</h2>
+        <p class="text-red-100 mb-8 animate-fade-in-up animation-delay-200">Get health tips and news delivered to your inbox</p>
+        <form class="flex flex-col sm:flex-row gap-3 animate-fade-in-up animation-delay-400" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400" required>
+            <button type="submit" class="bg-white text-red-700 px-8 py-3 rounded-lg font-bold hover:bg-red-50 transition">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h3 class="font-[Poppins] font-bold text-lg mb-4">Hadapsar Blood Center</h3>
+                <p class="text-gray-300 text-sm">Professional blood collection and testing with home visit service.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Quick Links</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                    <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition">About</a></li>
+                    <li><a href="blog.html" class="hover:text-white transition">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Services</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                    <li><a href="services.html#home-visit" class="hover:text-white transition">Home Collection</a></li>
+                    <li><a href="services.html#clinic" class="hover:text-white transition">Clinic Collection</a></li>
+                    <li><a href="glossary.html" class="hover:text-white transition">Medical Glossary</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-[Poppins] font-bold mb-4">Contact</h4>
+                <div class="text-sm text-gray-300 space-y-3">
+                    <p><i class="fas fa-phone text-red-400"></i> +91 93569 55601</p>
+                    <p><i class="fas fa-map-marker text-red-400"></i> Hadapsar, Pune</p>
+                    <p><i class="fas fa-clock text-red-400"></i> 6 AM - 10 AM, 4 PM - 7 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="border-blue-800 my-8">
+
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <p>&copy; 2024 Hadapsar Blood Collection Center. All Rights Reserved.</p>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script src="js/script.js"></script>
+
+<!-- Blog Filter Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const blogFilters = document.querySelectorAll('.blog-filter');
+    const blogPosts = document.querySelectorAll('.blog-post');
+
+    blogFilters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+
+            // Update active button
+            blogFilters.forEach(f => f.classList.remove('bg-red-700', 'text-white'));
+            this.classList.add('bg-red-700', 'text-white');
+
+            // Filter posts
+            blogPosts.forEach(post => {
+                const postCategory = post.getAttribute('data-category');
+                if (category === 'all' || postCategory === category) {
+                    post.style.display = 'block';
+                    post.classList.add('animate-fade-in-up');
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('Thank you for subscribing!', 'success');
+            this.reset();
+        });
+    }
+});
+</script>
+</body>
+</html>
