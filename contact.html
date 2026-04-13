@@ -132,105 +132,126 @@
 </section>
 
 <!-- Booking Form -->
-<section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="booking" class="font-[Poppins] font-bold text-3xl text-gray-900 mb-2 animate-fade-in-up">Book an Appointment</h2>
-        <p class="text-gray-600 mb-8 animate-fade-in-up animation-delay-200">Fill the form below to book a home visit or clinic appointment</p>
+<section class="py-16 bg-gradient-to-br from-slate-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 animate-fade-in-up">
+            <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase bg-red-100 text-red-700 px-4 py-2 rounded-full mb-4">
+                <i class="fas fa-calendar-check"></i>Simple Appointment
+            </span>
+            <h2 id="booking" class="font-[Poppins] font-bold text-3xl md:text-4xl text-gray-900 mb-3">Book Your Test in 2 Minutes</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Minimal form, quick response, zero confusion. Fill this once and we will confirm your slot by call or WhatsApp.</p>
+        </div>
 
-        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 animate-fade-in-up animation-delay-400">
-            <form id="bookingForm" method="POST" action="php/contact-handler.php">
-                <!-- Name -->
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="Your full name">
-                </div>
+        <div class="grid lg:grid-cols-[1.25fr_0.75fr] gap-6 items-start">
+            <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 md:p-8 animate-fade-in-up animation-delay-200">
+                <form id="bookingForm" method="POST" action="php/contact-handler.php" class="space-y-5">
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-gray-800 mb-2">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your name" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-semibold text-gray-800 mb-2">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="10-digit phone number" oninput="formatPhoneNumber(this)" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                        </div>
+                    </div>
 
-                <!-- Phone -->
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="10-digit phone number" oninput="formatPhoneNumber(this)">
-                </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-800 mb-2">Email (Optional)</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                        </div>
+                        <div>
+                            <label for="serviceType" class="block text-sm font-semibold text-gray-800 mb-2">Service Type *</label>
+                            <select id="serviceType" name="serviceType" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                                <option value="">Select service</option>
+                                <option value="home_visit">Home Visit</option>
+                                <option value="clinic_visit">Clinic Visit</option>
+                                <option value="corporate">Corporate Testing</option>
+                            </select>
+                        </div>
+                    </div>
 
-                <!-- Email (Optional) -->
-                <div class="form-group">
-                    <label for="email">Email (Optional)</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com">
-                </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label for="testType" class="block text-sm font-semibold text-gray-800 mb-2">Test Type *</label>
+                            <select id="testType" name="testType" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                                <option value="">Select test</option>
+                                <option value="cbc">CBC (Complete Blood Count)</option>
+                                <option value="thyroid">Thyroid Profile</option>
+                                <option value="lipid">Lipid Profile</option>
+                                <option value="liver">Liver Function Tests</option>
+                                <option value="kidney">Kidney Function Tests</option>
+                                <option value="glucose">Blood Glucose</option>
+                                <option value="vitamin_d">Vitamin D</option>
+                                <option value="covid">COVID-19 Test</option>
+                                <option value="other">Other / Multiple Tests</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label for="preferredDate" class="block text-sm font-semibold text-gray-800 mb-2">Date *</label>
+                                <input type="date" id="preferredDate" name="preferredDate" required class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                            </div>
+                            <div>
+                                <label for="preferredTime" class="block text-sm font-semibold text-gray-800 mb-2">Time *</label>
+                                <select id="preferredTime" name="preferredTime" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                                    <option value="">Slot</option>
+                                    <option value="morning_6_8">6:00-8:00 AM</option>
+                                    <option value="morning_8_10">8:00-10:00 AM</option>
+                                    <option value="evening_4_5">4:00-5:00 PM</option>
+                                    <option value="evening_5_7">5:00-7:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Service Type -->
-                <div class="form-group">
-                    <label for="serviceType">Service Type *</label>
-                    <select id="serviceType" name="serviceType" required>
-                        <option value="">-- Select Service --</option>
-                        <option value="home_visit">Home Visit</option>
-                        <option value="clinic_visit">Clinic Visit</option>
-                        <option value="corporate">Corporate Testing</option>
-                    </select>
-                </div>
+                    <div>
+                        <label for="address" class="block text-sm font-semibold text-gray-800 mb-2">Address (for Home Visit)</label>
+                        <textarea id="address" name="address" rows="3" placeholder="Enter complete address" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"></textarea>
+                    </div>
 
-                <!-- Test Type -->
-                <div class="form-group">
-                    <label for="testType">Test Type *</label>
-                    <select id="testType" name="testType" required>
-                        <option value="">-- Select Test --</option>
-                        <option value="cbc">CBC (Complete Blood Count)</option>
-                        <option value="thyroid">Thyroid Profile</option>
-                        <option value="lipid">Lipid Profile</option>
-                        <option value="liver">Liver Function Tests</option>
-                        <option value="kidney">Kidney Function Tests</option>
-                        <option value="glucose">Blood Glucose</option>
-                        <option value="vitamin_d">Vitamin D</option>
-                        <option value="covid">COVID-19 Test</option>
-                        <option value="other">Other / Multiple Tests</option>
-                    </select>
-                </div>
+                    <div>
+                        <label for="requirements" class="block text-sm font-semibold text-gray-800 mb-2">Special Notes (Optional)</label>
+                        <textarea id="requirements" name="requirements" rows="3" placeholder="Any special request or medical note" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"></textarea>
+                    </div>
 
-                <!-- Preferred Date -->
-                <div class="form-group">
-                    <label for="preferredDate">Preferred Date *</label>
-                    <input type="date" id="preferredDate" name="preferredDate" required>
-                </div>
-
-                <!-- Preferred Time -->
-                <div class="form-group">
-                    <label for="preferredTime">Preferred Time Slot *</label>
-                    <select id="preferredTime" name="preferredTime" required>
-                        <option value="">-- Select Time --</option>
-                        <option value="morning_6_8">6:00 AM - 8:00 AM</option>
-                        <option value="morning_8_10">8:00 AM - 10:00 AM</option>
-                        <option value="evening_4_5">4:00 PM - 5:00 PM</option>
-                        <option value="evening_5_7">5:00 PM - 7:00 PM</option>
-                    </select>
-                </div>
-
-                <!-- Address (For Home Visits) -->
-                <div class="form-group">
-                    <label for="address">Address (Required for Home Visit)</label>
-                    <textarea id="address" name="address" placeholder="Enter your complete address"></textarea>
-                </div>
-
-                <!-- Special Requirements -->
-                <div class="form-group">
-                    <label for="requirements">Special Requirements or Questions</label>
-                    <textarea id="requirements" name="requirements" placeholder="Any special requests or health conditions we should know?"></textarea>
-                </div>
-
-                <!-- Consent -->
-                <div class="form-group">
-                    <label class="flex items-center gap-2">
-                        <input type="checkbox" name="consent" required>
-                        <span>I agree to the terms and conditions</span>
+                    <label class="flex items-start gap-3 text-sm text-gray-600">
+                        <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-gray-300 text-red-700 focus:ring-red-500">
+                        <span>I agree to the terms and confirm that shared details are correct for appointment booking.</span>
                     </label>
+
+                    <button type="submit" class="w-full bg-red-700 text-white py-3.5 rounded-xl font-semibold hover:bg-red-800 transition shadow-sm hover:shadow-md">Confirm Appointment</button>
+
+                    <p class="text-xs text-gray-500 text-center">
+                        <i class="fas fa-clock text-red-700 mr-1"></i>Confirmation within 2 hours via call or WhatsApp.
+                    </p>
+                </form>
+            </div>
+
+            <div class="bg-gray-900 text-white rounded-2xl p-6 md:p-7 shadow-sm animate-fade-in-up animation-delay-400">
+                <h3 class="font-[Poppins] font-bold text-xl mb-4">Why Patients Love This</h3>
+                <ul class="space-y-4 text-sm text-gray-200">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-400 mt-0.5"></i>
+                        <span>Single clear form with only useful fields.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-400 mt-0.5"></i>
+                        <span>Home and clinic slots both supported.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-400 mt-0.5"></i>
+                        <span>Fast response from a real person, not bot loops.</span>
+                    </li>
+                </ul>
+
+                <div class="mt-6 pt-5 border-t border-gray-700">
+                    <p class="text-xs uppercase tracking-wide text-gray-400 mb-2">Direct Help</p>
+                    <a href="tel:+919356955601" class="text-lg font-bold hover:text-red-300 transition">+91 93569 55601</a>
+                    <p class="text-xs text-gray-400 mt-2">6 AM - 10 AM, 4 PM - 7 PM</p>
                 </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn-submit w-full">Book Appointment</button>
-
-                <p class="text-gray-600 text-sm mt-4">
-                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>
-                    We'll confirm your appointment via phone call or WhatsApp within 2 hours.
-                </p>
-            </form>
+            </div>
         </div>
     </div>
 </section>
