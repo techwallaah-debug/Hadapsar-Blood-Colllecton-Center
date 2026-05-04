@@ -289,12 +289,50 @@ function showToast(message, type = 'success') {
 
 // ====== FORM SUBMISSION ======
 document.addEventListener('DOMContentLoaded', function() {
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            // Add any custom form handling here if needed
-        });
+    const bookingForm = document.getElementById('bookingForm');
+
+    if (!bookingForm) {
+        return;
+    }
+
+    bookingForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitButton = bookingForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton ? submitButton.textContent : '';
+
+        try {
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+            }
+
+            const formData = new FormData(bookingForm);
+            const response = await fetch(bookingForm.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Submission failed');
+            }
+
+            showToast(`Submitted. Booking ID: ${result.booking_id}`, 'success');
+            bookingForm.reset();
+
+            if (result.whatsapp_url) {
+                window.open(result.whatsapp_url, '_blank', 'noopener,noreferrer');
+            }
+        } catch (error) {
+            showToast(error.message || 'Unable to submit form', 'error');
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
     });
 });
 

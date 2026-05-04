@@ -97,8 +97,8 @@
             <div class="contact-info-box animate-fade-in-up animation-delay-200">
                 <i class="fas fa-phone"></i>
                 <h3 class="font-[Poppins] font-bold text-xl">Call Us</h3>
-                <p class="text-xl font-bold mt-2">+91 93569 55601</p>
-                <p class="text-sm mt-2 opacity-90">Monday - Sunday, 6 AM - 10 AM, 4 PM - 7 PM</p>
+                <p class="text-xl font-bold mt-2">+91 83902 46575</p>
+                <p class="text-sm mt-2 opacity-90">24/7 Home Collection (Appointment)</p>
             </div>
 
             <!-- WhatsApp -->
@@ -106,7 +106,7 @@
                 <i class="fab fa-whatsapp"></i>
                 <h3 class="font-[Poppins] font-bold text-xl">WhatsApp</h3>
                 <p class="text-sm mt-4">Quick booking and inquiries</p>
-                <a href="https://wa.me/919356955601" class="inline-block bg-white text-red-700 px-6 py-2 rounded font-bold hover:bg-gray-100 transition mt-4">Start Chat</a>
+                <a href="https://wa.me/918390246575" class="inline-block bg-white text-red-700 px-6 py-2 rounded font-bold hover:bg-gray-100 transition mt-4">Start Chat</a>
             </div>
 
             <!-- Location -->
@@ -114,20 +114,11 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <h3 class="font-[Poppins] font-bold text-xl">Location</h3>
                 <p class="text-sm mt-4">Hadapsar, Pune<br>Maharashtra, India</p>
-                <p class="text-xs mt-2 opacity-90">Service areas: Hadapsar, Mundhwa, Kharadi, Magarpatta</p>
+                <p class="text-xs mt-2 opacity-90">Home-visit only (no walk-in lab). Focus: Amanora & Magarpatta.</p>
             </div>
         </div>
 
-        <!-- Google Map -->
-        <div class="mb-16 animate-fade-in-up">
-            <h2 class="font-[Poppins] font-bold text-2xl text-gray-900 mb-4">Find Us on Map</h2>
-            <div class="bg-gray-300 rounded-lg overflow-hidden h-96 flex items-center justify-center shadow-lg hover:shadow-2xl transition duration-300">
-                <div class="text-center text-gray-600">
-                    <i class="fas fa-map text-6xl mb-4"></i>
-                    <p>Google Map Embed (Replace with actual map)</p>
-                </div>
-            </div>
-        </div>
+        <!-- Map removed: replaced by compact contact column beside booking form -->
     </div>
 </section>
 
@@ -138,120 +129,67 @@
             <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-wide uppercase bg-red-100 text-red-700 px-4 py-2 rounded-full mb-4">
                 <i class="fas fa-calendar-check"></i>Simple Appointment
             </span>
-            <h2 id="booking" class="font-[Poppins] font-bold text-3xl md:text-4xl text-gray-900 mb-3">Book Your Test in 2 Minutes</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Minimal form, quick response, zero confusion. Fill this once and we will confirm your slot by call or WhatsApp.</p>
+            <h2 id="booking" class="font-[Poppins] font-bold text-3xl md:text-4xl text-gray-900 mb-3">Book Your Test in 30 Seconds</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Only the essentials. Submit once and you will get a Booking ID, plus email and WhatsApp confirmation.</p>
         </div>
 
-        <div class="grid lg:grid-cols-[1.25fr_0.75fr] gap-6 items-start">
+        <div class="grid lg:grid-cols-[3fr_1fr] gap-6 items-start">
             <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 md:p-8 animate-fade-in-up animation-delay-200">
                 <form id="bookingForm" method="POST" action="php/contact-handler.php" class="space-y-5">
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div>
-                            <label for="name" class="block text-sm font-semibold text-gray-800 mb-2">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your name" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-semibold text-gray-800 mb-2">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="10-digit phone number" oninput="formatPhoneNumber(this)" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div>
-                            <label for="email" class="block text-sm font-semibold text-gray-800 mb-2">Email (Optional)</label>
-                            <input type="email" id="email" name="email" placeholder="you@example.com" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                        </div>
-                        <div>
-                            <label for="serviceType" class="block text-sm font-semibold text-gray-800 mb-2">Service Type *</label>
-                            <select id="serviceType" name="serviceType" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                                <option value="">Select service</option>
-                                <option value="home_visit">Home Visit</option>
-                                <option value="clinic_visit">Clinic Visit</option>
-                                <option value="corporate">Corporate Testing</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div>
-                            <label for="testType" class="block text-sm font-semibold text-gray-800 mb-2">Test Type *</label>
-                            <select id="testType" name="testType" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                                <option value="">Select test</option>
-                                <option value="cbc">CBC (Complete Blood Count)</option>
-                                <option value="thyroid">Thyroid Profile</option>
-                                <option value="lipid">Lipid Profile</option>
-                                <option value="liver">Liver Function Tests</option>
-                                <option value="kidney">Kidney Function Tests</option>
-                                <option value="glucose">Blood Glucose</option>
-                                <option value="vitamin_d">Vitamin D</option>
-                                <option value="covid">COVID-19 Test</option>
-                                <option value="other">Other / Multiple Tests</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label for="preferredDate" class="block text-sm font-semibold text-gray-800 mb-2">Date *</label>
-                                <input type="date" id="preferredDate" name="preferredDate" required class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                            </div>
-                            <div>
-                                <label for="preferredTime" class="block text-sm font-semibold text-gray-800 mb-2">Time *</label>
-                                <select id="preferredTime" name="preferredTime" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                                    <option value="">Slot</option>
-                                    <option value="morning_6_8">6:00-8:00 AM</option>
-                                    <option value="morning_8_10">8:00-10:00 AM</option>
-                                    <option value="evening_4_5">4:00-5:00 PM</option>
-                                    <option value="evening_5_7">5:00-7:00 PM</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-gray-800 mb-2">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
                     </div>
 
                     <div>
-                        <label for="address" class="block text-sm font-semibold text-gray-800 mb-2">Address (for Home Visit)</label>
-                        <textarea id="address" name="address" rows="3" placeholder="Enter complete address" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"></textarea>
+                        <label for="phone" class="block text-sm font-semibold text-gray-800 mb-2">WhatsApp Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="10-digit WhatsApp number" oninput="formatPhoneNumber(this)" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
                     </div>
 
                     <div>
-                        <label for="requirements" class="block text-sm font-semibold text-gray-800 mb-2">Special Notes (Optional)</label>
-                        <textarea id="requirements" name="requirements" rows="3" placeholder="Any special request or medical note" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"></textarea>
+                        <label for="location" class="block text-sm font-semibold text-gray-800 mb-2">Location *</label>
+                        <select id="location" name="location" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                            <option value="">Select location</option>
+                            <option value="Amanora">Amanora (Primary)</option>
+                            <option value="Magarpatta">Magarpatta (Primary)</option>
+                            <option value="Hadapsar">Hadapsar</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
 
-                    <label class="flex items-start gap-3 text-sm text-gray-600">
-                        <input type="checkbox" name="consent" required class="mt-1 h-4 w-4 rounded border-gray-300 text-red-700 focus:ring-red-500">
-                        <span>I agree to the terms and confirm that shared details are correct for appointment booking.</span>
-                    </label>
-
-                    <button type="submit" class="w-full bg-red-700 text-white py-3.5 rounded-xl font-semibold hover:bg-red-800 transition shadow-sm hover:shadow-md">Confirm Appointment</button>
+                    <button type="submit" class="w-full bg-red-700 text-white py-3.5 rounded-xl font-semibold hover:bg-red-800 transition shadow-sm hover:shadow-md">Send on WhatsApp</button>
 
                     <p class="text-xs text-gray-500 text-center">
-                        <i class="fas fa-clock text-red-700 mr-1"></i>Confirmation within 2 hours via call or WhatsApp.
+                        <i class="fas fa-bolt text-red-700 mr-1"></i>You will receive a Booking ID for tracking, and we will receive it on email and WhatsApp.
                     </p>
                 </form>
             </div>
 
-            <div class="bg-gray-900 text-white rounded-2xl p-6 md:p-7 shadow-sm animate-fade-in-up animation-delay-400">
-                <h3 class="font-[Poppins] font-bold text-xl mb-4">Why Patients Love This</h3>
-                <ul class="space-y-4 text-sm text-gray-200">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-400 mt-0.5"></i>
-                        <span>Single clear form with only useful fields.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-400 mt-0.5"></i>
-                        <span>Home and clinic slots both supported.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check-circle text-green-400 mt-0.5"></i>
-                        <span>Fast response from a real person, not bot loops.</span>
-                    </li>
-                </ul>
+            <aside class="bg-white border border-gray-200 rounded-2xl p-6 md:p-7 shadow-sm animate-fade-in-up animation-delay-400">
+                <h3 class="font-[Poppins] font-bold text-xl mb-2">Get In Touch</h3>
+                <p class="text-sm text-gray-600 mb-4">We're here to help! Reach out to us for all your blood collection and testing needs</p>
 
-                <div class="mt-6 pt-5 border-t border-gray-700">
-                    <p class="text-xs uppercase tracking-wide text-gray-400 mb-2">Direct Help</p>
-                    <a href="tel:+919356955601" class="text-lg font-bold hover:text-red-300 transition">+91 93569 55601</a>
-                    <p class="text-xs text-gray-400 mt-2">6 AM - 10 AM, 4 PM - 7 PM</p>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-lg border border-gray-100">
+                        <div class="text-sm text-gray-500">Call Us</div>
+                        <a href="tel:+918390246575" class="block font-semibold text-lg text-gray-900 mt-1">+91 83902 46575</a>
+                        <div class="text-xs text-gray-500 mt-1">24/7 Home Collection (Appointment)</div>
+                    </div>
+
+                    <div class="p-4 rounded-lg border border-gray-100">
+                        <div class="text-sm text-gray-500">WhatsApp</div>
+                        <div class="font-semibold text-gray-900 mt-1">Quick booking and inquiries</div>
+                        <a href="https://wa.me/918390246575" class="inline-block mt-3 bg-green-600 text-white px-4 py-2 rounded font-semibold text-sm">Start Chat</a>
+                    </div>
+
+                    <div class="p-4 rounded-lg border border-gray-100">
+                        <div class="text-sm text-gray-500">Location</div>
+                        <div class="font-semibold text-gray-900 mt-1">Hadapsar, Pune</div>
+                        <div class="text-sm text-gray-700">Maharashtra, India</div>
+                        <div class="text-xs text-gray-500 mt-2">Home-visit only (no walk-in lab). Focus: Amanora & Magarpatta.</div>
+                    </div>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 </section>
@@ -283,7 +221,7 @@
                 <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
                     <i class="fas fa-question-circle text-red-700 mr-2"></i>When will I get my reports?
                 </h3>
-                <p class="text-gray-600">Reports are usually ready within 24-48 hours. You'll receive a WhatsApp notification and digital copy first, followed by physical reports.</p>
+                <p class="text-gray-600">Most reports are delivered online the same day. You will receive a WhatsApp notification with a digital copy and expert suggestions.</p>
             </div>
 
             <!-- FAQ 4 -->
@@ -299,7 +237,7 @@
                 <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
                     <i class="fas fa-question-circle text-red-700 mr-2"></i>What areas do you cover for home visits?
                 </h3>
-                <p class="text-gray-600">We cover Hadapsar, Mundhwa, Kharadi, and Magarpatta. For other areas, please call and we'll check availability.</p>
+                <p class="text-gray-600">We primarily cover Amanora and Magarpatta, and also serve Hadapsar. Call to check availability in nearby areas.</p>
             </div>
 
             <!-- FAQ 6 -->
@@ -307,7 +245,7 @@
                 <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">
                     <i class="fas fa-question-circle text-red-700 mr-2"></i>Can I get the reports interpreted?
                 </h3>
-                <p class="text-gray-600">Yes, basic interpretation is provided with reports. For detailed medical advice, consult with your doctor.</p>
+                <p class="text-gray-600">Yes, expert doctor suggestions are provided with the report. For detailed medical advice, consult your physician.</p>
             </div>
         </div>
     </div>
@@ -316,21 +254,16 @@
 <!-- Operating Hours Banner -->
 <section class="bg-red-700 text-white py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h3 class="font-[Poppins] font-bold text-2xl mb-4">We're Open</h3>
+        <h3 class="font-[Poppins] font-bold text-2xl mb-4">We're Available 24/7</h3>
         <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
             <div>
-                <p class="text-sm opacity-90">Morning</p>
-                <p class="text-2xl font-bold">6:00 AM - 10:00 AM</p>
+                <p class="text-sm opacity-90">Home Collection</p>
+                <p class="text-2xl font-bold">Appointment-Based</p>
             </div>
             <div class="hidden sm:block text-2xl opacity-50">|</div>
             <div>
-                <p class="text-sm opacity-90">Evening</p>
-                <p class="text-2xl font-bold">4:00 PM - 7:00 PM</p>
-            </div>
-            <div class="hidden sm:block text-2xl opacity-50">|</div>
-            <div>
-                <p class="text-sm opacity-90">Call for Emergencies</p>
-                <p class="text-xl font-bold">+91 93569 55601</p>
+                <p class="text-sm opacity-90">Call or WhatsApp</p>
+                <p class="text-xl font-bold">+91 83902 46575</p>
             </div>
         </div>
     </div>
@@ -342,7 +275,7 @@
         <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div>
                 <h3 class="font-[Poppins] font-bold text-lg mb-4">Hadapsar Blood Center</h3>
-                <p class="text-gray-300 text-sm">Professional blood collection and testing with home visit service.</p>
+                <p class="text-gray-300 text-sm">Home-visit blood collection only (no walk-in lab).</p>
                 <div class="flex space-x-4 mt-4">
                     <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-instagram"></i></a>
@@ -361,14 +294,14 @@
                 <h4 class="font-[Poppins] font-bold mb-4">Services</h4>
                 <ul class="text-sm text-gray-300 space-y-2">
                     <li><a href="services.html#home-visit" class="hover:text-white transition">Home Collection</a></li>
-                    <li><a href="services.html#clinic" class="hover:text-white transition">Clinic Collection</a></li>
+                    <li><a href="services.html#report-delivery" class="hover:text-white transition">Report Delivery</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-[Poppins] font-bold mb-4">Contact</h4>
                 <div class="text-sm text-gray-300 space-y-3">
-                    <p><i class="fas fa-phone text-red-400"></i> +91 93569 55601</p>
-                    <p><i class="fas fa-clock text-red-400"></i> 6 AM - 10 AM, 4 PM - 7 PM</p>
+                    <p><i class="fas fa-phone text-red-400"></i> +91 83902 46575</p>
+                    <p><i class="fas fa-clock text-red-400"></i> 24/7 Home Collection (Appointment)</p>
                 </div>
             </div>
         </div>

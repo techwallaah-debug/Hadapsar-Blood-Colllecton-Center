@@ -6,27 +6,26 @@
 
 // Business Configuration
 define('BUSINESS_NAME', 'Hadapsar Blood Collection Center');
-define('BUSINESS_PHONE', '+91 93569 55601');
+define('BUSINESS_PHONE', '+91 83902 46575');
 define('BUSINESS_EMAIL', 'info@hadapsarbloodcenter.com');
-define('BUSINESS_WHATSAPP', '919356955601'); // Without + sign
+define('BUSINESS_WHATSAPP', '918390246575'); // Without + sign
 define('BUSINESS_ADDRESS', 'Hadapsar, Pune, Maharashtra');
 
 // Opening Hours
-define('OPENING_MORNING_START', '06:00');
-define('OPENING_MORNING_END', '10:00');
-define('OPENING_EVENING_START', '16:00');
-define('OPENING_EVENING_END', '19:00');
+define('OPENING_MORNING_START', '00:00');
+define('OPENING_MORNING_END', '23:59');
+define('OPENING_EVENING_START', '00:00');
+define('OPENING_EVENING_END', '23:59');
 
 // Doctor Information
-define('DOCTOR_NAME', 'Dr. Pannu Bhaware');
+define('DOCTOR_NAME', 'Pannu Bhaware');
 define('DOCTOR_QUALIFICATION', 'B.Sc. MLT');
 
 // Service Areas
 $SERVICE_AREAS = [
-    'Hadapsar',
-    'Mundhwa',
-    'Kharadi',
-    'Magarpatta'
+    'Amanora',
+    'Magarpatta',
+    'Hadapsar'
 ];
 
 // Branding
@@ -52,7 +51,7 @@ define('MAIL_FROM_NAME', 'Hadapsar Blood Center');
 define('ADMIN_EMAIL', 'admin@hadapsarbloodcenter.com');
 
 // WhatsApp Configuration
-define('WHATSAPP_NUMBER', '+91 93569 55601');
+define('WHATSAPP_NUMBER', '+91 83902 46575');
 define('WHATSAPP_API_URL', ''); // Add WhatsApp API endpoint if using
 
 // Security

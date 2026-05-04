@@ -32,7 +32,7 @@
 
 Example:
 ```html
-<img src="assets/images/doctor.jpg" alt="Dr. Pannu Bhaware" class="w-80 h-80 object-cover rounded-lg">
+<img src="assets/images/doctor.jpg" alt="Pannu Bhaware" class="w-80 h-80 object-cover rounded-lg">
 ```
 
 ---
@@ -40,10 +40,10 @@ Example:
 ## 📝 To Update Business Info
 
 Find & Replace:
-- `+91 93569 55601` → Your actual phone
+- `+91 83902 46575` → Your actual phone
 - `info@hadapsarbloodcenter.com` → Your email
 - `Hadapsar, Pune` → Your location
-- `Dr. Pannu Bhaware` → Doctor name
+- `Pannu Bhaware` → Doctor name
 - `B.Sc. MLT` → Qualification
 
 ---

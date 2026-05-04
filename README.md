@@ -129,7 +129,7 @@ Hadapsar-Blood-Colllecton-Center/
 ```
 
 ### Update Business Information:
-- **Phone**: Change `+91 93569 55601` throughout (use Find & Replace)
+- **Phone**: Change `+91 83902 46575` throughout (use Find & Replace)
 - **Email**: Add your email in footer and contact form
 - **WhatsApp Link**: Update WhatsApp number in all links
 - **Address**: Update location details in contact page
@@ -329,5 +329,5 @@ This website template is created for educational and commercial use.
 
 ---
 
-For questions or updates, contact: Dr. Pannu Bhaware
-📞 +91 93569 55601
+For questions or updates, contact: Pannu Bhaware
+📞 +91 83902 46575

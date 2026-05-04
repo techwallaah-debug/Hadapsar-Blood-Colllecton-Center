@@ -1,0 +1,27 @@
+{
+  "name": "hadapsar-blood-colllecton-center",
+  "version": "1.0.0",
+  "description": "This is a fully responsive website for **Hadapsar Blood Collection Center** - a professional blood collection and diagnostic testing center in Hadapsar, Pune. The website is built with **HTML, CSS, JavaScript, PHP, and Tailwind CSS** for maximum performance and beautiful design.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techwallaah-debug/Hadapsar-Blood-Colllecton-Center.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/techwallaah-debug/Hadapsar-Blood-Colllecton-Center/issues"
+  },
+  "homepage": "https://github.com/techwallaah-debug/Hadapsar-Blood-Colllecton-Center#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@motionone/dom": "^10.18.0",
+    "lottie-web": "^5.13.0",
+    "lucide": "^1.14.0"
+  }
+}
