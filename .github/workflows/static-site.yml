@@ -65,7 +65,24 @@ jobs:
             exit 1
           fi
 
-      - name: Deploy to hosting server
+      - name: Test network connectivity to FTP server
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          echo "Testing connectivity to FTP server..."
+          FTP_SERVER="${FTP_SERVER#ftp://}"
+          FTP_SERVER="${FTP_SERVER%/}"
+          echo "Target: $FTP_SERVER:21"
+          
+          # Try DNS resolution
+          echo "DNS Resolution Test:"
+          nslookup "$FTP_SERVER" || echo "⚠️  DNS lookup failed, but proceeding with IP..."
+          
+          # Try to reach port 21
+          echo "Port 21 Connectivity Test:"
+          timeout 10 bash -c "echo > /dev/tcp/$FTP_SERVER/21" && echo "✅ Port 21 is open" || echo "⚠️  Port 21 unreachable, retrying in deploy step..."
+
+      - name: Deploy to hosting server (with retry)
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -82,18 +99,36 @@ jobs:
             *) FTP_SERVER_DIR="/${FTP_SERVER_DIR}" ;;
           esac
 
-          lftp -e "
-            set ftp:ssl-allow no;
-            set ftp:passive-mode yes;
-            open -u \"${FTP_USERNAME}\",\"${FTP_PASSWORD}\" \"ftp://${FTP_SERVER}:21\";
-            mirror -R --delete --verbose \
-              --exclude-glob .git* \
-              --exclude-glob .github/** \
-              --exclude-glob node_modules/** \
-              --exclude-glob data/** \
-              --exclude-glob .DS_Store \
-              --exclude-glob README.md \
-              --exclude-glob QUICKSTART.md \
-              ./ \"${FTP_SERVER_DIR}\";
-            bye
-          "
+          # Retry logic: attempt up to 3 times
+          for attempt in 1 2 3; do
+            echo "Deploy attempt $attempt/3..."
+            
+            if lftp -e "
+              set ftp:ssl-allow no;
+              set ftp:passive-mode yes;
+              set net:timeout 30;
+              set net:max-retries 2;
+              open -u \"${FTP_USERNAME}\",\"${FTP_PASSWORD}\" \"ftp://${FTP_SERVER}:21\";
+              mirror -R --delete --verbose \
+                --exclude-glob .git* \
+                --exclude-glob .github/** \
+                --exclude-glob node_modules/** \
+                --exclude-glob data/** \
+                --exclude-glob .DS_Store \
+                --exclude-glob README.md \
+                --exclude-glob QUICKSTART.md \
+                ./ \"${FTP_SERVER_DIR}\";
+              bye
+            "; then
+              echo "✅ Deployment successful!"
+              exit 0
+            else
+              if [ $attempt -lt 3 ]; then
+                echo "❌ Attempt $attempt failed. Waiting 10 seconds before retry..."
+                sleep 10
+              fi
+            fi
+          done
+          
+          echo "❌ All 3 deployment attempts failed."
+          exit 1
