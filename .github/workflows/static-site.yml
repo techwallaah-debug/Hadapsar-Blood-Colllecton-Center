@@ -99,7 +99,7 @@ jobs:
           for attempt in 1 2 3; do
             echo "Deploy attempt $attempt/3..."
             
-            if sshpass -p "$SSH_PASSWORD" rsync -avz -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p $SSH_PORT" \
+            if sshpass -p "$SSH_PASSWORD" rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p $SSH_PORT" \
               --delete \
               --exclude='.git*' \
               --exclude='.github/**' \
@@ -110,7 +110,7 @@ jobs:
               --exclude='QUICKSTART.md' \
               --exclude='*.jsonl' \
               --exclude='package-lock.json' \
-              ./ "$SSH_USERNAME@$SSH_HOST:$SSH_PATH/"; then
+              ./ "$SSH_USERNAME@$SSH_HOST:$SSH_PATH"; then
               echo "✅ Deployment successful!"
               exit 0
             else
