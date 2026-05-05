@@ -15,14 +15,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          tools: none
-          coverage: none
+        uses: actions/checkout@v5
 
       - name: Validate PHP syntax
         run: |
@@ -45,23 +38,62 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Validate deploy secrets
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          set -eu
+          missing=""
+          [ -n "${FTP_SERVER:-}" ] || missing="$missing FTP_SERVER"
+          [ -n "${FTP_USERNAME:-}" ] || missing="$missing FTP_USERNAME"
+          [ -n "${FTP_PASSWORD:-}" ] || missing="$missing FTP_PASSWORD"
+          [ -n "${FTP_SERVER_DIR:-}" ] || missing="$missing FTP_SERVER_DIR"
+
+          if [ -n "$missing" ]; then
+            echo "Missing GitHub Actions secrets:$missing"
+            echo "Set them in Settings -> Secrets and variables -> Actions before deploying."
+            exit 1
+          fi
 
       - name: Deploy to hosting server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          port: 21
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: ./
-          exclude: |
-            **/.git*
-            **/.github/**
-            **/node_modules/**
-            **/data/**
-            **/.DS_Store
-            README.md
-            QUICKSTART.md
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          set -eu
+
+          FTP_SERVER="${FTP_SERVER#ftp://}"
+          FTP_SERVER="${FTP_SERVER%/}"
+          FTP_SERVER_DIR="${FTP_SERVER_DIR%/}"
+          case "$FTP_SERVER_DIR" in
+            /*) ;;
+            *) FTP_SERVER_DIR="/${FTP_SERVER_DIR}" ;;
+          esac
+
+          lftp -e "
+            set ftp:ssl-allow no;
+            set ftp:passive-mode yes;
+            open -u \"${FTP_USERNAME}\",\"${FTP_PASSWORD}\" \"ftp://${FTP_SERVER}:21\";
+            mirror -R --delete --verbose \
+              --exclude-glob .git* \
+              --exclude-glob .github/** \
+              --exclude-glob node_modules/** \
+              --exclude-glob data/** \
+              --exclude-glob .DS_Store \
+              --exclude-glob README.md \
+              --exclude-glob QUICKSTART.md \
+              ./ \"${FTP_SERVER_DIR}\";
+            bye
+          "
