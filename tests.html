@@ -404,16 +404,25 @@
 
         const descriptionFor = (name) => {
             const n = (name || '').toLowerCase();
-            if (n.includes('pregnancy') || n.includes('antenatal') || n.includes('ante')) return 'Antenatal screening support for expecting mothers.';
-            if (n.includes('diabet')) return 'Diabetes screening with key metabolic markers.';
-            if (n.includes('renal') || n.includes('kidney') || n.includes('kft') || n.includes('ckd')) return 'Kidney health screening and monitoring.';
-            if (n.includes('heart') || /\blipid\b/.test(n)) return 'Cardiac risk screening and lipid assessment.';
-            if (n.includes('thyroid') || n.includes('tsh') || n.includes('t4')) return 'Thyroid function screening for routine checkups.';
-            if (n.includes('fever') || n.includes('covid') || n.includes('sars')) return 'Fever/viral panel support based on symptoms.';
-            if (n.includes('anemia')) return 'Anemia screening with iron and related markers.';
-            if (n.includes('autoimmune') || /\bana\b/.test(n) || /\bena\b/.test(n)) return 'Autoimmune screening panels for clinical guidance.';
-            if (n.includes('newborn')) return 'Newborn screening support for early detection.';
-            if (n.includes('pollution')) return 'Respiratory and exposure-risk screening basics.';
+            
+            // Specific package descriptions provided by user
+            if (n.includes('executive full body - male')) return 'Premium preventive health check for working men, covering major organs, diabetes, heart risk, thyroid, vitamins, and overall wellness.';
+            if (n.includes('executive full body - female')) return 'Comprehensive women\'s screening focused on lifestyle disease risk, hormone balance, nutrition, and preventive care.';
+            if (n.includes('senior executive - male')) return 'Advanced age-focused package for senior men to monitor heart, kidney, liver, sugar, thyroid, bone, and nutritional health.';
+            if (n.includes('senior executive - female')) return 'Senior women\'s preventive package for chronic disease risk, bone health, vitamins, thyroid, and metabolic balance.';
+            if (n.includes('cardiac risk premium')) return 'Targeted heart-health package for people with stress, high cholesterol, diabetes, family history, or lifestyle-related cardiac risk.';
+            if (n.includes('diabetes plus')) return 'Focused sugar-monitoring package that helps assess diabetes control and possible early complications.';
+            if (n.includes('thyroid plus')) return 'Thyroid screening package to detect underactive or overactive thyroid and related hormonal imbalance.';
+            if (n.includes('liver health plus')) return 'Liver function package to assess liver health, fatty liver risk, inflammation, and medication or alcohol impact.';
+            if (n.includes('kidney health plus')) return 'Kidney screening package to evaluate renal function, urine health, hydration balance, and early kidney stress.';
+            if (n.includes('vitamin & nutrition elite')) return 'Deficiency-focused package for fatigue, weakness, hair fall, low immunity, and poor nutrition.';
+            if (n.includes('women hormone & wellness')) return 'Women-specific package for hormone balance, menstrual concerns, fertility-related screening, and general wellness.';
+            if (n.includes('men hormone & wellness')) return 'Men-specific package for testosterone-related health, vitality, metabolic balance, and preventive screening.';
+            if (n.includes('fever & infection advanced')) return 'Advanced fever workup for viral, bacterial, and seasonal infection screening.';
+            if (n.includes('arthritis & inflammation')) return 'Package for joint pain, autoimmune concerns, inflammation markers, and chronic pain evaluation.';
+            if (n.includes('ultra premium comprehensive')) return 'Most complete package for high-profile clients who want an in-depth annual health review across almost all major systems.';
+            
+            // Fallback for other packages
             return 'Comprehensive screening package for routine health review.';
         };
 
