@@ -1,4 +1,4 @@
-name: Static Site CI
+name: Static Site CI and Deploy
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -36,3 +37,30 @@ jobs:
           test -f index.html
           test -f contact.html
           test -f tests.html
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to hosting server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/node_modules/**
+            **/data/**
+            **/.DS_Store
+            README.md
+            QUICKSTART.md

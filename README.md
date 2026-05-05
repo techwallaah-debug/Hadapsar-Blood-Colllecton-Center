@@ -271,6 +271,17 @@ This website is ready for production deployment to:
 5. Set up email (for notifications)
 6. Test thoroughly
 
+### GitHub Auto-Deploy
+
+Pushes to `main` can now auto-deploy through GitHub Actions once these repository secrets are configured:
+
+- `FTP_SERVER` - hosting FTP/FTPS host
+- `FTP_USERNAME` - FTP username
+- `FTP_PASSWORD` - FTP password
+- `FTP_SERVER_DIR` - remote path, usually `/public_html/` or `/htdocs/`
+
+The workflow file is [`.github/workflows/static-site.yml`](.github/workflows/static-site.yml). It validates the site and then uploads the files to your hosting server.
+
 ---
 
 ## 📊 File Size Summary

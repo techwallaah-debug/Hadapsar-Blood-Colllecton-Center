@@ -107,6 +107,17 @@ This Phase 1 website is **production-ready**. You can:
 5. **Enable SSL** (HTTPS)
 6. **Go live!**
 
+### GitHub Auto-Deploy
+
+Pushes to `main` can auto-deploy once these secrets are set in GitHub:
+
+- `FTP_SERVER`
+- `FTP_USERNAME`
+- `FTP_PASSWORD`
+- `FTP_SERVER_DIR`
+
+See [`.github/workflows/static-site.yml`](.github/workflows/static-site.yml) for the deploy workflow.
+
 ---
 
 ## ✅ Phase 1 Checklist
