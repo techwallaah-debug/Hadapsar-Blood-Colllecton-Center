@@ -142,6 +142,90 @@
     </div>
 </section>
 
+<!-- Curated Packages Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">BROWSE BY CATEGORY</p>
+            <h2 class="font-[Poppins] font-bold text-4xl text-gray-900 mb-2">
+                Curated Health <span class="text-red-700">Packages</span>
+            </h2>
+            <p class="text-gray-600 text-lg">15 premium packages • home collection included</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button class="filter-btn active bg-red-700 text-white px-6 py-2 rounded-full font-semibold transition" data-filter="all">
+                All Packages
+            </button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="executive">
+                Executive
+            </button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="wellness">
+                Wellness
+            </button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="organ-health">
+                Organ Health
+            </button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="women">
+                Women
+            </button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="senior">
+                Senior
+            </button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="specialty">
+                Specialty
+            </button>
+        </div>
+
+        <!-- Ultra Premium Highlight Banner -->
+        <div class="mb-12 bg-gradient-to-r from-red-700 to-red-800 rounded-3xl p-8 sm:p-12 text-white shadow-lg" data-filter-category="all">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                <div>
+                    <h3 class="font-[Poppins] font-bold text-3xl sm:text-4xl mb-3">Ultra Premium Comprehensive</h3>
+                    <p class="text-red-100 text-lg max-w-2xl">Our most complete annual health review — 110+ parameters across all major systems. Designed for HNI and CXO clients in Amanora and Magarpatta.</p>
+                </div>
+                <div class="shrink-0">
+                    <div class="bg-white text-red-700 rounded-2xl px-6 sm:px-8 py-4 sm:py-6 text-center">
+                        <div class="text-3xl sm:text-4xl font-bold">₹5,999</div>
+                        <div class="text-sm text-red-600 line-through mt-1">₹7,199</div>
+                        <a href="contact.html#booking" class="mt-4 inline-block bg-red-700 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-800 transition">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packages Grid -->
+        <div id="packagesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Rendered by JavaScript -->
+        </div>
+
+        <!-- "Book Any Package" CTA -->
+        <div class="text-center mb-16">
+            <a href="contact.html#booking" class="inline-flex items-center justify-center bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-red-800 transition">
+                📅 Book Any Package <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Advanced Testing Reports Section -->
+<section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="font-[Poppins] font-bold text-3xl sm:text-4xl text-white mb-3">
+                Advanced Testing <span class="text-yellow-500">Reports</span>
+            </h2>
+            <p class="text-gray-300 text-lg">Specialist-recommended panels • doctor referral preferred</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6" id="advancedGrid">
+            <!-- Rendered by JavaScript -->
+        </div>
+    </div>
+</section>
+
 <!-- Features Section -->
 <section class="py-16 bg-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -616,5 +700,147 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script src="js/script.js"></script>
+
+<script>
+    (() => {
+        // Package Data with Categories
+        const packages = [
+            { name: 'Executive Full Body - Male', parameters: 96, mrp: 3599, offer: 2999, category: 'executive', description: 'Premium preventive health check for working men covering major organs, diabetes, heart risk, thyroid, vitamins, and overall wellness.' },
+            { name: 'Executive Full Body - Female', parameters: 97, mrp: 3599, offer: 2999, category: 'executive', description: 'Comprehensive women\'s screening focused on lifestyle disease risk, hormone balance, nutrition and preventive care.' },
+            { name: 'Senior Executive - Male', parameters: 100, mrp: 3599, offer: 2999, category: 'senior', description: 'Advanced age-focused package for senior men to monitor heart, kidney, liver, sugar, thyroid, bone, and nutritional health.' },
+            { name: 'Senior Executive - Female', parameters: 100, mrp: 3599, offer: 2999, category: 'senior', description: 'Senior women\'s preventive package for chronic disease risk, bone health, vitamins, thyroid, and metabolic balance.' },
+            { name: 'Cardiac Risk Premium', parameters: 30, mrp: 4799, offer: 3999, category: 'organ-health', description: 'Targeted heart-health package for people with stress, high cholesterol, diabetes, or family cardiac history.' },
+            { name: 'Diabetes Plus', parameters: 12, mrp: 1799, offer: 1499, category: 'wellness', description: 'Focused sugar-monitoring package to assess glycemic control and detect early diabetes complications.' },
+            { name: 'Thyroid Plus', parameters: 8, mrp: 1599, offer: 1199, category: 'wellness', description: 'Detect underactive or overactive thyroid and related hormonal imbalances.' },
+            { name: 'Liver Health Plus', parameters: 10, mrp: 999, offer: 699, category: 'organ-health', description: 'Assess liver wellness, fatty liver risk, inflammation, and medication or alcohol-related effects.' },
+            { name: 'Kidney Health Plus', parameters: 10, mrp: 1199, offer: 799, category: 'organ-health', description: 'Evaluate renal function, urine health, hydration balance, and detect early kidney stress signs.' },
+            { name: 'Vitamin & Nutrition Elite', parameters: 8, mrp: 4199, offer: 3499, category: 'wellness', description: 'Comprehensive deficiency workup for fatigue, hair fall, weakness, immunity issues and poor nutrition.' },
+            { name: 'Women Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999, category: 'women', description: 'Women\'s package for hormone balance, menstrual concerns, fertility screening and general wellness.' },
+            { name: 'Men Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999, category: 'specialty', description: 'Men\'s preventive package for testosterone-related health, vitality, metabolic balance and organ screening.' },
+            { name: 'Fever & Infection Advanced', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Advanced fever workup covering viral, bacterial, and seasonal infection screening.' },
+            { name: 'Arthritis & Inflammation', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Joint pain, autoimmune concerns, inflammation markers and chronic pain evaluation.' }
+        ];
+
+        const advancedPackages = [
+            { name: 'Autoimmune ILD Panel', category: 'AUTOIMMUNE', price: 9550, description: 'Lung & immune system markers for interstitial lung disease screening.' },
+            { name: 'ANA ENA Combo Panel', category: 'AUTOIMMUNE', price: 5810, description: 'Comprehensive autoimmune antibody profiling with 29 parameters.' },
+            { name: 'CKD Management Panel', category: 'KIDNEY', price: 2960, description: 'Chronic kidney disease monitoring with 27 detailed renal parameters.' },
+            { name: 'Nutritional Anemia Panel', category: 'ANEMIA', price: 3150, description: 'Complete anemia workup including iron deficiency and nutritional markers.' },
+            { name: 'Hepatitis B Monitoring', category: 'HEPATITIS', price: 7680, description: 'Ongoing hepatitis B tracking with viral load and immune markers.' },
+            { name: 'Antenatal Complete Package', category: 'PREGNANCY', price: 6010, description: 'Comprehensive antenatal screening with 73 parameters for expectant mothers.' },
+            { name: 'IL-6 Extended Panel', category: 'INFLAMMATION', price: 9260, description: 'Interleukin-6 and 58 extended inflammatory markers for clinical guidance.' },
+            { name: 'Cancer Breast Comprehensive', category: 'CANCER MARKERS', price: 7490, description: 'Multi-marker breast cancer profiling for at-risk patients.' },
+            { name: 'Pre-Operative Basic Package', category: 'PRE-OPERATIVE', price: 2360, description: '52-parameter pre-surgery screening for safe surgical planning.' },
+            { name: 'Chronic Fatigue Syndrome', category: 'FATIGUE', price: 3740, description: '49-parameter panel targeting chronic fatigue and lifestyle causes.' }
+        ];
+
+        // Utility Functions
+        const formatMoney = (amount) => {
+            return '₹' + (Math.round(amount / 50) * 50).toLocaleString('en-IN');
+        };
+
+        const escapeHtml = (text) => {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        };
+
+        // Render Packages Grid
+        const renderPackagesGrid = (filter = 'all') => {
+            const grid = document.getElementById('packagesGrid');
+            const filtered = filter === 'all' 
+                ? packages 
+                : packages.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map((pkg, idx) => `
+                <div class="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition bg-white">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                        <span class="inline-block bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            ${escapeHtml(pkg.category)}
+                        </span>
+                        <span class="text-xs text-gray-500 font-medium">Male 30+</span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">${escapeHtml(pkg.name)}</h3>
+                    <p class="text-sm text-gray-600 mb-4">${escapeHtml(pkg.description)}</p>
+                    <div class="flex items-center gap-2 mb-4 text-sm">
+                        <i class="fas fa-flask text-red-600"></i>
+                        <span class="text-gray-700"><strong>${pkg.parameters}</strong> Parameters</span>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex items-baseline gap-2">
+                            <div class="text-2xl font-bold text-gray-900">${formatMoney(pkg.offer)}</div>
+                            <div class="text-sm text-gray-500 line-through">${formatMoney(pkg.mrp)}</div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Home collection included</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="view-params flex-1 bg-white border border-red-700 text-red-700 px-3 py-2 rounded-lg font-semibold text-sm hover:bg-red-50 transition" data-idx="${idx}">
+                            View Parameters
+                        </button>
+                        <a href="contact.html#booking" class="flex-1 bg-red-700 text-white px-3 py-2 rounded-lg font-semibold text-sm hover:bg-red-800 transition text-center">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add event listeners for parameter buttons
+            document.querySelectorAll('.view-params').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = Number(this.getAttribute('data-idx'));
+                    const pkg = filtered[idx];
+                    if (pkg) showParameterModal(pkg);
+                });
+            });
+        };
+
+        // Render Advanced Testing Reports
+        const renderAdvancedGrid = () => {
+            const grid = document.getElementById('advancedGrid');
+            grid.innerHTML = advancedPackages.map(pkg => `
+                <div class="border border-gray-700 rounded-xl p-6 bg-gray-800 hover:bg-gray-750 transition">
+                    <div class="mb-3">
+                        <span class="inline-block bg-yellow-500 bg-opacity-20 text-yellow-400 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            ${escapeHtml(pkg.category)}
+                        </span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-xl text-white mb-2">${escapeHtml(pkg.name)}</h3>
+                    <p class="text-sm text-gray-300 mb-4">${escapeHtml(pkg.description)}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-2xl font-bold text-yellow-400">${formatMoney(pkg.price)}</div>
+                        <a href="contact.html#booking" class="bg-yellow-500 bg-opacity-20 text-yellow-400 border border-yellow-500 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-opacity-30 transition">
+                            Book
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        // Parameter Modal
+        const showParameterModal = (pkg) => {
+            alert(`${pkg.name}\n\n${pkg.parameters} Parameters\n\nPrice: ${formatMoney(pkg.offer)}\n\nContact us at +91 83902 46575 or visit contact.html to book!`);
+        };
+
+        // Filter Button Handler
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-red-700', 'text-white');
+                    b.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-300');
+                });
+                this.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-300');
+                this.classList.add('active', 'bg-red-700', 'text-white');
+                
+                const filter = this.getAttribute('data-filter');
+                renderPackagesGrid(filter);
+            });
+        });
+
+        // Initial Render
+        renderPackagesGrid('all');
+        renderAdvancedGrid();
+    })();
+</script>
+
 </body>
 </html>
