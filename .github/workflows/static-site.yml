@@ -40,86 +40,77 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Install lftp
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
-
       - name: Validate deploy secrets
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          SSH_PATH: ${{ secrets.SSH_PATH }}
         run: |
           set -eu
           missing=""
-          [ -n "${FTP_SERVER:-}" ] || missing="$missing FTP_SERVER"
-          [ -n "${FTP_USERNAME:-}" ] || missing="$missing FTP_USERNAME"
-          [ -n "${FTP_PASSWORD:-}" ] || missing="$missing FTP_PASSWORD"
-          [ -n "${FTP_SERVER_DIR:-}" ] || missing="$missing FTP_SERVER_DIR"
+          [ -n "${SSH_HOST:-}" ] || missing="$missing SSH_HOST"
+          [ -n "${SSH_PORT:-}" ] || missing="$missing SSH_PORT"
+          [ -n "${SSH_USERNAME:-}" ] || missing="$missing SSH_USERNAME"
+          [ -n "${SSH_PASSWORD:-}" ] || missing="$missing SSH_PASSWORD"
+          [ -n "${SSH_PATH:-}" ] || missing="$missing SSH_PATH"
 
           if [ -n "$missing" ]; then
-            echo "Missing GitHub Actions secrets:$missing"
-            echo "Set them in Settings -> Secrets and variables -> Actions before deploying."
+            echo "❌ Missing GitHub Actions secrets:$missing"
+            echo "Set them in Settings → Secrets and variables → Actions before deploying."
             exit 1
           fi
 
-      - name: Test network connectivity to FTP server
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      - name: Install dependencies
         run: |
-          echo "Testing connectivity to FTP server..."
-          FTP_SERVER="${FTP_SERVER#ftp://}"
-          FTP_SERVER="${FTP_SERVER%/}"
-          echo "Target: $FTP_SERVER:21"
-          
-          # Try DNS resolution
-          echo "DNS Resolution Test:"
-          nslookup "$FTP_SERVER" || echo "⚠️  DNS lookup failed, but proceeding with IP..."
-          
-          # Try to reach port 21
-          echo "Port 21 Connectivity Test:"
-          timeout 10 bash -c "echo > /dev/tcp/$FTP_SERVER/21" && echo "✅ Port 21 is open" || echo "⚠️  Port 21 unreachable, retrying in deploy step..."
+          sudo apt-get update
+          sudo apt-get install -y rsync sshpass
 
-      - name: Deploy to hosting server (with retry)
+      - name: Test SSH connectivity
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          echo "Testing SSH connectivity to $SSH_HOST:$SSH_PORT..."
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "echo ✅ SSH connection successful"
+
+      - name: Deploy via SSH + rsync
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          SSH_PATH: ${{ secrets.SSH_PATH }}
         run: |
           set -eu
 
-          FTP_SERVER="${FTP_SERVER#ftp://}"
-          FTP_SERVER="${FTP_SERVER%/}"
-          FTP_SERVER_DIR="${FTP_SERVER_DIR%/}"
-          case "$FTP_SERVER_DIR" in
+          SSH_PATH="${SSH_PATH%/}"
+          case "$SSH_PATH" in
             /*) ;;
-            *) FTP_SERVER_DIR="/${FTP_SERVER_DIR}" ;;
+            *) SSH_PATH="/${SSH_PATH}" ;;
           esac
+
+          echo "🚀 Deploying to $SSH_USERNAME@$SSH_HOST:$SSH_PORT$SSH_PATH..."
 
           # Retry logic: attempt up to 3 times
           for attempt in 1 2 3; do
             echo "Deploy attempt $attempt/3..."
             
-            if lftp -e "
-              set ftp:ssl-allow no;
-              set ftp:passive-mode yes;
-              set net:timeout 30;
-              set net:max-retries 2;
-              open -u \"${FTP_USERNAME}\",\"${FTP_PASSWORD}\" \"ftp://${FTP_SERVER}:21\";
-              mirror -R --delete --verbose \
-                --exclude-glob .git* \
-                --exclude-glob .github/** \
-                --exclude-glob node_modules/** \
-                --exclude-glob data/** \
-                --exclude-glob .DS_Store \
-                --exclude-glob README.md \
-                --exclude-glob QUICKSTART.md \
-                ./ \"${FTP_SERVER_DIR}\";
-              bye
-            "; then
+            if sshpass -p "$SSH_PASSWORD" rsync -avz -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p $SSH_PORT" \
+              --delete \
+              --exclude='.git*' \
+              --exclude='.github/**' \
+              --exclude='node_modules/**' \
+              --exclude='data/**' \
+              --exclude='.DS_Store' \
+              --exclude='README.md' \
+              --exclude='QUICKSTART.md' \
+              --exclude='*.jsonl' \
+              --exclude='package-lock.json' \
+              ./ "$SSH_USERNAME@$SSH_HOST:$SSH_PATH/"; then
               echo "✅ Deployment successful!"
               exit 0
             else
