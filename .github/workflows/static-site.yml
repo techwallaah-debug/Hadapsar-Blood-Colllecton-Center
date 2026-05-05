@@ -89,6 +89,9 @@ jobs:
 
           SSH_PATH="${SSH_PATH%/}"
           case "$SSH_PATH" in
+            /public_html|public_html)
+              SSH_PATH="/home/${SSH_USERNAME}/public_html"
+              ;;
             /*) ;;
             *) SSH_PATH="/${SSH_PATH}" ;;
           esac
