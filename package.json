@@ -4,7 +4,7 @@
   "description": "This is a fully responsive website for **Hadapsar Blood Collection Center** - a professional blood collection and diagnostic testing center in Hadapsar, Pune. The website is built with **HTML, CSS, JavaScript, PHP, and Tailwind CSS** for maximum performance and beautiful design.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No automated tests configured for this static site.\""
   },
   "repository": {
     "type": "git",
