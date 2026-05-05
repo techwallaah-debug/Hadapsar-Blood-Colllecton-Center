@@ -718,7 +718,8 @@
             { name: 'Women Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999, category: 'women', description: 'Women\'s package for hormone balance, menstrual concerns, fertility screening and general wellness.' },
             { name: 'Men Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999, category: 'specialty', description: 'Men\'s preventive package for testosterone-related health, vitality, metabolic balance and organ screening.' },
             { name: 'Fever & Infection Advanced', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Advanced fever workup covering viral, bacterial, and seasonal infection screening.' },
-            { name: 'Arthritis & Inflammation', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Joint pain, autoimmune concerns, inflammation markers and chronic pain evaluation.' }
+            { name: 'Arthritis & Inflammation', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Joint pain, autoimmune concerns, inflammation markers and chronic pain evaluation.' },
+            { name: 'Ultra Premium Comprehensive', parameters: 110, mrp: 7199, offer: 5999, category: 'all', description: 'Most complete package for high-profile clients who want an in-depth annual health review across almost all major systems. Designed for HNI and CXO clients in Amanora and Magarpatta.' }
         ];
 
         const advancedPackages = [
@@ -736,7 +737,7 @@
 
         // Utility Functions
         const formatMoney = (amount) => {
-            return '₹' + (Math.round(amount / 50) * 50).toLocaleString('en-IN');
+            return '₹' + Math.round(amount).toLocaleString('en-IN');
         };
 
         const escapeHtml = (text) => {
