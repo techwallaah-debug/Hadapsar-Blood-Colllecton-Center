@@ -640,12 +640,12 @@
             <!-- About -->
             <div>
                 <h3 class="font-[Poppins] font-bold text-lg mb-4">Hadapsar Blood Center</h3>
-                <p class="text-gray-300 text-sm">Professional blood collection and testing with home visit service.</p>
+                <p class="text-gray-300 text-sm">Home-visit blood collection only (no walk-in lab).</p>
                 <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-white hover:text-red-400 transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
@@ -657,6 +657,7 @@
                     <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
                     <li><a href="services.html" class="hover:text-white transition">Services</a></li>
                     <li><a href="tests.html" class="hover:text-white transition">Blood Tests</a></li>
+                    <li><a href="gallery.html" class="hover:text-white transition">Gallery</a></li>
                 </ul>
             </div>
 
@@ -677,7 +678,7 @@
                     <p><i class="fas fa-phone text-red-400"></i> +91 83902 46575</p>
                     <p><i class="fas fa-map-marker text-red-400"></i> Hadapsar, Pune</p>
                     <p><i class="fas fa-clock text-red-400"></i> 24/7 Home Collection (Appointment)</p>
-                    <a href="https://wa.me/918390246575" class="inline-block bg-green-600 hover:bg-green-700 px-4 py-2 rounded mt-2 transition text-white text-sm font-bold">
+                    <a href="https://wa.me/918390246575" class="inline-block bg-green-600 hover:bg-green-700 px-4 py-2 rounded mt-2 transition">
                         <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                 </div>
@@ -696,6 +697,11 @@
         </div>
     </div>
 </footer>
+
+<!-- Scripts -->
+<script src="js/script.js"></script>
+</body>
+</html>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -932,7 +938,7 @@
                         <span class="inline-block bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
                             ${escapeHtml(pkg.category)}
                         </span>
-                        <span class="text-xs text-gray-500 font-medium">Male 30+</span>
+                        <span class="text-xs text-gray-500 font-medium">Home Collection</span>
                     </div>
                     <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">${escapeHtml(pkg.name)}</h3>
                     <p class="text-sm text-gray-600 mb-4">${escapeHtml(pkg.shortDescription || pkg.description || '')}</p>
