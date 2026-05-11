@@ -346,15 +346,16 @@
 <div id="packageModal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
     <div id="packageModalBackdrop" class="absolute inset-0 bg-gray-900/60"></div>
     <div class="absolute inset-0 flex items-center justify-center p-4">
-        <div class="w-full max-w-3xl rounded-2xl bg-white shadow-lg border border-gray-100 overflow-hidden">
+        <div class="w-full max-w-3xl max-h-[85vh] rounded-2xl bg-white shadow-lg border border-gray-100 overflow-hidden">
             <div class="flex items-start justify-between gap-4 p-5 border-b border-gray-100">
                 <div>
                     <h3 id="packageModalTitle" class="font-[Poppins] font-semibold text-gray-900 text-xl leading-snug">Package Details</h3>
                     <p id="packageModalSubtitle" class="text-sm text-gray-500 mt-1"></p>
+                    <p id="packageModalDescription" class="text-sm text-gray-600 mt-1"></p>
                 </div>
                 <button id="packageModalClose" type="button" class="inline-flex items-center justify-center rounded-xl px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50">Close</button>
             </div>
-            <div class="p-5">
+            <div class="p-5 max-h-[70vh] overflow-y-auto">
                 <div class="flex flex-wrap items-center gap-3">
                     <span id="packageModalBadge" class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold">Home Collection</span>
                     <span id="packageModalMeta" class="text-sm text-gray-700"></span>
@@ -368,7 +369,7 @@
                 </div>
 
                 <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                    <a href="contact.html#booking" class="inline-flex items-center justify-center w-full sm:w-auto bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-black transition">Book This Package</a>
+                    <a id="packageModalBook" href="contact.html#booking" class="inline-flex items-center justify-center w-full sm:w-auto bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-black transition">Book This Package</a>
                     <a id="packageModalWhatsApp" href="https://wa.me/918390246575" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full sm:w-auto bg-white text-gray-900 border border-gray-200 px-5 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">Ask on WhatsApp</a>
                 </div>
             </div>
@@ -386,16 +387,96 @@
             { name: 'Senior Executive - Male', parameters: 100, mrp: 3599, offer: 2999 },
             { name: 'Senior Executive - Female', parameters: 100, mrp: 3599, offer: 2999 },
             { name: 'Cardiac Risk Premium', parameters: 30, mrp: 4799, offer: 3999 },
-            { name: 'Diabetes Plus', parameters: 12, mrp: 1799, offer: 1499 },
-            { name: 'Thyroid Plus', parameters: 8, mrp: 1599, offer: 1199 },
-            { name: 'Liver Health Plus', parameters: 10, mrp: 999, offer: 699 },
-            { name: 'Kidney Health Plus', parameters: 10, mrp: 1199, offer: 799 },
-            { name: 'Vitamin & Nutrition Elite', parameters: 8, mrp: 4199, offer: 3499 },
-            { name: 'Women Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999 },
-            { name: 'Men Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999 },
-            { name: 'Fever & Infection Advanced', parameters: 10, mrp: 1799, offer: 1499 },
-            { name: 'Arthritis & Inflammation', parameters: 10, mrp: 1799, offer: 1499 },
-            { name: 'Ultra Premium Comprehensive', parameters: 110, mrp: 7199, offer: 5999 }
+            {
+                name: 'Diabetes Plus',
+                parameters: '12-20',
+                approxCount: '12-20',
+                mrp: 0,
+                offer: 1499,
+                shortDescription: 'Blood sugar + kidney + lipid monitoring essentials.',
+                parameterList: ['Fasting Blood Sugar (FBS)', 'Postprandial Blood Sugar (PPBS)', 'HbA1c', 'Urine Routine', 'Creatinine', 'Lipid Profile']
+            },
+            {
+                name: 'Thyroid Plus',
+                parameters: '8-12',
+                approxCount: '8-12',
+                mrp: 0,
+                offer: 1199,
+                shortDescription: 'Core thyroid profile with autoimmunity add-on and lipids.',
+                parameterList: ['TSH', 'T3', 'T4', 'Anti-TPO (add-on)', 'Lipid Profile']
+            },
+            {
+                name: 'Liver Health Plus',
+                parameters: '10-15',
+                approxCount: '10-15',
+                mrp: 0,
+                offer: 699,
+                shortDescription: 'Focused liver enzyme and protein balance check.',
+                parameterList: ['GGT', 'Bilirubin', 'Albumin', 'Globulin', 'SGPT', 'SGOT', 'Total Protein', 'A/G Ratio']
+            },
+            {
+                name: 'Kidney Health Plus',
+                parameters: '10-14',
+                approxCount: '10-14',
+                mrp: 0,
+                offer: 799,
+                shortDescription: 'Renal function, electrolytes, and urine screening.',
+                parameterList: ['Urea', 'Creatinine', 'Electrolytes', 'Urine Routine', 'BUN', 'Uric Acid', 'Calcium']
+            },
+            {
+                name: 'Vitamin & Nutrition Elite',
+                parameters: '8-14',
+                approxCount: '8-14',
+                mrp: 0,
+                offer: 3499,
+                shortDescription: 'Deep nutrition panel for fatigue and deficiency screening.',
+                parameterList: ['Vitamin D', 'Vitamin B12', 'Ferritin', 'Calcium', 'Magnesium', 'Iron Studies']
+            },
+            {
+                name: 'Women Hormone & Wellness',
+                parameters: '14-25',
+                approxCount: '14-25',
+                mrp: 0,
+                offer: 3999,
+                shortDescription: 'Hormone, thyroid, sugar, lipids, and vitamin screening.',
+                parameterList: ['FSH', 'LH', 'Progesterone', 'Prolactin', 'TFT', 'HbA1c', 'Lipid Profile', 'Vitamin D', 'Vitamin B12', 'Iron']
+            },
+            {
+                name: 'Men Hormone & Wellness',
+                parameters: '14-24',
+                approxCount: '14-24',
+                mrp: 0,
+                offer: 3999,
+                shortDescription: 'Hormone + metabolic panel with vitamins and iron.',
+                parameterList: ['FSH', 'LH', 'Prolactin', 'DHEA-S', 'TFT', 'HbA1c', 'Lipid Profile', 'Testosterone', 'Vitamin D', 'Vitamin B12', 'Iron']
+            },
+            {
+                name: 'Fever & Infection Advanced',
+                parameters: '10-16',
+                approxCount: '10-16',
+                mrp: 0,
+                offer: 1499,
+                shortDescription: 'Fever workup covering infections and platelet count.',
+                parameterList: ['CBC', 'CRP', 'ESR', 'Malaria', 'Dengue', 'Typhoid', 'Urine Routine', 'Platelets']
+            },
+            {
+                name: 'Arthritis & Inflammation',
+                parameters: '10-16',
+                approxCount: '10-16',
+                mrp: 0,
+                offer: 1499,
+                shortDescription: 'Joint and inflammation markers with vitamin support.',
+                parameterList: ['CBC', 'ESR', 'CRP', 'RA Factor', 'Uric Acid', 'Vitamin D', 'Calcium']
+            },
+            {
+                name: 'Ultra Premium Comprehensive',
+                parameters: '110-140',
+                approxCount: '110-140',
+                mrp: 0,
+                offer: 5999,
+                shortDescription: 'Full-body annual review with cancer marker screening.',
+                parameterList: ['CBC', 'ESR', 'Blood Sugar', 'HbA1c', 'Lipid Profile', 'LFT', 'KFT', 'Thyroid', 'Urine Routine', 'Vitamin D', 'Vitamin B12', 'Ferritin', 'Cancer Markers']
+            }
         ];
 
         const descriptionFor = (name) => {
@@ -647,6 +728,11 @@
             const n = name.toLowerCase();
             const sections = [];
 
+            if (Array.isArray(pkg?.parameterList) && pkg.parameterList.length) {
+                sections.push(splitTitleAndItems('Parameters Included', pkg.parameterList));
+                return sections;
+            }
+
             const inline = parseInlineTestsFromName(name);
             if (inline.length) {
                 sections.push(splitTitleAndItems('Named Tests From Package Title', inline));
@@ -775,8 +861,27 @@
         const modalParams = document.getElementById('packageModalParams');
         const modalNote = document.getElementById('packageModalNote');
         const modalWhatsApp = document.getElementById('packageModalWhatsApp');
+        const modalDescription = document.getElementById('packageModalDescription');
+        const modalBook = document.getElementById('packageModalBook');
 
         const BUSINESS_WHATSAPP = '918390246575';
+
+        const saveSelectedPackage = (pkg) => {
+            if (!pkg) return;
+            try {
+                const payload = {
+                    name: pkg.name,
+                    shortDescription: pkg.shortDescription || descriptionFor(pkg.name) || '',
+                    parameters: pkg.parameters,
+                    approxCount: pkg.approxCount || pkg.parameters || '',
+                    price: typeof pkg.offer === 'number' && pkg.offer > 0 ? pkg.offer : pkg.mrp,
+                    parameterList: Array.isArray(pkg.parameterList) ? pkg.parameterList : []
+                };
+                localStorage.setItem('selectedPackage', JSON.stringify(payload));
+            } catch (error) {
+                console.warn('Unable to store package selection', error);
+            }
+        };
 
         const closeModal = () => {
             if (!modal) return;
@@ -802,6 +907,9 @@
 
             modalTitle.textContent = professional;
             modalSubtitle.textContent = `Original name: ${pkg.name}`;
+            if (modalDescription) {
+                modalDescription.textContent = pkg.shortDescription || descriptionFor(pkg.name) || '';
+            }
             modalMeta.innerHTML = `<span class="font-semibold">${escapeHtml(pkg.parameters)}</span> Parameter(s) Covered`;
             modalNote.textContent = 'Note: Parameter list is a professional, indicative breakdown. Exact inclusions can vary by lab method; confirm on WhatsApp before sample collection.';
 
@@ -822,6 +930,11 @@
                     </div>
                 `;
             }).join('');
+
+            if (modalBook) {
+                modalBook.setAttribute('href', 'contact.html#booking');
+                modalBook.onclick = () => saveSelectedPackage(pkg);
+            }
 
             modal.classList.remove('hidden');
             modal.setAttribute('aria-hidden', 'false');
@@ -862,12 +975,12 @@
                         </div>
                         <span class="shrink-0 inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold">Home Collection</span>
                     </div>
-                    <p class="text-sm text-gray-600 mt-2">${descriptionFor(p.name)}</p>
+                    <p class="text-sm text-gray-600 mt-2">${escapeHtml(p.shortDescription || descriptionFor(p.name))}</p>
                     <div class="mt-3 text-sm text-gray-700"><span class="font-semibold">${p.parameters}</span> Parameter(s) Covered</div>
                     ${priceHtml}
                     <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <button type="button" class="view-params inline-flex items-center justify-center w-full bg-white text-gray-900 border border-gray-200 px-5 py-3 rounded-xl font-semibold hover:bg-gray-50 transition" data-idx="${idx}">View Parameters</button>
-                        <a href="contact.html#booking" class="inline-flex items-center justify-center w-full bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-black transition">Book This Package</a>
+                        <a href="contact.html#booking" class="book-package inline-flex items-center justify-center w-full bg-gray-900 text-white px-5 py-3 rounded-xl font-semibold hover:bg-black transition" data-idx="${idx}">Book This Package</a>
                     </div>
                 </div>
             `;
@@ -879,6 +992,15 @@
                 const pkg = uniquePackages[idx];
                 if (!pkg) return;
                 openModal(pkg);
+            });
+        });
+
+        root.querySelectorAll('.book-package').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const idx = Number(btn.getAttribute('data-idx'));
+                const pkg = uniquePackages[idx];
+                if (!pkg) return;
+                saveSelectedPackage(pkg);
             });
         });
     })();

@@ -291,6 +291,96 @@ function showToast(message, type = 'success') {
 document.addEventListener('DOMContentLoaded', function() {
     const bookingForm = document.getElementById('bookingForm');
 
+    const packageCard = document.getElementById('selectedPackageCard');
+    const packageName = document.getElementById('selectedPackageName');
+    const packageDesc = document.getElementById('selectedPackageDesc');
+    const packageMeta = document.getElementById('selectedPackageMeta');
+    const packageParams = document.getElementById('selectedPackageParams');
+    const packageInfoInput = document.getElementById('package_info');
+    const packageSelect = document.getElementById('package_select');
+
+    const hydrateSelectedPackage = () => {
+        if (!packageCard || !packageName || !packageMeta || !packageInfoInput) return;
+
+        let selected = null;
+        try {
+            selected = JSON.parse(localStorage.getItem('selectedPackage') || 'null');
+        } catch (error) {
+            selected = null;
+        }
+
+        if (!selected || !selected.name) {
+            packageCard.classList.add('hidden');
+            if (packageSelect && packageSelect.value) {
+                packageInfoInput.value = `Package: ${packageSelect.value}`;
+                packageCard.classList.remove('hidden');
+                packageName.textContent = packageSelect.value;
+                if (packageDesc) packageDesc.textContent = '';
+                packageMeta.textContent = '';
+                if (packageParams) packageParams.textContent = '';
+            } else {
+                packageInfoInput.value = '';
+            }
+            return;
+        }
+
+        packageName.textContent = selected.name;
+        if (packageDesc) packageDesc.textContent = selected.shortDescription || '';
+        const priceText = selected.price ? `Price: ₹${selected.price}` : '';
+        const approxText = selected.approxCount ? `Approx. Tests: ${selected.approxCount}` : '';
+        packageMeta.textContent = [priceText, approxText].filter(Boolean).join(' • ');
+
+        if (packageParams) {
+            const list = Array.isArray(selected.parameterList) ? selected.parameterList.join(', ') : '';
+            packageParams.textContent = list ? `Parameters: ${list}` : '';
+        }
+
+        const infoParts = [
+            `Package: ${selected.name}`,
+            selected.shortDescription ? `Description: ${selected.shortDescription}` : '',
+            selected.approxCount ? `Approx. Tests: ${selected.approxCount}` : '',
+            selected.price ? `Price: ₹${selected.price}` : '',
+            Array.isArray(selected.parameterList) && selected.parameterList.length
+                ? `Parameters: ${selected.parameterList.join(', ')}`
+                : ''
+        ].filter(Boolean);
+
+        packageInfoInput.value = infoParts.join(' | ');
+        packageCard.classList.remove('hidden');
+        if (packageSelect) {
+            const hasOption = Array.from(packageSelect.options).some((opt) => opt.value === selected.name);
+            if (!hasOption) {
+                const newOption = document.createElement('option');
+                newOption.value = selected.name;
+                newOption.textContent = selected.name;
+                packageSelect.appendChild(newOption);
+            }
+            packageSelect.value = selected.name;
+        }
+    };
+
+    hydrateSelectedPackage();
+
+    if (packageSelect) {
+        packageSelect.addEventListener('change', () => {
+            const value = packageSelect.value;
+            if (!value) {
+                hydrateSelectedPackage();
+                return;
+            }
+            if (packageCard && packageName) {
+                packageCard.classList.remove('hidden');
+                packageName.textContent = value;
+                if (packageDesc) packageDesc.textContent = '';
+                if (packageMeta) packageMeta.textContent = '';
+                if (packageParams) packageParams.textContent = '';
+            }
+            if (packageInfoInput) {
+                packageInfoInput.value = `Package: ${value}`;
+            }
+        });
+    }
+
     if (!bookingForm) {
         return;
     }

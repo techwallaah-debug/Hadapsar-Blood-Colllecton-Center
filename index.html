@@ -171,6 +171,45 @@
     </div>
 </section>
 
+<!-- Package Parameters Modal -->
+<div id="packageModal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+    <div id="packageModalBackdrop" class="absolute inset-0 bg-gray-900/60"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="w-full max-w-2xl max-h-[85vh] rounded-2xl bg-white shadow-lg border border-gray-100 overflow-hidden">
+            <div class="flex items-start justify-between gap-4 p-5 border-b border-gray-100">
+                <div>
+                    <h3 id="packageModalTitle" class="font-[Poppins] font-semibold text-gray-900 text-xl leading-snug">Package Details</h3>
+                    <p id="packageModalDescription" class="text-sm text-gray-600 mt-1"></p>
+                </div>
+                <button id="packageModalClose" type="button" class="inline-flex items-center justify-center rounded-xl px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-5 max-h-[70vh] overflow-y-auto">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="inline-flex items-center rounded-full bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold">Home Collection</span>
+                    <span id="packageModalMeta" class="text-sm text-gray-700"></span>
+                </div>
+                <div id="packageModalPrices" class="mt-3"></div>
+
+                <div class="mt-5">
+                    <h4 class="font-[Poppins] font-semibold text-gray-900">Package Information</h4>
+                    <div id="packageModalParams" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                </div>
+
+                <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                    <a id="packageModalBook" href="contact.html#booking" class="inline-flex items-center justify-center w-full sm:w-auto bg-red-700 text-white px-5 py-3 rounded-xl font-semibold hover:bg-red-800 transition">
+                        <i class="fas fa-home mr-2"></i> Book This Package
+                    </a>
+                    <a href="tel:+918390246575" class="inline-flex items-center justify-center w-full sm:w-auto bg-white text-gray-900 border border-gray-200 px-5 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">
+                        <i class="fas fa-phone mr-2"></i> Call Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Advanced Testing Reports Section -->
 <section class="py-12 sm:py-16 lg:py-20 bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -671,16 +710,106 @@
             { name: 'Senior Executive - Male', parameters: 100, mrp: 3599, offer: 2999, category: 'senior', description: 'Advanced age-focused package for senior men to monitor heart, kidney, liver, sugar, thyroid, bone, and nutritional health.' },
             { name: 'Senior Executive - Female', parameters: 100, mrp: 3599, offer: 2999, category: 'senior', description: 'Senior women\'s preventive package for chronic disease risk, bone health, vitamins, thyroid, and metabolic balance.' },
             { name: 'Cardiac Risk Premium', parameters: 30, mrp: 4799, offer: 3999, category: 'organ-health', description: 'Targeted heart-health package for people with stress, high cholesterol, diabetes, or family cardiac history.' },
-            { name: 'Diabetes Plus', parameters: 12, mrp: 1799, offer: 1499, category: 'wellness', description: 'Focused sugar-monitoring package to assess glycemic control and detect early diabetes complications.' },
-            { name: 'Thyroid Plus', parameters: 8, mrp: 1599, offer: 1199, category: 'wellness', description: 'Detect underactive or overactive thyroid and related hormonal imbalances.' },
-            { name: 'Liver Health Plus', parameters: 10, mrp: 999, offer: 699, category: 'organ-health', description: 'Assess liver wellness, fatty liver risk, inflammation, and medication or alcohol-related effects.' },
-            { name: 'Kidney Health Plus', parameters: 10, mrp: 1199, offer: 799, category: 'organ-health', description: 'Evaluate renal function, urine health, hydration balance, and detect early kidney stress signs.' },
-            { name: 'Vitamin & Nutrition Elite', parameters: 8, mrp: 4199, offer: 3499, category: 'wellness', description: 'Comprehensive deficiency workup for fatigue, hair fall, weakness, immunity issues and poor nutrition.' },
-            { name: 'Women Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999, category: 'women', description: 'Women\'s package for hormone balance, menstrual concerns, fertility screening and general wellness.' },
-            { name: 'Men Hormone & Wellness', parameters: 14, mrp: 4799, offer: 3999, category: 'specialty', description: 'Men\'s preventive package for testosterone-related health, vitality, metabolic balance and organ screening.' },
-            { name: 'Fever & Infection Advanced', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Advanced fever workup covering viral, bacterial, and seasonal infection screening.' },
-            { name: 'Arthritis & Inflammation', parameters: 10, mrp: 1799, offer: 1499, category: 'wellness', description: 'Joint pain, autoimmune concerns, inflammation markers and chronic pain evaluation.' },
-            { name: 'Ultra Premium Comprehensive', parameters: 110, mrp: 7199, offer: 5999, category: 'all', description: 'Most complete package for high-profile clients who want an in-depth annual health review across almost all major systems. Designed for HNI and CXO clients in Amanora and Magarpatta.' }
+            {
+                name: 'Diabetes Plus',
+                parameters: '12-20',
+                approxCount: '12-20',
+                mrp: 0,
+                offer: 1499,
+                category: 'wellness',
+                shortDescription: 'Blood sugar + kidney + lipid monitoring essentials.',
+                parameterList: ['Fasting Blood Sugar (FBS)', 'Postprandial Blood Sugar (PPBS)', 'HbA1c', 'Urine Routine', 'Creatinine', 'Lipid Profile']
+            },
+            {
+                name: 'Thyroid Plus',
+                parameters: '8-12',
+                approxCount: '8-12',
+                mrp: 0,
+                offer: 1199,
+                category: 'wellness',
+                shortDescription: 'Core thyroid profile with autoimmunity add-on and lipids.',
+                parameterList: ['TSH', 'T3', 'T4', 'Anti-TPO (add-on)', 'Lipid Profile']
+            },
+            {
+                name: 'Liver Health Plus',
+                parameters: '10-15',
+                approxCount: '10-15',
+                mrp: 0,
+                offer: 699,
+                category: 'organ-health',
+                shortDescription: 'Focused liver enzyme and protein balance check.',
+                parameterList: ['GGT', 'Bilirubin', 'Albumin', 'Globulin', 'SGPT', 'SGOT', 'Total Protein', 'A/G Ratio']
+            },
+            {
+                name: 'Kidney Health Plus',
+                parameters: '10-14',
+                approxCount: '10-14',
+                mrp: 0,
+                offer: 799,
+                category: 'organ-health',
+                shortDescription: 'Renal function, electrolytes, and urine screening.',
+                parameterList: ['Urea', 'Creatinine', 'Electrolytes', 'Urine Routine', 'BUN', 'Uric Acid', 'Calcium']
+            },
+            {
+                name: 'Vitamin & Nutrition Elite',
+                parameters: '8-14',
+                approxCount: '8-14',
+                mrp: 0,
+                offer: 3499,
+                category: 'wellness',
+                shortDescription: 'Deep nutrition panel for fatigue and deficiency screening.',
+                parameterList: ['Vitamin D', 'Vitamin B12', 'Ferritin', 'Calcium', 'Magnesium', 'Iron Studies']
+            },
+            {
+                name: 'Women Hormone & Wellness',
+                parameters: '14-25',
+                approxCount: '14-25',
+                mrp: 0,
+                offer: 3999,
+                category: 'women',
+                shortDescription: 'Hormone, thyroid, sugar, lipids, and vitamin screening.',
+                parameterList: ['FSH', 'LH', 'Progesterone', 'Prolactin', 'TFT', 'HbA1c', 'Lipid Profile', 'Vitamin D', 'Vitamin B12', 'Iron']
+            },
+            {
+                name: 'Men Hormone & Wellness',
+                parameters: '14-24',
+                approxCount: '14-24',
+                mrp: 0,
+                offer: 3999,
+                category: 'specialty',
+                shortDescription: 'Hormone + metabolic panel with vitamins and iron.',
+                parameterList: ['FSH', 'LH', 'Prolactin', 'DHEA-S', 'TFT', 'HbA1c', 'Lipid Profile', 'Testosterone', 'Vitamin D', 'Vitamin B12', 'Iron']
+            },
+            {
+                name: 'Fever & Infection Advanced',
+                parameters: '10-16',
+                approxCount: '10-16',
+                mrp: 0,
+                offer: 1499,
+                category: 'wellness',
+                shortDescription: 'Fever workup covering infections and platelet count.',
+                parameterList: ['CBC', 'CRP', 'ESR', 'Malaria', 'Dengue', 'Typhoid', 'Urine Routine', 'Platelets']
+            },
+            {
+                name: 'Arthritis & Inflammation',
+                parameters: '10-16',
+                approxCount: '10-16',
+                mrp: 0,
+                offer: 1499,
+                category: 'wellness',
+                shortDescription: 'Joint and inflammation markers with vitamin support.',
+                parameterList: ['CBC', 'ESR', 'CRP', 'RA Factor', 'Uric Acid', 'Vitamin D', 'Calcium']
+            },
+            {
+                name: 'Ultra Premium Comprehensive',
+                parameters: '110-140',
+                approxCount: '110-140',
+                mrp: 0,
+                offer: 5999,
+                category: 'all',
+                shortDescription: 'Full-body annual review with cancer marker screening.',
+                parameterList: ['CBC', 'ESR', 'Blood Sugar', 'HbA1c', 'Lipid Profile', 'LFT', 'KFT', 'Thyroid', 'Urine Routine', 'Vitamin D', 'Vitamin B12', 'Ferritin', 'Cancer Markers']
+            }
         ];
 
         const advancedPackages = [
@@ -707,6 +836,89 @@
             return div.innerHTML;
         };
 
+        const saveSelectedPackage = (pkg) => {
+            if (!pkg) return;
+            try {
+                const payload = {
+                    name: pkg.name,
+                    shortDescription: pkg.shortDescription || pkg.description || '',
+                    parameters: pkg.parameters,
+                    approxCount: pkg.approxCount || pkg.parameters || '',
+                    price: typeof pkg.offer === 'number' && pkg.offer > 0 ? pkg.offer : pkg.mrp,
+                    parameterList: Array.isArray(pkg.parameterList) ? pkg.parameterList : []
+                };
+                localStorage.setItem('selectedPackage', JSON.stringify(payload));
+            } catch (error) {
+                console.warn('Unable to store package selection', error);
+            }
+        };
+
+        // Parameter Templates
+        const parameterTemplates = {
+            cbc: ['Hemoglobin (Hb)', 'RBC Count', 'Hematocrit (PCV)', 'MCV', 'MCH', 'MCHC', 'Total WBC Count (TLC)', 'Differential Leukocyte Count', 'Platelet Count'],
+            lipid: ['Total Cholesterol', 'HDL Cholesterol', 'LDL Cholesterol', 'Triglycerides', 'VLDL'],
+            lft: ['Total Bilirubin', 'Direct Bilirubin', 'SGOT (AST)', 'SGPT (ALT)', 'Alkaline Phosphatase', 'Total Protein', 'Albumin', 'Globulin', 'A/G Ratio'],
+            kft: ['Serum Creatinine', 'Serum Urea', 'Serum Uric Acid', 'BUN', 'Sodium', 'Potassium', 'Chloride', 'CO2'],
+            thyroid: ['TSH', 'Free T3', 'Free T4', 'Total T3', 'Total T4'],
+            diabetes: ['Fasting Blood Sugar', 'PP Blood Sugar', 'HbA1C', 'Insulin'],
+            lipid_profile: ['Total Cholesterol', 'Triglycerides', 'HDL Cholesterol', 'LDL Cholesterol', 'VLDL Cholesterol'],
+            cardiac: ['Troponin I', 'CK-MB', 'LDH', 'Myoglobin', 'Lipid Profile', 'Blood Glucose', 'Electrolytes'],
+            women_hormones: ['LH', 'FSH', 'Prolactin', 'Estrogen', 'Progesterone', 'TSH', 'Thyroid Profile'],
+            vitamin_d: ['Vitamin D3 (25-OH)', 'Vitamin B12', 'Folic Acid', 'Iron Profile', 'Ferritin'],
+            kidney: ['Serum Creatinine', 'BUN', 'Uric Acid', 'Electrolytes', 'Urine Routine'],
+            liver: ['SGOT', 'SGPT', 'Alkaline Phosphatase', 'Bilirubin', 'Albumin', 'Protein']
+        };
+
+        // Build Parameter Sections for Package
+        const buildParameterSections = (pkg) => {
+            const name = String(pkg?.name || '').toLowerCase();
+            const sections = [];
+
+            if (Array.isArray(pkg?.parameterList) && pkg.parameterList.length) {
+                sections.push({ title: 'Parameters Included', items: pkg.parameterList });
+                return sections;
+            }
+
+            if (name.includes('executive full body') || name.includes('senior executive') || name.includes('ultra premium')) {
+                sections.push({ title: 'Complete Blood Count (CBC)', items: parameterTemplates.cbc });
+                sections.push({ title: 'Lipid Profile', items: parameterTemplates.lipid_profile });
+                sections.push({ title: 'Liver Function Tests (LFT)', items: parameterTemplates.lft });
+                sections.push({ title: 'Kidney Function Tests (KFT)', items: parameterTemplates.kft });
+                sections.push({ title: 'Thyroid Profile', items: parameterTemplates.thyroid });
+                sections.push({ title: 'Diabetes Screening', items: parameterTemplates.diabetes });
+            } else if (name.includes('cardiac')) {
+                sections.push({ title: 'Cardiac Markers', items: parameterTemplates.cardiac });
+                sections.push({ title: 'Lipid Profile', items: parameterTemplates.lipid_profile });
+            } else if (name.includes('diabetes')) {
+                sections.push({ title: 'Diabetes Panel', items: parameterTemplates.diabetes });
+                sections.push({ title: 'Lipid Profile', items: parameterTemplates.lipid_profile });
+            } else if (name.includes('thyroid')) {
+                sections.push({ title: 'Thyroid Profile', items: parameterTemplates.thyroid });
+            } else if (name.includes('liver')) {
+                sections.push({ title: 'Liver Function Tests', items: parameterTemplates.liver });
+                sections.push({ title: 'Complete Blood Count', items: parameterTemplates.cbc });
+            } else if (name.includes('kidney')) {
+                sections.push({ title: 'Kidney Function Tests', items: parameterTemplates.kidney });
+                sections.push({ title: 'Complete Blood Count', items: parameterTemplates.cbc });
+            } else if (name.includes('vitamin')) {
+                sections.push({ title: 'Vitamin & Nutrition Panel', items: parameterTemplates.vitamin_d });
+            } else if (name.includes('women')) {
+                sections.push({ title: 'Hormone Profile', items: parameterTemplates.women_hormones });
+                sections.push({ title: 'Thyroid Profile', items: parameterTemplates.thyroid });
+                sections.push({ title: 'Complete Blood Count', items: parameterTemplates.cbc });
+            } else if (name.includes('fever') || name.includes('infection')) {
+                sections.push({ title: 'Infection & Fever Panel', items: ['CBC', 'Blood Culture', 'Widal Test', 'CRP', 'Dengue IgM', 'Malaria Parasite', 'Typhoid IgG', 'Liver Panel', 'Kidney Panel'] });
+            } else if (name.includes('arthritis') || name.includes('inflammation')) {
+                sections.push({ title: 'Inflammation Markers', items: ['CRP', 'ESR', 'RA Factor', 'ANA', 'Anti-CCP', 'Complement Profile', 'CBC', 'LFT', 'KFT'] });
+            }
+
+            if (sections.length === 0) {
+                sections.push({ title: 'Package Parameters', items: [`${pkg.parameters} comprehensive health parameters`, 'Includes routine & specialized tests'] });
+            }
+
+            return sections;
+        };
+
         // Render Packages Grid
         const renderPackagesGrid = (filter = 'all') => {
             const grid = document.getElementById('packagesGrid');
@@ -723,7 +935,7 @@
                         <span class="text-xs text-gray-500 font-medium">Male 30+</span>
                     </div>
                     <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">${escapeHtml(pkg.name)}</h3>
-                    <p class="text-sm text-gray-600 mb-4">${escapeHtml(pkg.description)}</p>
+                    <p class="text-sm text-gray-600 mb-4">${escapeHtml(pkg.shortDescription || pkg.description || '')}</p>
                     <div class="flex items-center gap-2 mb-4 text-sm">
                         <i class="fas fa-flask text-red-600"></i>
                         <span class="text-gray-700"><strong>${pkg.parameters}</strong> Parameters</span>
@@ -739,7 +951,7 @@
                         <button class="view-params flex-1 bg-white border border-red-700 text-red-700 px-3 py-2 rounded-lg font-semibold text-sm hover:bg-red-50 transition" data-idx="${idx}">
                             View Parameters
                         </button>
-                        <a href="contact.html#booking" class="flex-1 bg-red-700 text-white px-3 py-2 rounded-lg font-semibold text-sm hover:bg-red-800 transition text-center">
+                        <a href="contact.html#booking" class="book-package flex-1 bg-red-700 text-white px-3 py-2 rounded-lg font-semibold text-sm hover:bg-red-800 transition text-center" data-idx="${idx}">
                             Book Now
                         </a>
                     </div>
@@ -752,6 +964,14 @@
                     const idx = Number(this.getAttribute('data-idx'));
                     const pkg = filtered[idx];
                     if (pkg) showParameterModal(pkg);
+                });
+            });
+
+            document.querySelectorAll('.book-package').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = Number(this.getAttribute('data-idx'));
+                    const pkg = filtered[idx];
+                    if (pkg) saveSelectedPackage(pkg);
                 });
             });
         };
@@ -779,9 +999,66 @@
         };
 
         // Parameter Modal
-        const showParameterModal = (pkg) => {
-            alert(`${pkg.name}\n\n${pkg.parameters} Parameters\n\nPrice: ${formatMoney(pkg.offer)}\n\nContact us at +91 83902 46575 or visit contact.html to book!`);
+        const modal = document.getElementById('packageModal');
+        const modalBackdrop = document.getElementById('packageModalBackdrop');
+        const modalClose = document.getElementById('packageModalClose');
+        const modalTitle = document.getElementById('packageModalTitle');
+        const modalDescription = document.getElementById('packageModalDescription');
+        const modalMeta = document.getElementById('packageModalMeta');
+        const modalPrices = document.getElementById('packageModalPrices');
+        const modalParams = document.getElementById('packageModalParams');
+        const modalBook = document.getElementById('packageModalBook');
+
+        const closeModal = () => {
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('overflow-hidden');
         };
+
+        const showParameterModal = (pkg) => {
+            if (!modal) return;
+            
+            modalTitle.textContent = escapeHtml(pkg.name);
+            if (modalDescription) {
+                modalDescription.textContent = pkg.shortDescription || pkg.description || '';
+            }
+            modalMeta.innerHTML = `<span class="font-semibold">${escapeHtml(pkg.parameters)}</span> Parameter(s) Covered`;
+            
+            const hasMrp = typeof pkg.mrp === 'number' && pkg.mrp > 0;
+            const hasOffer = typeof pkg.offer === 'number' && pkg.offer > 0;
+            const display = hasOffer ? pkg.offer : pkg.mrp;
+            
+            modalPrices.innerHTML = (hasMrp && hasOffer)
+                ? `<div class="flex items-end gap-3"><div class="text-2xl font-bold text-gray-900">${escapeHtml(formatMoney(pkg.offer))}</div><div class="text-sm text-gray-500 line-through">${escapeHtml(formatMoney(pkg.mrp))}</div></div>`
+                : `<div class="text-2xl font-bold text-gray-900">${escapeHtml(formatMoney(display))}</div>`;
+            
+            const sections = buildParameterSections(pkg);
+            modalParams.innerHTML = sections.map((section) => {
+                const itemsHtml = (section.items || []).map((it) => `<li class="py-1">${escapeHtml(it)}</li>`).join('');
+                return `
+                    <div class="border border-gray-100 rounded-2xl p-4">
+                        <div class="font-[Poppins] font-semibold text-gray-900 mb-2">${escapeHtml(section.title)}</div>
+                        <ul class="text-sm text-gray-700 list-disc pl-5">${itemsHtml}</ul>
+                    </div>
+                `;
+            }).join('');
+
+            if (modalBook) {
+                modalBook.setAttribute('href', 'contact.html#booking');
+                modalBook.onclick = () => saveSelectedPackage(pkg);
+            }
+            
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('overflow-hidden');
+        };
+
+        modalBackdrop?.addEventListener('click', closeModal);
+        modalClose?.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
 
         // Filter Button Handler
         document.querySelectorAll('.filter-btn').forEach(btn => {

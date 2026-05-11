@@ -138,6 +138,40 @@
                         </select>
                     </div>
 
+                    <div>
+                        <label for="package_select" class="block text-sm font-semibold text-gray-800 mb-2">Select Package (Optional)</label>
+                        <select id="package_select" name="package_select" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                            <option value="">Choose a package (optional)</option>
+                            <option value="Executive Full Body - Male">Executive Full Body - Male</option>
+                            <option value="Executive Full Body - Female">Executive Full Body - Female</option>
+                            <option value="Senior Executive - Male">Senior Executive - Male</option>
+                            <option value="Senior Executive - Female">Senior Executive - Female</option>
+                            <option value="Cardiac Risk Premium">Cardiac Risk Premium</option>
+                            <option value="Diabetes Plus">Diabetes Plus</option>
+                            <option value="Thyroid Plus">Thyroid Plus</option>
+                            <option value="Liver Health Plus">Liver Health Plus</option>
+                            <option value="Kidney Health Plus">Kidney Health Plus</option>
+                            <option value="Vitamin & Nutrition Elite">Vitamin & Nutrition Elite</option>
+                            <option value="Women Hormone & Wellness">Women Hormone & Wellness</option>
+                            <option value="Men Hormone & Wellness">Men Hormone & Wellness</option>
+                            <option value="Fever & Infection Advanced">Fever & Infection Advanced</option>
+                            <option value="Arthritis & Inflammation">Arthritis & Inflammation</option>
+                            <option value="Ultra Premium Comprehensive">Ultra Premium Comprehensive</option>
+                            <option value="Other / Not sure">Other / Not sure</option>
+                        </select>
+                        <p class="text-xs text-gray-500 mt-2">If you clicked "Book This Package" from the home page, it will auto-fill here.</p>
+                    </div>
+
+                    <div id="selectedPackageCard" class="hidden rounded-xl border border-gray-200 bg-gray-50 p-4">
+                        <div class="text-xs font-semibold uppercase tracking-wide text-gray-500">Selected Package</div>
+                        <div id="selectedPackageName" class="text-lg font-semibold text-gray-900 mt-1"></div>
+                        <p id="selectedPackageDesc" class="text-sm text-gray-600 mt-1"></p>
+                        <div id="selectedPackageMeta" class="text-sm text-gray-700 mt-2"></div>
+                        <div id="selectedPackageParams" class="text-xs text-gray-500 mt-2"></div>
+                    </div>
+
+                    <input type="hidden" id="package_info" name="package_info" value="">
+
                     <button type="submit" class="w-full bg-red-700 text-white py-3.5 rounded-xl font-semibold hover:bg-red-800 transition shadow-sm hover:shadow-md">Send on WhatsApp</button>
 
                     <p class="text-xs text-gray-500 text-center">
