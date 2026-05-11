@@ -39,18 +39,24 @@
 
 <!-- Navigation Bar -->
 <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <div class="flex items-center space-x-2">
-                <img src="assets/images/hadapsar-logo.png" alt="Hadapsar Blood Collection Center" class="h-12 w-12">
-                <div>
-                    <h1 class="text-red-700 font-[Poppins] font-bold text-lg">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14 sm:h-16">
+            <!-- Logo - Linked to Home -->
+            <a href="index.html" class="flex items-center space-x-1.5 sm:space-x-2 min-w-0 hover:opacity-80 transition">
+                <img src="assets/images/hadapsar-logo.png" alt="Hadapsar Blood Collection Center" class="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0">
+                <div class="min-w-0">
+                    <h1 class="text-red-700 font-[Poppins] font-bold text-sm sm:text-lg leading-tight">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
                 </div>
-            </div>
+            </a>
 
-            <!-- Book Home Visit CTA Button -->
-            <a href="contact.html" class="bg-red-700 text-white px-6 py-2 rounded-full hover:bg-red-800 transition font-medium">Book Home Visit</a>
-        </div>        </div>
+            <!-- Book Home Visit CTA Button - Hidden on Mobile -->
+            <a href="contact.html" class="hidden sm:inline-block bg-red-700 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-red-800 transition font-medium text-sm sm:text-base">Book Home Visit</a>
+            
+            <!-- Mobile CTA - Show only on small screens -->
+            <a href="contact.html#booking" class="sm:hidden bg-red-700 text-white px-3 py-2 rounded-full hover:bg-red-800 transition font-medium text-xs inline-flex items-center gap-1">
+                <i class="fas fa-home"></i> <span>Book</span>
+            </a>
+        </div>
     </div>
 </nav>
 

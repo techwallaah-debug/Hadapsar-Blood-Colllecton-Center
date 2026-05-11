@@ -49,18 +49,23 @@
 
 <!-- Navigation Bar -->
 <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <img src="assets/images/hadapsar-logo.png" alt="Hadapsar Blood Collection Center" class="h-12 w-12">
-                <div>
-                    <h1 class="text-red-700 font-[Poppins] font-bold text-lg">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14 sm:h-16">
+            <!-- Logo - Linked to Home -->
+            <a href="index.html" class="flex items-center space-x-1.5 sm:space-x-2 min-w-0 hover:opacity-80 transition">
+                <img src="assets/images/hadapsar-logo.png" alt="Hadapsar Blood Collection Center" class="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0">
+                <div class="min-w-0">
+                    <h1 class="text-red-700 font-[Poppins] font-bold text-sm sm:text-lg leading-tight">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
                 </div>
-            </div>
+            </a>
 
-            <!-- Book Home Visit CTA Button -->
-            <a href="contact.html" class="bg-red-700 text-white px-6 py-2 rounded-full hover:bg-red-800 transition font-medium">Book Home Visit</a>
+            <!-- Book Home Visit CTA Button - Hidden on Mobile -->
+            <a href="contact.html" class="hidden sm:inline-block bg-red-700 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-red-800 transition font-medium text-sm sm:text-base">Book Home Visit</a>
+            
+            <!-- Mobile CTA - Show only on small screens -->
+            <a href="contact.html#booking" class="sm:hidden bg-red-700 text-white px-3 py-2 rounded-full hover:bg-red-800 transition font-medium text-xs inline-flex items-center gap-1">
+                <i class="fas fa-home"></i> <span>Book</span>
+            </a>
         </div>
     </div>
 </nav>
@@ -74,22 +79,24 @@
         <div class="absolute -bottom-8 left-20 w-72 h-72 bg-white rounded-full mix-blend-screen animate-blob animation-delay-4000"></div>
     </div>
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center relative z-10">
-        <h1 class="font-[Poppins] font-bold text-4xl md:text-6xl text-white mb-6 animate-fade-in-up">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 text-center relative z-10">
+        <h1 class="font-[Poppins] font-bold text-2xl sm:text-4xl lg:text-6xl text-white mb-3 sm:mb-4 lg:mb-6 animate-fade-in-up leading-tight">
             Hadapsar's Most Trusted<br/>Blood Collection Center
         </h1>
         
-        <p class="text-lg md:text-xl text-gray-100 mb-12 max-w-3xl mx-auto animate-fade-in-up animation-delay-400">
-            Professional. Hygienic. At Your Doorstep. <span class="text-yellow-300 font-bold">Painless Collection • Same-Day Online Reports • Expert Suggestions</span>
+        <p class="text-sm sm:text-base lg:text-xl text-gray-100 mb-6 sm:mb-8 lg:mb-12 max-w-3xl mx-auto animate-fade-in-up animation-delay-400">
+            Professional • Hygienic • At Your Doorstep
+            <br class="hidden sm:block"/>
+            <span class="text-yellow-300 font-bold block sm:inline">Painless Collection • Same-Day Reports</span>
         </p>
         
-        <!-- Animated CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-600">
-            <a href="contact.html#booking" class="bg-white text-red-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 hover:scale-105 transition inline-flex items-center justify-center gap-2 shadow-lg">
-                <i class="fas fa-home"></i> Book Home Visit
+        <!-- Animated CTA Buttons - Full Width on Mobile -->
+        <div class="flex flex-col gap-2.5 sm:flex-row sm:gap-4 justify-center animate-fade-in-up animation-delay-600 max-w-full sm:max-w-none">
+            <a href="contact.html#booking" class="w-full sm:w-auto bg-white text-red-700 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-gray-100 hover:scale-105 transition inline-flex items-center justify-center gap-2 shadow-lg">
+                <i class="fas fa-home text-lg"></i> <span>Book Home Visit</span>
             </a>
-            <a href="tel:+918390246575" class="bg-red-800 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-red-900 hover:scale-105 transition inline-flex items-center justify-center gap-2 border-2 border-white shadow-lg">
-                <i class="fas fa-phone"></i> Call Now: +91 83902 46575
+            <a href="tel:+918390246575" class="w-full sm:w-auto bg-red-800 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-red-900 hover:scale-105 transition inline-flex items-center justify-center gap-2 border-2 border-white shadow-lg">
+                <i class="fas fa-phone text-lg"></i> <span class="hidden sm:inline">Call:</span> +91 83902 46575
             </a>
         </div>
     </div>
@@ -97,38 +104,38 @@
 
 
 <!-- Curated Packages Section -->
-<section class="py-16 bg-white">
+<section class="py-12 sm:py-16 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
-        <div class="text-center mb-12">
-            <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">BROWSE BY CATEGORY</p>
-            <h2 class="font-[Poppins] font-bold text-4xl text-gray-900 mb-2">
+        <div class="text-center mb-8 sm:mb-12">
+            <p class="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">BROWSE BY CATEGORY</p>
+            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 mb-2">
                 Curated Health <span class="text-red-700">Packages</span>
             </h2>
-            <p class="text-gray-600 text-lg">15 premium packages • home collection included</p>
+            <p class="text-gray-600 text-sm sm:text-lg">15 premium packages • home collection included</p>
         </div>
 
         <!-- Filter Tabs -->
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-            <button class="filter-btn active bg-red-700 text-white px-6 py-2 rounded-full font-semibold transition" data-filter="all">
-                All Packages
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
+            <button class="filter-btn active bg-red-700 text-white px-4 sm:px-6 py-2 rounded-full font-semibold transition text-xs sm:text-sm" data-filter="all">
+                All
             </button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="executive">
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-4 sm:px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition text-xs sm:text-sm" data-filter="executive">
                 Executive
             </button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="wellness">
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-4 sm:px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition text-xs sm:text-sm" data-filter="wellness">
                 Wellness
             </button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="organ-health">
-                Organ Health
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-4 sm:px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition text-xs sm:text-sm" data-filter="organ-health">
+                Organ
             </button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="women">
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-4 sm:px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition text-xs sm:text-sm" data-filter="women">
                 Women
             </button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="senior">
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-4 sm:px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition text-xs sm:text-sm" data-filter="senior">
                 Senior
             </button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition" data-filter="specialty">
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-4 sm:px-6 py-2 rounded-full font-semibold hover:border-gray-400 transition text-xs sm:text-sm" data-filter="specialty">
                 Specialty
             </button>
         </div>
@@ -156,8 +163,8 @@
         </div>
 
         <!-- "Book Any Package" CTA -->
-        <div class="text-center mb-16">
-            <a href="contact.html#booking" class="inline-flex items-center justify-center bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-red-800 transition">
+        <div class="text-center mb-12 sm:mb-16">
+            <a href="contact.html#booking" class="inline-flex items-center justify-center bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-red-800 transition">
                 Book Any Package <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </div>
@@ -165,72 +172,72 @@
 </section>
 
 <!-- Advanced Testing Reports Section -->
-<section class="py-16 bg-gray-900">
+<section class="py-12 sm:py-16 lg:py-20 bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="font-[Poppins] font-bold text-3xl sm:text-4xl text-white mb-3">
+        <div class="text-center mb-8 sm:mb-12">
+            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-3">
                 Advanced Testing <span class="text-yellow-500">Reports</span>
             </h2>
-            <p class="text-gray-300 text-lg">Specialist-recommended panels • doctor referral preferred</p>
+            <p class="text-gray-300 text-sm sm:text-lg">Specialist-recommended panels • doctor referral preferred</p>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-6" id="advancedGrid">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="advancedGrid">
             <!-- Rendered by JavaScript -->
         </div>
     </div>
 </section>
 
 <!-- Features Section -->
-<section class="py-16 bg-gray-100">
+<section class="py-12 sm:py-16 lg:py-20 bg-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="font-[Poppins] font-bold text-3xl text-center text-gray-900 mb-12">Why Choose Us?</h2>
+        <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-center text-gray-900 mb-8 sm:mb-12">Why Choose Us?</h2>
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <!-- Feature 1 -->
-            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
                 <div class="text-red-700 text-4xl mb-4 flex justify-center">
                     <i class="fas fa-home"></i>
                 </div>
-                <h3 class="font-[Poppins] font-bold text-xl mb-3 text-gray-900">Home Collection Only</h3>
-                <p class="text-gray-600">We are a home-visit collection service with no walk-in lab.</p>
+                <h3 class="font-[Poppins] font-bold text-lg sm:text-xl mb-3 text-gray-900">Home Collection Only</h3>
+                <p class="text-gray-600 text-sm sm:text-base">We are a home-visit collection service with no walk-in lab.</p>
             </div>
 
             <!-- Feature 2 -->
-            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
                 <div class="text-red-700 text-4xl mb-4 flex justify-center">
                     <i class="fas fa-flask-vial"></i>
                 </div>
-                <h3 class="font-[Poppins] font-bold text-xl mb-3 text-gray-900">Accurate Testing</h3>
-                <p class="text-gray-600">Partner lab processing, trained technologists, accurate results every time.</p>
+                <h3 class="font-[Poppins] font-bold text-lg sm:text-xl mb-3 text-gray-900">Accurate Testing</h3>
+                <p class="text-gray-600 text-sm sm:text-base">Partner lab processing, trained technologists, accurate results every time.</p>
             </div>
 
             <!-- Feature 3 -->
-            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
                 <div class="text-red-700 text-4xl mb-4 flex justify-center">
                     <i class="fas fa-vials"></i>
                 </div>
-                <h3 class="font-[Poppins] font-bold text-xl mb-3 text-gray-900">All Blood Tests</h3>
-                <p class="text-gray-600">Complete range from routine CBC to specialized hormone tests.</p>
+                <h3 class="font-[Poppins] font-bold text-lg sm:text-xl mb-3 text-gray-900">All Blood Tests</h3>
+                <p class="text-gray-600 text-sm sm:text-base">Complete range from routine CBC to specialized hormone tests.</p>
             </div>
 
             <!-- Feature 4 -->
-            <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md hover:shadow-xl transition text-center">
                 <div class="text-red-700 text-4xl mb-4 flex justify-center">
                     <i class="fas fa-tachometer-alt"></i>
                 </div>
-                <h3 class="font-[Poppins] font-bold text-xl mb-3 text-gray-900">Same-Day Online Reports</h3>
-                <p class="text-gray-600">Digital reports with expert doctor suggestions, delivered fast.</p>
+                <h3 class="font-[Poppins] font-bold text-lg sm:text-xl mb-3 text-gray-900">Same-Day Reports</h3>
+                <p class="text-gray-600 text-sm sm:text-base">Digital reports with expert doctor suggestions, delivered fast.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Testimonials Carousel -->
-<section class="py-16 bg-gray-50">
+<section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="font-[Poppins] font-bold text-4xl text-gray-900 mb-4 animate-fade-in-up">What Patients Say</h2>
-            <p class="text-gray-600 text-lg animate-fade-in-up animation-delay-200">Join hundreds of satisfied patients</p>
+        <div class="text-center mb-8 sm:mb-12">
+            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 mb-4 animate-fade-in-up">What Patients Say</h2>
+            <p class="text-gray-600 text-sm sm:text-lg animate-fade-in-up animation-delay-200">Join hundreds of satisfied patients</p>
         </div>
         
         <!-- Splide Carousel -->
@@ -239,7 +246,7 @@
                 <ul class="splide__list">
                     <!-- Testimonial 1 -->
                     <li class="splide__slide">
-                        <div class="bg-white p-8 rounded-xl shadow-lg border-l-4 border-red-700 h-full hover:shadow-xl transition transform hover:scale-105">
+                        <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border-l-4 border-red-700 h-full hover:shadow-xl transition transform hover:scale-105">
                             <div class="flex mb-4 text-yellow-400">
                                 <i class="fas fa-star text-lg"></i>
                                 <i class="fas fa-star text-lg"></i>
@@ -247,9 +254,9 @@
                                 <i class="fas fa-star text-lg"></i>
                                 <i class="fas fa-star text-lg"></i>
                             </div>
-                            <p class="text-gray-700 mb-6 text-lg leading-relaxed">"Excellent service! Pannu Bhaware is very professional. Home collection was painless and quick. Got results within 24 hours. Highly recommend!"</p>
+                            <p class="text-gray-700 mb-6 text-base sm:text-lg leading-relaxed">"Excellent service! Pannu Bhaware is very professional. Home collection was painless and quick. Got results within 24 hours. Highly recommend!"</p>
                             <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-700 to-red-800 text-white flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-700 to-red-800 text-white flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user"></i>
                                 </div>
                                 <div>
@@ -355,25 +362,25 @@
             </div>
         </div>
 
-        <div class="text-center mt-12">
-            <a href="testimonials.html" class="inline-block bg-gradient-to-r from-red-700 to-red-800 text-white px-8 py-4 rounded-full font-bold hover:shadow-lg transition transform hover:scale-105">
-                <i class="fas fa-star mr-2"></i> Read All 200+ Reviews
+        <div class="text-center mt-8 sm:mt-12">
+            <a href="testimonials.html" class="inline-block bg-gradient-to-r from-red-700 to-red-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:shadow-lg transition transform hover:scale-105">
+                <i class="fas fa-star mr-2"></i> Read All Reviews
             </a>
         </div>
             
-        <div class="mt-8 text-center">
-            <p class="text-gray-600 mb-4">Serving Amanora, Magarpatta, Hadapsar and nearby areas</p>
-            <a href="services.html" class="inline-block bg-red-700 text-white px-8 py-3 rounded-full font-bold hover:bg-red-800 transition">Explore All Services</a>
+        <div class="mt-6 sm:mt-8 text-center">
+            <p class="text-gray-600 mb-4 text-sm sm:text-base">Serving Amanora, Magarpatta, Hadapsar and nearby areas</p>
+            <a href="services.html" class="inline-block bg-red-700 text-white px-6 sm:px-8 py-3 rounded-full font-bold hover:bg-red-800 transition text-sm sm:text-base">Explore All Services</a>
         </div>
     </div>
 </section>
 
 <!-- Gallery Carousel Section -->
-<section class="py-16">
+<section class="py-12 sm:py-16 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="font-[Poppins] font-bold text-4xl text-gray-900 mb-4 animate-fade-in-up">Our Service</h2>
-            <p class="text-gray-600 text-lg animate-fade-in-up animation-delay-200">Home-visit collection with safe handling and quick reports</p>
+        <div class="text-center mb-8 sm:mb-12">
+            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 mb-4 animate-fade-in-up">Our Service</h2>
+            <p class="text-gray-600 text-sm sm:text-lg animate-fade-in-up animation-delay-200">Home-visit collection with safe handling and quick reports</p>
         </div>
         
         <!-- Gallery Carousel -->
@@ -381,11 +388,11 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-96">
-                            <div class="bg-gradient-to-br from-red-700 to-red-800 w-full h-full flex items-center justify-center">
-                                <div class="text-center text-white">
-                                    <i class="fas fa-image text-8xl opacity-50 mb-4"></i>
-                                    <p class="text-xl font-bold">Home Visit Team</p>
+                        <div class=\"relative group overflow-hidden rounded-2xl shadow-lg h-64 sm:h-80 lg:h-96\">
+                            <div class=\"bg-gradient-to-br from-red-700 to-red-800 w-full h-full flex items-center justify-center\">
+                                <div class=\"text-center text-white\">
+                                    <i class=\"fas fa-image text-6xl sm:text-7xl lg:text-8xl opacity-50 mb-4\"></i>
+                                    <p class=\"text-lg sm:text-xl font-bold\">Home Visit Team</p>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
@@ -396,11 +403,11 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-96">
+                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-64 sm:h-80 lg:h-96">
                             <div class="bg-gradient-to-br from-blue-700 to-blue-800 w-full h-full flex items-center justify-center">
                                 <div class="text-center text-white">
-                                    <i class="fas fa-image text-8xl opacity-50 mb-4"></i>
-                                    <p class="text-xl font-bold">Sample Collection</p>
+                                    <i class="fas fa-image text-6xl sm:text-7xl lg:text-8xl opacity-50 mb-4"></i>
+                                    <p class="text-lg sm:text-xl font-bold">Sample Collection</p>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
@@ -411,11 +418,11 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-96">
+                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-64 sm:h-80 lg:h-96">
                             <div class="bg-gradient-to-br from-purple-700 to-pink-700 w-full h-full flex items-center justify-center">
                                 <div class="text-center text-white">
-                                    <i class="fas fa-image text-8xl opacity-50 mb-4"></i>
-                                    <p class="text-xl font-bold">Home Visit</p>
+                                    <i class="fas fa-image text-6xl sm:text-7xl lg:text-8xl opacity-50 mb-4"></i>
+                                    <p class="text-lg sm:text-xl font-bold">Home Visit</p>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
@@ -426,11 +433,11 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-96">
+                        <div class="relative group overflow-hidden rounded-2xl shadow-lg h-64 sm:h-80 lg:h-96">
                             <div class="bg-gradient-to-br from-green-700 to-teal-700 w-full h-full flex items-center justify-center">
                                 <div class="text-center text-white">
-                                    <i class="fas fa-image text-8xl opacity-50 mb-4"></i>
-                                    <p class="text-xl font-bold">Lab Equipment</p>
+                                    <i class="fas fa-image text-6xl sm:text-7xl lg:text-8xl opacity-50 mb-4"></i>
+                                    <p class="text-lg sm:text-xl font-bold">Lab Equipment</p>
                                 </div>
                             </div>
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
@@ -444,55 +451,55 @@
             </div>
         </div>
 
-        <div class="text-center mt-12">
-            <a href="gallery.html" class="inline-block bg-gradient-to-r from-red-700 to-red-800 text-white px-8 py-4 rounded-full font-bold hover:shadow-lg transition transform hover:scale-105">
-                <i class="fas fa-images mr-2"></i> View Full Gallery
+        <div class="text-center mt-8 sm:mt-12">
+            <a href="gallery.html" class="inline-block bg-gradient-to-r from-red-700 to-red-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:shadow-lg transition transform hover:scale-105">
+                <i class="fas fa-images mr-2"></i> View Gallery
             </a>
         </div>
     </div>
 </section>
 
 <!-- Test Packages Section -->
-<section class="py-16 bg-gray-50">
+<section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="font-[Poppins] font-bold text-4xl text-gray-900 mb-4 animate-fade-in-up">Popular Test Packages</h2>
-            <p class="text-gray-600 text-lg animate-fade-in-up animation-delay-200">Affordable, comprehensive testing solutions</p>
+        <div class="text-center mb-8 sm:mb-12">
+            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 mb-4 animate-fade-in-up">Popular Test Packages</h2>
+            <p class="text-gray-600 text-sm sm:text-lg animate-fade-in-up animation-delay-200">Affordable, comprehensive testing solutions</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <!-- Basic Package -->
             <div class="group">
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition hover:scale-105 hover:shadow-2xl duration-300">
                     <div class="bg-gradient-to-r from-red-600 to-red-700 text-white p-6">
-                        <h3 class="font-[Poppins] font-bold text-2xl mb-2">Basic Health</h3>
-                        <p class="text-red-100 mb-4">Essential Tests</p>
-                        <div class="text-4xl font-bold">₹599</div>
+                        <h3 class="font-[Poppins] font-bold text-xl sm:text-2xl mb-2">Basic Health</h3>
+                        <p class="text-red-100 mb-4 text-sm sm:text-base">Essential Tests</p>
+                        <div class="text-3xl sm:text-4xl font-bold">₹599</div>
                     </div>
                     <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
-                                <span>Complete Blood Count (CBC)</span>
+                        <ul class="space-y-2 sm:space-y-3 mb-6">
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
+                                <span>Complete Blood Count</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
-                                <span>Blood Sugar (Fasting)</span>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
+                                <span>Blood Sugar</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
-                                <span>Thyroid Profile (TSH)</span>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
+                                <span>Thyroid Profile</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Home Collection</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Reports in 24 Hours</span>
                             </li>
                         </ul>
-                        <button class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition transform hover:scale-105">
+                        <button class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition transform hover:scale-105 text-sm sm:text-base">
                             Book Now
                         </button>
                     </div>
@@ -500,40 +507,40 @@
             </div>
 
             <!-- Popular Package -->
-            <div class="group lg:scale-105">
-                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transform transition hover:scale-110 hover:shadow-2xl duration-300 relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-bold">
+            <div class="group sm:col-span-2 lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transform transition hover:scale-105 lg:hover:scale-110 hover:shadow-2xl duration-300 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold">
                         <i class="fas fa-star"></i> Most Popular
                     </div>
-                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
-                        <h3 class="font-[Poppins] font-bold text-2xl mb-2">Advanced Health</h3>
-                        <p class="text-blue-100 mb-4">Complete Check-up</p>
-                        <div class="text-4xl font-bold">₹1,299</div>
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 mt-2">
+                        <h3 class="font-[Poppins] font-bold text-xl sm:text-2xl mb-2">Advanced Health</h3>
+                        <p class="text-blue-100 mb-4 text-sm sm:text-base">Complete Check-up</p>
+                        <div class="text-3xl sm:text-4xl font-bold">₹1,299</div>
                     </div>
                     <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                        <ul class="space-y-2 sm:space-y-3 mb-6">
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Complete Blood Count</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Lipid Profile</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Liver & Kidney Function</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Blood Sugar & Thyroid</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Priority Service</span>
                             </li>
                         </ul>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition transform hover:scale-105">
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition transform hover:scale-105 text-sm sm:text-base">
                             Book Now
                         </button>
                     </div>
@@ -544,34 +551,34 @@
             <div class="group">
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition hover:scale-105 hover:shadow-2xl duration-300">
                     <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6">
-                        <h3 class="font-[Poppins] font-bold text-2xl mb-2">Premium Wellness</h3>
-                        <p class="text-purple-100 mb-4">Full Body Check-up</p>
-                        <div class="text-4xl font-bold">₹2,499</div>
+                        <h3 class="font-[Poppins] font-bold text-xl sm:text-2xl mb-2">Premium Wellness</h3>
+                        <p class="text-purple-100 mb-4 text-sm sm:text-base">Full Body Check-up</p>
+                        <div class="text-3xl sm:text-4xl font-bold">₹2,499</div>
                     </div>
                     <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                        <ul class="space-y-2 sm:space-y-3 mb-6">
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>All Advanced Package Tests</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Vitamin D & B12</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Hormone Profile</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
                                 <span>Doctor Consultation</span>
                             </li>
-                            <li class="flex items-center gap-3 text-gray-700">
-                                <i class="fas fa-check text-green-600 font-bold"></i>
-                                <span>Free Home Visit + Repeat Tests</span>
+                            <li class="flex items-center gap-3 text-gray-700 text-sm sm:text-base">
+                                <i class="fas fa-check text-green-600 font-bold flex-shrink-0"></i>
+                                <span>Free Home Visit + Tests</span>
                             </li>
                         </ul>
-                        <button class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition transform hover:scale-105">
+                        <button class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition transform hover:scale-105 text-sm sm:text-base">
                             Book Now
                         </button>
                     </div>
@@ -579,9 +586,9 @@
             </div>
         </div>
 
-        <div class="text-center mt-12">
-            <a href="tests.html" class="inline-block text-red-700 font-bold text-lg hover:text-red-800 transition">
-                <i class="fas fa-arrow-right mr-2"></i> View All 50+ Tests and Pricing
+        <div class="text-center mt-8 sm:mt-12">
+            <a href="tests.html" class="inline-block text-red-700 font-bold text-base sm:text-lg hover:text-red-800 transition">
+                <i class="fas fa-arrow-right mr-2"></i> View All 50+ Tests
             </a>
         </div>
     </div>
