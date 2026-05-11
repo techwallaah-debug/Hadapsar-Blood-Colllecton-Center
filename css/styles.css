@@ -410,6 +410,18 @@ a, button {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: auto;
+        align-items: flex-start;
+        padding-top: 20px;
+        padding-bottom: 28px;
+    }
+
+    .hero-section > div {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
     .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
