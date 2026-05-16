@@ -47,87 +47,127 @@ jobs:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           SSH_PATH: ${{ secrets.SSH_PATH }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
           set -eu
-          missing=""
-          [ -n "${SSH_HOST:-}" ] || missing="$missing SSH_HOST"
-          [ -n "${SSH_PORT:-}" ] || missing="$missing SSH_PORT"
-          [ -n "${SSH_USERNAME:-}" ] || missing="$missing SSH_USERNAME"
-          [ -n "${SSH_PASSWORD:-}" ] || missing="$missing SSH_PASSWORD"
-          [ -n "${SSH_PATH:-}" ] || missing="$missing SSH_PATH"
+          ssh_missing=""
+          ftp_missing=""
 
-          if [ -n "$missing" ]; then
-            echo "❌ Missing GitHub Actions secrets:$missing"
-            echo "Set them in Settings → Secrets and variables → Actions before deploying."
+          [ -n "${SSH_HOST:-}" ] || ssh_missing="$ssh_missing SSH_HOST"
+          [ -n "${SSH_PORT:-}" ] || ssh_missing="$ssh_missing SSH_PORT"
+          [ -n "${SSH_USERNAME:-}" ] || ssh_missing="$ssh_missing SSH_USERNAME"
+          [ -n "${SSH_PASSWORD:-}" ] || ssh_missing="$ssh_missing SSH_PASSWORD"
+          [ -n "${SSH_PATH:-}" ] || ssh_missing="$ssh_missing SSH_PATH"
+
+          [ -n "${FTP_SERVER:-}" ] || ftp_missing="$ftp_missing FTP_SERVER"
+          [ -n "${FTP_USERNAME:-}" ] || ftp_missing="$ftp_missing FTP_USERNAME"
+          [ -n "${FTP_PASSWORD:-}" ] || ftp_missing="$ftp_missing FTP_PASSWORD"
+          [ -n "${FTP_SERVER_DIR:-}" ] || ftp_missing="$ftp_missing FTP_SERVER_DIR"
+
+          if [ -n "$ssh_missing" ] && [ -n "$ftp_missing" ]; then
+            echo "❌ Missing deployment secrets for both SSH and FTP."
+            echo "SSH missing:$ssh_missing"
+            echo "FTP missing:$ftp_missing"
+            echo "Set either the SSH or FTP secrets in Settings → Secrets and variables → Actions."
             exit 1
           fi
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y rsync sshpass
+          sudo apt-get install -y rsync sshpass lftp
 
-      - name: Test SSH connectivity
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        run: |
-          set -eu
-          SSH_PORT="${SSH_PORT:-22}"
-          echo "Testing SSH connectivity to $SSH_HOST:$SSH_PORT..."
-          getent hosts "$SSH_HOST" || true
-          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "echo SSH connection successful"
-
-      - name: Deploy via SSH + rsync
+      - name: Deploy to server
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           SSH_PATH: ${{ secrets.SSH_PATH }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
           set -eu
 
-          SSH_PORT="${SSH_PORT:-22}"
-          SSH_PATH="${SSH_PATH%/}"
-          case "$SSH_PATH" in
-            /*) ;;
-            *) SSH_PATH="/${SSH_PATH}" ;;
-          esac
+          ssh_ready="false"
+          ftp_ready="false"
 
-          echo "🚀 Deploying to $SSH_USERNAME@$SSH_HOST:$SSH_PORT$SSH_PATH..."
+          if [ -n "${SSH_HOST:-}" ] && [ -n "${SSH_USERNAME:-}" ] && [ -n "${SSH_PASSWORD:-}" ] && [ -n "${SSH_PATH:-}" ]; then
+            ssh_ready="true"
+          fi
 
-          for attempt in 1 2 3; do
-            echo "Deploy attempt $attempt/3..."
-            echo "Checking remote shell and target directory..."
-            sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "whoami && pwd && mkdir -p '$SSH_PATH' && test -d '$SSH_PATH' && echo Remote path ready" \
-              || {
-                echo "❌ Remote SSH probe failed. Check host, port, username, password, or SSH_PATH."
-                exit 1
-              }
+          if [ -n "${FTP_SERVER:-}" ] && [ -n "${FTP_USERNAME:-}" ] && [ -n "${FTP_PASSWORD:-}" ] && [ -n "${FTP_SERVER_DIR:-}" ]; then
+            ftp_ready="true"
+          fi
 
-            if sshpass -p "$SSH_PASSWORD" rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p $SSH_PORT" \
-              --delete \
-              --exclude='.git*' \
-              --exclude='.github/**' \
-              --exclude='node_modules/**' \
-              --exclude='data/**' \
-              --exclude='.DS_Store' \
-              --exclude='README.md' \
-              --exclude='QUICKSTART.md' \
-              --exclude='*.jsonl' \
-              --exclude='package-lock.json' \
-              ./ "$SSH_USERNAME@$SSH_HOST:$SSH_PATH"; then
-              echo "✅ Deployment successful!"
-              exit 0
-            fi
+          if [ "$ssh_ready" = "true" ]; then
+            SSH_PORT="${SSH_PORT:-22}"
+            SSH_PATH="${SSH_PATH%/}"
+            case "$SSH_PATH" in
+              /*) ;;
+              *) SSH_PATH="/${SSH_PATH}" ;;
+            esac
 
-            if [ "$attempt" -lt 3 ]; then
-              echo "❌ Attempt $attempt failed. Retrying in 10 seconds..."
-            fi
-          done
+            echo "🚀 Deploying via SSH to $SSH_USERNAME@$SSH_HOST:$SSH_PORT$SSH_PATH..."
+            sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "mkdir -p '$SSH_PATH' && echo Remote path ready"
 
-          echo "❌ All 3 deployment attempts failed."
+            for attempt in 1 2 3; do
+              echo "SSH deploy attempt $attempt/3..."
+              if sshpass -p "$SSH_PASSWORD" rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p $SSH_PORT" \
+                --delete \
+                --exclude='.git*' \
+                --exclude='.github/**' \
+                --exclude='node_modules/**' \
+                --exclude='data/**' \
+                --exclude='.DS_Store' \
+                --exclude='README.md' \
+                --exclude='QUICKSTART.md' \
+                --exclude='*.jsonl' \
+                --exclude='package-lock.json' \
+                ./ "$SSH_USERNAME@$SSH_HOST:$SSH_PATH"; then
+                echo "✅ SSH deployment successful!"
+                exit 0
+              fi
+              if [ "$attempt" -lt 3 ]; then
+                echo "❌ SSH attempt $attempt failed. Retrying in 10 seconds..."
+              fi
+            done
+          fi
+
+          if [ "$ftp_ready" = "true" ]; then
+            FTP_SERVER_DIR="${FTP_SERVER_DIR%/}"
+            case "$FTP_SERVER_DIR" in
+              /public_html|public_html)
+                FTP_SERVER_DIR="/public_html"
+                ;;
+              /*) ;;
+              *) FTP_SERVER_DIR="/${FTP_SERVER_DIR}" ;;
+            esac
+
+            echo "🚀 Deploying via FTP fallback to $FTP_USERNAME@$FTP_SERVER:$FTP_SERVER_DIR..."
+            for attempt in 1 2 3; do
+              echo "FTP deploy attempt $attempt/3..."
+              if printf '%s\n' \
+                "set ftp:ssl-allow no" \
+                "set ftp:passive-mode on" \
+                "set net:max-retries 1" \
+                "set net:timeout 25" \
+                "open $FTP_SERVER" \
+                "mirror --reverse --delete --verbose --exclude=.git* --exclude=.github/** --exclude=node_modules/** --exclude=data/** --exclude=.DS_Store --exclude=README.md --exclude=QUICKSTART.md --exclude=*.jsonl --exclude=package-lock.json ./ $FTP_SERVER_DIR" \
+                "bye" | lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER"; then
+                echo "✅ FTP deployment successful!"
+                exit 0
+              fi
+              if [ "$attempt" -lt 3 ]; then
+                echo "❌ FTP attempt $attempt failed. Retrying in 10 seconds..."
+              fi
+            done
+          fi
+
+          echo "❌ Deployment failed with both SSH and FTP settings."
           exit 1
