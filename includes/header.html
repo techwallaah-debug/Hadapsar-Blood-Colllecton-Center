@@ -74,10 +74,13 @@
             <!-- Book Home Visit CTA Button - Hidden on Mobile -->
             <a href="contact.html" class="hidden sm:inline-block bg-red-700 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-red-800 transition font-medium text-sm sm:text-base">Book Home Visit</a>
             
-            <!-- Mobile CTA - Show only on small screens -->
-            <a href="contact.html#booking" class="sm:hidden bg-red-700 text-white px-3 py-2 rounded-full hover:bg-red-800 transition font-medium text-xs inline-flex items-center gap-1">
-                <i class="fas fa-home"></i> <span>Book</span>
+            <!-- Mobile CTA - small inline icon (kept for accessibility, hidden visually) -->
+            <a href="contact.html#booking" class="sr-only sm:not-sr-only sm:hidden" aria-label="Book home visit">
+                Book
             </a>
         </div>
     </div>
 </nav>
+
+<!-- Sticky Mobile CTA: visible only on small screens, large tap target -->
+<a href="contact.html#booking" class="mobile-cta-sticky sm:hidden" aria-label="Book home visit">Book Home Visit</a>
