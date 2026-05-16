@@ -93,9 +93,6 @@ jobs:
           SSH_PORT="${SSH_PORT:-22}"
           SSH_PATH="${SSH_PATH%/}"
           case "$SSH_PATH" in
-            /public_html|public_html)
-              SSH_PATH="/home/${SSH_USERNAME}/public_html"
-              ;;
             /*) ;;
             *) SSH_PATH="/${SSH_PATH}" ;;
           esac
@@ -104,6 +101,13 @@ jobs:
 
           for attempt in 1 2 3; do
             echo "Deploy attempt $attempt/3..."
+            echo "Checking remote shell and target directory..."
+            sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "whoami && pwd && mkdir -p '$SSH_PATH' && test -d '$SSH_PATH' && echo Remote path ready" \
+              || {
+                echo "❌ Remote SSH probe failed. Check host, port, username, password, or SSH_PATH."
+                exit 1
+              }
+
             if sshpass -p "$SSH_PASSWORD" rsync -avz --progress -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -o UserKnownHostsFile=/dev/null -p $SSH_PORT" \
               --delete \
               --exclude='.git*' \
