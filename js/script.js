@@ -298,6 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const packageParams = document.getElementById('selectedPackageParams');
     const packageInfoInput = document.getElementById('package_info');
     const packageSelect = document.getElementById('package_select');
+    const pkgInputName = document.getElementById('package_name');
+    const pkgInputPrice = document.getElementById('package_price');
 
     const hydrateSelectedPackage = () => {
         if (!packageCard || !packageName || !packageMeta || !packageInfoInput) return;
@@ -353,6 +355,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newOption = document.createElement('option');
                 newOption.value = selected.name;
                 newOption.textContent = selected.name;
+                if (selected.price) newOption.dataset.price = String(selected.price);
                 packageSelect.appendChild(newOption);
             }
             packageSelect.value = selected.name;
@@ -362,23 +365,35 @@ document.addEventListener('DOMContentLoaded', function() {
     hydrateSelectedPackage();
 
     if (packageSelect) {
-        packageSelect.addEventListener('change', () => {
-            const value = packageSelect.value;
-            if (!value) {
-                hydrateSelectedPackage();
-                return;
-            }
-            if (packageCard && packageName) {
-                packageCard.classList.remove('hidden');
-                packageName.textContent = value;
-                if (packageDesc) packageDesc.textContent = '';
-                if (packageMeta) packageMeta.textContent = '';
-                if (packageParams) packageParams.textContent = '';
-            }
+        // Autofill package details from option dataset
+        const applyPackageSelection = () => {
+            const selectedOpt = packageSelect.options[packageSelect.selectedIndex];
+            const val = selectedOpt ? selectedOpt.value : '';
+            const price = selectedOpt ? selectedOpt.dataset.price || '' : '';
+
+            if (pkgInputName) pkgInputName.value = val;
+            if (pkgInputPrice) pkgInputPrice.value = price ? `Rs. ${Number(price).toLocaleString('en-IN')}` : '';
+
             if (packageInfoInput) {
-                packageInfoInput.value = `Package: ${value}`;
+                const parts = [];
+                if (val) parts.push(`Package: ${val}`);
+                if (price) parts.push(`Price: Rs. ${price}`);
+                packageInfoInput.value = parts.join(' | ');
             }
-        });
+
+            if (packageCard && packageName) {
+                if (val) {
+                    packageCard.classList.remove('hidden');
+                    packageName.textContent = val;
+                } else {
+                    packageCard.classList.add('hidden');
+                }
+            }
+        };
+
+        packageSelect.addEventListener('change', applyPackageSelection);
+        // initialize with current selection
+        applyPackageSelection();
     }
 
     if (!bookingForm) {

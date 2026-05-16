@@ -60,9 +60,9 @@
 
 <!-- Booking Form -->
 <section class="pt-10 pb-16 bg-gradient-to-br from-slate-50 via-white to-red-50/30">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-8 rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50 to-teal-50 px-5 py-4 sm:px-6 sm:py-5 animate-fade-in-up">
-            <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+            <div class="flex flex-wrap justify-center items-center gap-3 text-xs sm:text-sm text-center">
                 <span class="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-emerald-800 font-semibold border border-emerald-100">
                     <i class="fas fa-shield-heart text-emerald-700"></i> Safe Home Collection
                 </span>
@@ -83,12 +83,12 @@
             <p class="text-gray-600 max-w-2xl mx-auto">Only the essentials. Submit once and you will get a Booking ID, plus email and WhatsApp confirmation.</p>
         </div>
 
-        <div class="grid lg:grid-cols-[3fr_1fr] gap-6 lg:gap-8 items-start">
+        <div class="grid lg:grid-cols-[2.1fr_1.25fr] gap-6 lg:gap-8 items-start">
             <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 md:p-8 animate-fade-in-up animation-delay-200">
                 <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b border-gray-100">
                     <div>
-                        <h3 class="font-[Poppins] font-semibold text-gray-900 text-xl">Appointment Details</h3>
-                        <p class="text-sm text-gray-500 mt-1">Please enter your basic details for home collection.</p>
+                        <h3 class="font-[Poppins] font-semibold text-gray-900 text-xl">Booking Details</h3>
+                        <p class="text-sm text-gray-500 mt-1">Fill the patient and package details for your home collection.</p>
                     </div>
                     <span class="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-700 px-3 py-1.5 text-xs font-semibold">
                         <i class="fas fa-bolt"></i> Instant Confirmation
@@ -97,8 +97,13 @@
 
                 <form id="bookingForm" method="POST" action="php/contact-handler.php" class="space-y-5">
                     <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-800 mb-2">Full Name *</label>
-                        <input type="text" id="name" name="name" required placeholder="Enter your name" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                        <label for="name" class="block text-sm font-semibold text-gray-800 mb-2">Patient Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter patient name" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                    </div>
+
+                    <div>
+                        <label for="age" class="block text-sm font-semibold text-gray-800 mb-2">Age *</label>
+                        <input type="number" id="age" name="age" min="1" max="120" required placeholder="Enter age" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
                     </div>
 
                     <div>
@@ -107,46 +112,76 @@
                     </div>
 
                     <div>
-                        <label for="location" class="block text-sm font-semibold text-gray-800 mb-2">Location *</label>
-                        <select id="location" name="location" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                            <option value="">Select location</option>
-                            <option value="Amanora">Amanora (Primary)</option>
-                            <option value="Magarpatta">Magarpatta (Primary)</option>
-                            <option value="Hadapsar">Hadapsar</option>
-                            <option value="Other">Other</option>
+                        <label for="booking_date" class="block text-sm font-semibold text-gray-800 mb-2">Booking Date *</label>
+                        <input type="date" id="booking_date" name="booking_date" required class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                    </div>
+
+                    <div>
+                        <label for="preferred_slot" class="block text-sm font-semibold text-gray-800 mb-2">Preferred Slot *</label>
+                        <select id="preferred_slot" name="preferred_slot" required class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                            <option value="">Select time</option>
+                            <option value="06:00 AM">06:00 AM</option>
+                            <option value="07:00 AM">07:00 AM</option>
+                            <option value="08:00 AM">08:00 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                            <option value="06:00 PM">06:00 PM</option>
+                            <option value="07:00 PM">07:00 PM</option>
+                            <option value="08:00 PM">08:00 PM</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="package_select" class="block text-sm font-semibold text-gray-800 mb-2">Select Package (Optional)</label>
-                        <select id="package_select" name="package_select" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                            <option value="">Choose a package (optional)</option>
-                            <option value="Executive Full Body - Male">Executive Full Body - Male</option>
-                            <option value="Executive Full Body - Female">Executive Full Body - Female</option>
-                            <option value="Senior Executive - Male">Senior Executive - Male</option>
-                            <option value="Senior Executive - Female">Senior Executive - Female</option>
-                            <option value="Cardiac Risk Premium">Cardiac Risk Premium</option>
-                            <option value="Diabetes Plus">Diabetes Plus</option>
-                            <option value="Thyroid Plus">Thyroid Plus</option>
-                            <option value="Liver Health Plus">Liver Health Plus</option>
-                            <option value="Kidney Health Plus">Kidney Health Plus</option>
-                            <option value="Vitamin & Nutrition Elite">Vitamin & Nutrition Elite</option>
-                            <option value="Women Hormone & Wellness">Women Hormone & Wellness</option>
-                            <option value="Men Hormone & Wellness">Men Hormone & Wellness</option>
-                            <option value="Fever & Infection Advanced">Fever & Infection Advanced</option>
-                            <option value="Arthritis & Inflammation">Arthritis & Inflammation</option>
-                            <option value="Ultra Premium Comprehensive">Ultra Premium Comprehensive</option>
-                            <option value="Other / Not sure">Other / Not sure</option>
-                        </select>
-                        <p class="text-xs text-gray-500 mt-2">If you clicked "Book This Package" from the home page, it will auto-fill here.</p>
+                        <label for="collection_address" class="block text-sm font-semibold text-gray-800 mb-2">Collection Address *</label>
+                        <textarea id="collection_address" name="collection_address" rows="3" required placeholder="Home / Office address" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition"></textarea>
                     </div>
 
-                    <div id="selectedPackageCard" class="hidden rounded-xl border border-gray-200 bg-gray-50 p-4">
-                        <div class="text-xs font-semibold uppercase tracking-wide text-gray-500">Selected Package</div>
-                        <div id="selectedPackageName" class="text-lg font-semibold text-gray-900 mt-1"></div>
-                        <p id="selectedPackageDesc" class="text-sm text-gray-600 mt-1"></p>
-                        <div id="selectedPackageMeta" class="text-sm text-gray-700 mt-2"></div>
-                        <div id="selectedPackageParams" class="text-xs text-gray-500 mt-2"></div>
+                    <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                        <div class="text-xs font-semibold uppercase tracking-wide text-gray-500">Package Details</div>
+                        <div class="mt-4 space-y-4">
+                            <div>
+                                <label for="package_select" class="block text-sm font-semibold text-gray-800 mb-2">Choose Package</label>
+                                <select id="package_select" name="package_select" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                                    <option value="">Choose a package (optional)</option>
+                                    <option value="Executive Full Body - Male" data-audience="Male 30+" data-price="3000">Executive Full Body - Male</option>
+                                    <option value="Executive Full Body - Female" data-audience="Female 30+" data-price="3000">Executive Full Body - Female</option>
+                                    <option value="Senior Executive - Male" data-audience="Male 50+" data-price="3500">Senior Executive - Male</option>
+                                    <option value="Senior Executive - Female" data-audience="Female 50+" data-price="3500">Senior Executive - Female</option>
+                                    <option value="Cardiac Risk Premium" data-price="2500">Cardiac Risk Premium</option>
+                                    <option value="Diabetes Plus" data-price="1200">Diabetes Plus</option>
+                                    <option value="Thyroid Plus" data-price="1000">Thyroid Plus</option>
+                                    <option value="Liver Health Plus" data-price="1400">Liver Health Plus</option>
+                                    <option value="Kidney Health Plus" data-price="1400">Kidney Health Plus</option>
+                                    <option value="Vitamin & Nutrition Elite" data-price="2200">Vitamin & Nutrition Elite</option>
+                                    <option value="Women Hormone & Wellness" data-price="2800">Women Hormone & Wellness</option>
+                                    <option value="Men Hormone & Wellness" data-price="2800">Men Hormone & Wellness</option>
+                                    <option value="Fever & Infection Advanced" data-price="1800">Fever & Infection Advanced</option>
+                                    <option value="Arthritis & Inflammation" data-price="1600">Arthritis & Inflammation</option>
+                                    <option value="Ultra Premium Comprehensive" data-price="7000">Ultra Premium Comprehensive</option>
+                                    <option value="Other / Not sure">Other / Not sure</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="package_name" class="block text-sm font-semibold text-gray-800 mb-2">Package Name</label>
+                                <input type="text" id="package_name" name="package_name" readonly placeholder="Executive Full Body - Male" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white/70 focus:outline-none transition">
+                            </div>
+
+                            <!-- Audience field removed as requested -->
+
+                            <div>
+                                <label for="package_price" class="block text-sm font-semibold text-gray-800 mb-2">Package Price</label>
+                                <input type="text" id="package_price" name="package_price" readonly placeholder="Rs. 3,000" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white/70 focus:outline-none transition">
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-4"><i class="fas fa-home mr-1"></i>Home collection included.</p>
                     </div>
 
                     <input type="hidden" id="package_info" name="package_info" value="">

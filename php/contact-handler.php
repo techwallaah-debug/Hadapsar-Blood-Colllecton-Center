@@ -13,11 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $name = sanitize_input($_POST['name'] ?? '');
+$age = sanitize_input($_POST['age'] ?? '');
 $phone = sanitize_input($_POST['phone'] ?? '');
-$location = sanitize_input($_POST['location'] ?? '');
+$bookingDate = sanitize_input($_POST['booking_date'] ?? '');
+$preferredSlot = sanitize_input($_POST['preferred_slot'] ?? '');
+$collectionAddress = sanitize_input($_POST['collection_address'] ?? '');
+$packageName = sanitize_input($_POST['package_name'] ?? '');
+$packagePrice = sanitize_input($_POST['package_price'] ?? '');
 $packageInfo = sanitize_input($_POST['package_info'] ?? '');
 
-if ($name === '' || $phone === '' || $location === '') {
+if ($name === '' || $age === '' || $phone === '' || $bookingDate === '' || $preferredSlot === '' || $collectionAddress === '') {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Missing required fields']);
     exit;
@@ -30,6 +35,33 @@ if (!preg_match('/^\d{10}$/', $normalizedPhone)) {
     exit;
 }
 
+if (!preg_match('/^\d{1,3}$/', preg_replace('/\D/', '', $age))) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Invalid age']);
+    exit;
+}
+
+$normalizedAge = preg_replace('/\D/', '', $age);
+$normalizedBookingDate = date_create_from_format('Y-m-d', $bookingDate) ?: null;
+if (!$normalizedBookingDate) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Invalid booking date']);
+    exit;
+}
+
+$appointmentDate = $normalizedBookingDate->format('d-M-Y');
+$packageInfoText = trim($packageInfo);
+if ($packageInfoText === '') {
+    $infoParts = [];
+    if ($packageName !== '') {
+        $infoParts[] = 'Package: ' . $packageName;
+    }
+    if ($packagePrice !== '') {
+        $infoParts[] = 'Price: ' . $packagePrice;
+    }
+    $packageInfoText = implode(' | ', $infoParts);
+}
+
 $filename = 'bookings_' . date('Y-m-d') . '.csv';
 $filepath = __DIR__ . '/../data/' . $filename;
 
@@ -38,7 +70,7 @@ if (!is_dir(__DIR__ . '/../data')) {
 }
 
 if (!file_exists($filepath)) {
-    $header = "Booking ID,Name,WhatsApp,Location,Package Info,Booking Date,Status\n";
+    $header = "Booking ID,Name,Age,WhatsApp,Booking Date,Preferred Slot,Collection Address,Package Name,Package Price,Package Info,Created At,Status\n";
     file_put_contents($filepath, $header);
 }
 
@@ -55,20 +87,30 @@ $bookingId = date('Y/m/d/H:i') . '/' . str_pad((string)$sequence, 4, '0', STR_PA
 $bookingData = [
     'booking_id' => $bookingId,
     'name' => $name,
+    'age' => $normalizedAge,
     'phone' => $normalizedPhone,
-    'location' => $location,
-    'package_info' => $packageInfo,
-    'booking_date' => date('Y-m-d H:i:s'),
+    'appointment_date' => $appointmentDate,
+    'preferred_slot' => $preferredSlot,
+    'collection_address' => $collectionAddress,
+    'package_name' => $packageName,
+    'package_price' => $packagePrice,
+    'package_info' => $packageInfoText,
+    'created_at' => date('Y-m-d H:i:s'),
     'status' => 'pending'
 ];
 
 $csvLine = implode(',', [
     $bookingData['booking_id'],
     '"' . addslashes($bookingData['name']) . '"',
+    $bookingData['age'],
     $bookingData['phone'],
-    '"' . addslashes($bookingData['location']) . '"',
+    '"' . addslashes($bookingData['appointment_date']) . '"',
+    '"' . addslashes($bookingData['preferred_slot']) . '"',
+    '"' . addslashes($bookingData['collection_address']) . '"',
+    '"' . addslashes($bookingData['package_name']) . '"',
+    '"' . addslashes($bookingData['package_price']) . '"',
     '"' . addslashes($bookingData['package_info']) . '"',
-    $bookingData['booking_date'],
+    $bookingData['created_at'],
     $bookingData['status']
 ]) . "\n";
 
@@ -120,15 +162,35 @@ function send_admin_email($data) {
                         <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['name']}</td>
                     </tr>
                     <tr>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Age</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['age']}</td>
+                    </tr>
+                    <tr>
                         <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>WhatsApp Number</td>
                         <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['phone']}</td>
                     </tr>
                     <tr>
-                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Location</td>
-                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['location']}</td>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Booking Date</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['appointment_date']}</td>
                     </tr>
                     <tr>
-                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Package</td>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Preferred Slot</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['preferred_slot']}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Collection Address</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['collection_address']}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Package Name</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['package_name']}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Package Price</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['package_price']}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Package Info</td>
                         <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['package_info']}</td>
                     </tr>
                 </table>
@@ -149,14 +211,28 @@ function send_admin_email($data) {
 }
 
 function build_whatsapp_message($data) {
-    $message = "New Booking Alert: New Home Collection Booking";
+    $message = "Hello, I want to book a blood collection appointment.";
+    $message .= "\nBooking Details";
     $message .= "\nBooking ID: {$data['booking_id']}";
-    $message .= "\nName: {$data['name']}";
+    $message .= "\nPatient Name: {$data['name']}";
+    $message .= "\nAge: {$data['age']}";
     $message .= "\nWhatsApp Number: {$data['phone']}";
-    $message .= "\nLocation: {$data['location']}";
-    if (!empty($data['package_info'])) {
-        $message .= "\nPackage: {$data['package_info']}";
+    $message .= "\nBooking Date: {$data['appointment_date']}";
+    $message .= "\nPreferred Slot: {$data['preferred_slot']}";
+    $message .= "\nCollection Address: {$data['collection_address']}";
+
+    $message .= "\n\nPackage Details";
+    if (!empty($data['package_name'])) {
+        $message .= "\nPackage Name: {$data['package_name']}";
     }
+    if (!empty($data['package_price'])) {
+        $message .= "\nPackage Price: {$data['package_price']}";
+    }
+    if (!empty($data['package_info'])) {
+        $message .= "\nPackage Info: {$data['package_info']}";
+    }
+
+    $message .= "\n\nHome collection included.";
     return $message;
 }
 ?>
