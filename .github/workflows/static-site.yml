@@ -80,6 +80,7 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
         run: |
           set -eu
 
@@ -92,15 +93,32 @@ jobs:
             *) FTP_SERVER_DIR="/${FTP_SERVER_DIR}" ;;
           esac
 
-          echo "🚀 Deploying to $FTP_USERNAME@$FTP_SERVER:$FTP_SERVER_DIR..."
+          FTP_PORT="${FTP_PORT:-21}"
+
+          echo "🚀 Deploying to $FTP_USERNAME@$FTP_SERVER:$FTP_PORT$FTP_SERVER_DIR..."
 
           for attempt in 1 2 3; do
             echo "Deploy attempt $attempt/3..."
             if printf '%s\n' \
               "set ssl:verify-certificate no" \
               "set ftp:ssl-allow yes" \
+              "set ftp:passive-mode on" \
               "set net:max-retries 1" \
-              "set net:timeout 20" \
+              "set net:timeout 25" \
+              "open -p $FTP_PORT $FTP_SERVER" \
+              "mirror --reverse --delete --verbose --exclude-glob .git* --exclude-glob .github/ --exclude-glob node_modules/ --exclude-glob data/ --exclude-glob .DS_Store --exclude-glob README.md --exclude-glob QUICKSTART.md --exclude-glob '*.jsonl' --exclude-glob package-lock.json ./ \"$FTP_SERVER_DIR\"" \
+              "bye" | lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER"; then
+              echo "✅ Deployment successful!"
+              exit 0
+            fi
+
+            echo "⚠️ FTPS attempt failed; retrying with plain FTP..."
+            if printf '%s\n' \
+              "set ftp:ssl-allow no" \
+              "set ftp:passive-mode on" \
+              "set net:max-retries 1" \
+              "set net:timeout 25" \
+              "open -p $FTP_PORT $FTP_SERVER" \
               "mirror --reverse --delete --verbose --exclude-glob .git* --exclude-glob .github/ --exclude-glob node_modules/ --exclude-glob data/ --exclude-glob .DS_Store --exclude-glob README.md --exclude-glob QUICKSTART.md --exclude-glob '*.jsonl' --exclude-glob package-lock.json ./ \"$FTP_SERVER_DIR\"" \
               "bye" | lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER"; then
               echo "✅ Deployment successful!"
