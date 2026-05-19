@@ -403,7 +403,9 @@ document.addEventListener('DOMContentLoaded', function() {
     bookingForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const submitButton = bookingForm.querySelector('button[type="submit"]');
+        const submitter = e.submitter;
+        const flow = submitter && submitter.dataset && submitter.dataset.flow ? submitter.dataset.flow : 'whatsapp';
+        const submitButton = submitter || bookingForm.querySelector('button[type="submit"]');
         const originalButtonText = submitButton ? submitButton.textContent : '';
 
         try {
@@ -427,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showToast(`Submitted. Booking ID: ${result.booking_id}`, 'success');
             bookingForm.reset();
 
-            if (result.whatsapp_url) {
+            if (flow === 'whatsapp' && result.whatsapp_url) {
                 window.open(result.whatsapp_url, '_blank', 'noopener,noreferrer');
             }
         } catch (error) {

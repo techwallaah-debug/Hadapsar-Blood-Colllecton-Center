@@ -130,6 +130,27 @@
             <p class="text-gray-600 text-sm sm:text-lg">15 premium packages • home collection included</p>
         </div>
 
+        <!-- All Tests Search -->
+        <div class="flex justify-center mb-6 sm:mb-8">
+            <div class="w-full max-w-xl">
+                <label for="allTestsSearchInput" class="sr-only">Search tests</label>
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                        <i class="fas fa-magnifying-glass"></i>
+                    </span>
+                    <input id="allTestsSearchInput" type="search" placeholder="Search all tests, packages, or reports" class="w-full rounded-full border border-gray-200 bg-white px-12 pr-28 py-3 text-sm sm:text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition" />
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                        <button id="allTestsClearButton" type="button" class="hidden bg-white text-slate-700 border border-slate-200 px-3 py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-slate-50 transition">
+                            Clear
+                        </button>
+                        <button id="allTestsSearchButton" type="button" class="bg-red-700 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-semibold hover:bg-red-800 transition">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Filter Tabs -->
         <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
             <button class="filter-btn active bg-red-700 text-white px-4 sm:px-6 py-2 rounded-full font-semibold transition text-xs sm:text-sm" data-filter="all">
@@ -155,8 +176,29 @@
             </button>
         </div>
 
+        <div id="allTestsSearchResults" class="hidden mb-10">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                <h3 class="font-[Poppins] font-semibold text-xl text-gray-900">Search Results</h3>
+                <span id="allTestsSearchCount" class="text-sm text-gray-500"></span>
+            </div>
+            <div id="allTestsSearchGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <p id="allTestsSearchEmpty" class="hidden text-sm text-gray-500 mt-4">No results found. Try a different keyword.</p>
+        </div>
+
+        <!-- Packages Grid -->
+        <div id="packagesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Rendered by JavaScript -->
+        </div>
+
+        <!-- "Book Any Package" CTA -->
+        <div class="text-center mb-12 sm:mb-16">
+            <a href="contact.html#booking" class="inline-flex items-center justify-center bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-red-800 transition">
+                Book Any Package <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+
         <!-- Ultra Premium Highlight Banner -->
-        <div class="mb-12 bg-gradient-to-r from-red-700 to-red-800 rounded-3xl p-8 sm:p-12 text-white shadow-lg" data-filter-category="all">
+        <div id="ultraPremiumHighlight" class="mb-12 bg-gradient-to-r from-red-700 to-red-800 rounded-3xl p-8 sm:p-12 text-white shadow-lg" data-filter-category="all">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                 <div>
                     <h3 class="font-[Poppins] font-bold text-3xl sm:text-4xl mb-3">Ultra Premium Comprehensive</h3>
@@ -170,18 +212,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Packages Grid -->
-        <div id="packagesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <!-- Rendered by JavaScript -->
-        </div>
-
-        <!-- "Book Any Package" CTA -->
-        <div class="text-center mb-12 sm:mb-16">
-            <a href="contact.html#booking" class="inline-flex items-center justify-center bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-red-800 transition">
-                Book Any Package <i class="fas fa-arrow-right ml-2"></i>
-            </a>
         </div>
     </div>
 </section>
@@ -236,6 +266,22 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="advancedGrid">
+            <!-- Rendered by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Individual Tests Section -->
+<section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8 sm:mb-12">
+            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 mb-3">
+                Individual <span class="text-red-700">Tests</span>
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-lg">Book single tests at transparent prices</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="individualTestsGrid">
             <!-- Rendered by JavaScript -->
         </div>
     </div>
@@ -825,10 +871,10 @@
                 name: 'Ultra Premium Comprehensive',
                 parameters: '110-140',
                 approxCount: '110-140',
-                mrp: 0,
+                mrp: 7199,
                 offer: 5999,
                 category: 'all',
-                shortDescription: 'Full-body annual review with cancer marker screening.',
+                shortDescription: 'Our most complete annual health review — 110+ parameters across all major systems. Designed for HNI and CXO clients in Amanora and Magarpatta.',
                 parameterList: ['CBC', 'ESR', 'Blood Sugar', 'HbA1c', 'Lipid Profile', 'LFT', 'KFT', 'Thyroid', 'Urine Routine', 'Vitamin D', 'Vitamin B12', 'Ferritin', 'Cancer Markers']
             }
         ];
@@ -844,6 +890,1479 @@
             { name: 'Cancer Breast Comprehensive', category: 'CANCER MARKERS', price: 7490, description: 'Multi-marker breast cancer profiling for at-risk patients.' },
             { name: 'Pre-Operative Basic Package', category: 'PRE-OPERATIVE', price: 2360, description: '52-parameter pre-surgery screening for safe surgical planning.' },
             { name: 'Chronic Fatigue Syndrome', category: 'FATIGUE', price: 3740, description: '49-parameter panel targeting chronic fatigue and lifestyle causes.' }
+        ];
+
+        const individualTests = [
+            {
+                name: 'TSH (Thyroid Stimulating Hormone)',
+                category: 'THYROID',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Thyroid stimulating hormone (TSH) test.',
+                parameterList: ['TSH']
+            },
+            {
+                name: 'Thyroid Profile 1 (T3, T4, TSH)',
+                category: 'THYROID',
+                offer: 400,
+                mrp: 400,
+                parameters: 3,
+                approxCount: '3',
+                shortDescription: 'Total T3, T4, and TSH panel.',
+                parameterList: ['T3', 'T4', 'TSH']
+            },
+            {
+                name: 'Thyroid Profile, Free (FT3, FT4, TSH)',
+                category: 'THYROID',
+                offer: 750,
+                mrp: 750,
+                parameters: 3,
+                approxCount: '3',
+                shortDescription: 'Free T3, free T4, and TSH panel.',
+                parameterList: ['FT3', 'FT4', 'TSH']
+            },
+            {
+                name: 'Vitamin B12',
+                category: 'VITAMIN',
+                offer: 750,
+                mrp: 750,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Vitamin B12 level test.',
+                parameterList: ['Vitamin B12']
+            },
+            {
+                name: 'Vitamin D 25 - Hydroxy',
+                category: 'VITAMIN',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Vitamin D (25-OH) test.',
+                parameterList: ['Vitamin D 25-OH']
+            },
+            {
+                name: 'FSH; Follicle Stimulating Hormone',
+                category: 'HORMONE',
+                offer: 360,
+                mrp: 360,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Follicle stimulating hormone (FSH) test.',
+                parameterList: ['FSH']
+            },
+            {
+                name: 'LH; Luteinising Hormone',
+                category: 'HORMONE',
+                offer: 360,
+                mrp: 360,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Luteinising hormone (LH) test.',
+                parameterList: ['LH']
+            },
+            {
+                name: 'Prolactin, Serum',
+                category: 'HORMONE',
+                offer: 360,
+                mrp: 360,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum prolactin test.',
+                parameterList: ['Prolactin']
+            },
+            {
+                name: 'Fertility Profile-1 (FSH, LH & Prolactin)',
+                category: 'FERTILITY',
+                offer: 900,
+                mrp: 900,
+                parameters: 3,
+                approxCount: '3',
+                shortDescription: 'FSH, LH, and prolactin panel.',
+                parameterList: ['FSH', 'LH', 'Prolactin']
+            },
+            {
+                name: 'Ferritin',
+                category: 'IRON',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Ferritin iron stores test.',
+                parameterList: ['Ferritin']
+            },
+            {
+                name: 'Anti Mullerian Hormone (AMH)',
+                category: 'FERTILITY',
+                offer: 2100,
+                mrp: 2100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'AMH fertility marker test.',
+                parameterList: ['AMH']
+            },
+            {
+                name: 'HbA1c; Glycosylated Hemoglobin',
+                category: 'DIABETES',
+                offer: 480,
+                mrp: 480,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Average blood sugar marker (HbA1c).',
+                parameterList: ['HbA1c']
+            },
+            {
+                name: 'Culture, Urine',
+                category: 'MICROBIOLOGY',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Urine culture and sensitivity.',
+                parameterList: ['Urine Culture']
+            },
+            {
+                name: 'Maternal Serum Screen 2; Dual Test',
+                category: 'MATERNITY',
+                offer: 2100,
+                mrp: 2100,
+                parameters: 2,
+                approxCount: '2',
+                shortDescription: 'Dual marker prenatal screening.',
+                parameterList: ['Dual Marker Screen']
+            },
+            {
+                name: 'Maternal Serum Screen 3; Triple Test',
+                category: 'MATERNITY',
+                offer: 2200,
+                mrp: 2200,
+                parameters: 3,
+                approxCount: '3',
+                shortDescription: 'Triple marker prenatal screening.',
+                parameterList: ['Triple Marker Screen']
+            },
+            {
+                name: 'Maternal Serum Screen 4; Quadruple Test',
+                category: 'MATERNITY',
+                offer: 2500,
+                mrp: 2500,
+                parameters: 4,
+                approxCount: '4',
+                shortDescription: 'Quadruple marker prenatal screening.',
+                parameterList: ['Quadruple Marker Screen']
+            },
+            {
+                name: 'Adenosine Deaminase (ADA)',
+                category: 'ENZYME',
+                offer: 740,
+                mrp: 740,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Adenosine deaminase enzyme test.',
+                parameterList: ['ADA']
+            },
+            {
+                name: 'Adreno Corticotrophic Hormone (ACTH)',
+                category: 'HORMONE',
+                offer: 2300,
+                mrp: 2300,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'ACTH hormone test.',
+                parameterList: ['ACTH']
+            },
+            {
+                name: 'Alanine Transaminase (ALT/SGPT)',
+                category: 'LIVER',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Liver enzyme ALT (SGPT).',
+                parameterList: ['ALT/SGPT']
+            },
+            {
+                name: 'Allergy Profile (180 Tests)',
+                category: 'ALLERGY',
+                offer: 5999,
+                mrp: 5999,
+                parameters: 180,
+                approxCount: '180',
+                shortDescription: 'Comprehensive allergy panel (180 markers).',
+                parameterList: ['Allergy Panel (180)']
+            },
+            {
+                name: 'Alpha Feto Protein (AFP)',
+                category: 'ONCOLOGY',
+                offer: 1000,
+                mrp: 1000,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'AFP tumor marker test.',
+                parameterList: ['AFP']
+            },
+            {
+                name: 'Amylase',
+                category: 'ENZYME',
+                offer: 550,
+                mrp: 550,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Amylase enzyme test.',
+                parameterList: ['Amylase']
+            },
+            {
+                name: 'ANA Blot Profile With Graph',
+                category: 'AUTOIMMUNE',
+                offer: 3500,
+                mrp: 3500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'ANA blot profile with graphical report.',
+                parameterList: ['ANA Blot Profile']
+            },
+            {
+                name: 'Angiotensin Converting Enzyme (ACE)',
+                category: 'ENZYME',
+                offer: 1000,
+                mrp: 1000,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'ACE enzyme test.',
+                parameterList: ['ACE']
+            },
+            {
+                name: 'Ante Natal Profile - Rapid',
+                category: 'MATERNITY',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Rapid antenatal screening profile.',
+                parameterList: ['Antenatal Profile']
+            },
+            {
+                name: 'Anti Cyclic Citrullinated Peptide (Anti-CCP)',
+                category: 'AUTOIMMUNE',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Anti-CCP antibody test.',
+                parameterList: ['Anti-CCP']
+            },
+            {
+                name: 'Anti Ds DNA; ELISA',
+                category: 'AUTOIMMUNE',
+                offer: 1000,
+                mrp: 1000,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Anti-dsDNA antibody test (ELISA).',
+                parameterList: ['Anti-dsDNA']
+            },
+            {
+                name: 'Anti Nuclear Antibody; ELISA',
+                category: 'AUTOIMMUNE',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'ANA antibody test (ELISA).',
+                parameterList: ['ANA (ELISA)']
+            },
+            {
+                name: 'Anti Thyroglobulin Antibody (Anti Tg)',
+                category: 'THYROID',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Anti-thyroglobulin antibody test.',
+                parameterList: ['Anti Tg']
+            },
+            {
+                name: 'Anti Thyroid Peroxidase Antibody (Anti TPO)',
+                category: 'THYROID',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Anti-TPO antibody test.',
+                parameterList: ['Anti TPO']
+            },
+            {
+                name: 'Apolipoprotein A-1 (Apo-A1)',
+                category: 'CARDIO',
+                offer: 800,
+                mrp: 800,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Apolipoprotein A-1 test.',
+                parameterList: ['Apo-A1']
+            },
+            {
+                name: 'Apolipoprotein B (Apo-B)',
+                category: 'CARDIO',
+                offer: 800,
+                mrp: 800,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Apolipoprotein B test.',
+                parameterList: ['Apo-B']
+            },
+            {
+                name: 'APTT',
+                category: 'COAGULATION',
+                offer: 500,
+                mrp: 500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Activated partial thromboplastin time.',
+                parameterList: ['APTT']
+            },
+            {
+                name: 'ASO Titre',
+                category: 'IMMUNOLOGY',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'ASO titre test.',
+                parameterList: ['ASO Titre']
+            },
+            {
+                name: 'Aspartate Aminotransferase (SGOT)',
+                category: 'LIVER',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Liver enzyme SGOT (AST).',
+                parameterList: ['SGOT/AST']
+            },
+            {
+                name: 'Aspergillus fumigatus (IgE/IgG/IgM) - Any One',
+                category: 'ALLERGY',
+                offer: 2200,
+                mrp: 2200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Aspergillus fumigatus antibody test (any one).',
+                parameterList: ['Aspergillus fumigatus (IgE/IgG/IgM)']
+            },
+            {
+                name: 'Bicarbonate (HCO3)',
+                category: 'ELECTROLYTE',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum bicarbonate (HCO3) test.',
+                parameterList: ['Bicarbonate']
+            },
+            {
+                name: 'Blood Group',
+                category: 'HEMATOLOGY',
+                offer: 150,
+                mrp: 150,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'ABO and Rh blood group typing.',
+                parameterList: ['Blood Group']
+            },
+            {
+                name: 'CA 125; Ovarian Cancer Marker',
+                category: 'ONCOLOGY',
+                offer: 1000,
+                mrp: 1000,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CA-125 ovarian cancer marker.',
+                parameterList: ['CA 125']
+            },
+            {
+                name: 'CA 15.3; Breast Cancer Marker (Titer)',
+                category: 'ONCOLOGY',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CA 15.3 breast cancer marker.',
+                parameterList: ['CA 15.3']
+            },
+            {
+                name: 'CA 19.9; Pancreatic Cancer Marker (Titer)',
+                category: 'ONCOLOGY',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CA 19-9 pancreatic cancer marker.',
+                parameterList: ['CA 19-9']
+            },
+            {
+                name: 'Calcitonin',
+                category: 'HORMONE',
+                offer: 2500,
+                mrp: 2500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Calcitonin hormone test.',
+                parameterList: ['Calcitonin']
+            },
+            {
+                name: 'Calcium, Serum',
+                category: 'MINERAL',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum calcium test.',
+                parameterList: ['Calcium']
+            },
+            {
+                name: 'Calcium - Ionized',
+                category: 'MINERAL',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Ionized calcium test.',
+                parameterList: ['Ionized Calcium']
+            },
+            {
+                name: 'c-ANCA (PR3)',
+                category: 'AUTOIMMUNE',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'c-ANCA (PR3) antibody test.',
+                parameterList: ['c-ANCA (PR3)']
+            },
+            {
+                name: 'Cardiolipin Antibody IgM/IgG/IgA (Each)',
+                category: 'AUTOIMMUNE',
+                offer: 2400,
+                mrp: 2400,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Cardiolipin antibody test (each of IgM/IgG/IgA).',
+                parameterList: ['Cardiolipin Antibody (IgM/IgG/IgA)']
+            },
+            {
+                name: 'CD3/CD4/CD8',
+                category: 'IMMUNOLOGY',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 3,
+                approxCount: '3',
+                shortDescription: 'T-cell subset panel.',
+                parameterList: ['CD3', 'CD4', 'CD8']
+            },
+            {
+                name: 'CEA; Carcino Embryonic Antigen',
+                category: 'ONCOLOGY',
+                offer: 800,
+                mrp: 800,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CEA tumor marker test.',
+                parameterList: ['CEA']
+            },
+            {
+                name: 'Ceruloplasmin',
+                category: 'METABOLIC',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Ceruloplasmin test.',
+                parameterList: ['Ceruloplasmin']
+            },
+            {
+                name: 'Chikungunya IgM',
+                category: 'INFECTION',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Chikungunya IgM antibody test.',
+                parameterList: ['Chikungunya IgM']
+            },
+            {
+                name: 'Cholesterol - Total',
+                category: 'CARDIO',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Total cholesterol test.',
+                parameterList: ['Total Cholesterol']
+            },
+            {
+                name: 'Chromosome Analysis (Karyotype), Blood',
+                category: 'GENETIC',
+                offer: 3200,
+                mrp: 3200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Blood karyotype analysis.',
+                parameterList: ['Karyotype (Blood)']
+            },
+            {
+                name: 'Complete Blood Count (CBC)',
+                category: 'HEMATOLOGY',
+                offer: 220,
+                mrp: 220,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Complete blood count test.',
+                parameterList: ['CBC']
+            },
+            {
+                name: 'Cortisol, Serum (Morning/Evening)',
+                category: 'HORMONE',
+                offer: 700,
+                mrp: 700,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum cortisol (morning/evening).',
+                parameterList: ['Cortisol']
+            },
+            {
+                name: 'C-Peptide',
+                category: 'DIABETES',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'C-peptide test.',
+                parameterList: ['C-Peptide']
+            },
+            {
+                name: 'C-Reactive Protein, Cardio (hsCRP)',
+                category: 'CARDIO',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'High-sensitivity CRP test.',
+                parameterList: ['hsCRP']
+            },
+            {
+                name: 'Creatinine, Serum',
+                category: 'KIDNEY',
+                offer: 160,
+                mrp: 160,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum creatinine test.',
+                parameterList: ['Creatinine']
+            },
+            {
+                name: 'CRP Quantitative',
+                category: 'INFLAMMATION',
+                offer: 500,
+                mrp: 500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CRP quantitative test.',
+                parameterList: ['CRP']
+            },
+            {
+                name: 'Cryptococcus Antigen',
+                category: 'INFECTION',
+                offer: 2250,
+                mrp: 2250,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Cryptococcus antigen test.',
+                parameterList: ['Cryptococcus Antigen']
+            },
+            {
+                name: 'Culture, Aerobic, Blood',
+                category: 'MICROBIOLOGY',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Aerobic blood culture.',
+                parameterList: ['Aerobic Blood Culture']
+            },
+            {
+                name: 'Culture, Aerobic, Miscellaneous',
+                category: 'MICROBIOLOGY',
+                offer: 950,
+                mrp: 950,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Aerobic culture for miscellaneous samples.',
+                parameterList: ['Aerobic Culture (Misc.)']
+            },
+            {
+                name: 'Culture, Aerobic, OT Swabs',
+                category: 'MICROBIOLOGY',
+                offer: 700,
+                mrp: 700,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Aerobic culture for OT swabs.',
+                parameterList: ['Aerobic Culture (OT Swab)']
+            },
+            {
+                name: 'Culture, Aerobic, Pus',
+                category: 'MICROBIOLOGY',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Aerobic pus culture.',
+                parameterList: ['Aerobic Culture (Pus)']
+            },
+            {
+                name: 'Culture, Aerobic, Sputum',
+                category: 'MICROBIOLOGY',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Aerobic sputum culture.',
+                parameterList: ['Aerobic Culture (Sputum)']
+            },
+            {
+                name: 'Culture, AFB (Myco Identification) BACTAC',
+                category: 'MICROBIOLOGY',
+                offer: 2000,
+                mrp: 2000,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'AFB culture with myco identification.',
+                parameterList: ['AFB Culture (BACTAC)']
+            },
+            {
+                name: 'Culture, Anaerobic - Blood, Rapid',
+                category: 'MICROBIOLOGY',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Rapid anaerobic blood culture.',
+                parameterList: ['Anaerobic Blood Culture']
+            },
+            {
+                name: 'Cytomegalovirus IgG Antibody',
+                category: 'INFECTION',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CMV IgG antibody test.',
+                parameterList: ['CMV IgG']
+            },
+            {
+                name: 'Cytomegalovirus IgM Antibody',
+                category: 'INFECTION',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'CMV IgM antibody test.',
+                parameterList: ['CMV IgM']
+            },
+            {
+                name: 'D-Dimer',
+                category: 'COAGULATION',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'D-dimer test.',
+                parameterList: ['D-Dimer']
+            },
+            {
+                name: 'Dengue - NS1 Antigen, EIA',
+                category: 'INFECTION',
+                offer: 500,
+                mrp: 500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Dengue NS1 antigen (EIA).',
+                parameterList: ['Dengue NS1 (EIA)']
+            },
+            {
+                name: 'Dengue Fever IgG Antibody, EIA',
+                category: 'INFECTION',
+                offer: 500,
+                mrp: 500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Dengue IgG antibody (EIA).',
+                parameterList: ['Dengue IgG (EIA)']
+            },
+            {
+                name: 'Dengue Fever IgM Antibody, EIA',
+                category: 'INFECTION',
+                offer: 500,
+                mrp: 500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Dengue IgM antibody (EIA).',
+                parameterList: ['Dengue IgM (EIA)']
+            },
+            {
+                name: 'Dengue Profile (NS1 Antigen, IgG & IgM) - Rapid',
+                category: 'INFECTION',
+                offer: 1350,
+                mrp: 1350,
+                parameters: 3,
+                approxCount: '3',
+                shortDescription: 'Rapid dengue profile with NS1, IgG, IgM.',
+                parameterList: ['Dengue NS1', 'Dengue IgG', 'Dengue IgM']
+            },
+            {
+                name: 'eGFR (Estimated Glomerular Filtration Rate)',
+                category: 'KIDNEY',
+                offer: 500,
+                mrp: 500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Estimated GFR calculation.',
+                parameterList: ['eGFR']
+            },
+            {
+                name: 'Electrolytes, Serum',
+                category: 'ELECTROLYTE',
+                offer: 440,
+                mrp: 440,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum electrolytes panel.',
+                parameterList: ['Electrolytes']
+            },
+            {
+                name: 'Epstein Barr Virus IgG Antibody',
+                category: 'INFECTION',
+                offer: 1600,
+                mrp: 1600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'EBV IgG antibody test.',
+                parameterList: ['EBV IgG']
+            },
+            {
+                name: 'Epstein Barr Virus IgM Antibody',
+                category: 'INFECTION',
+                offer: 1600,
+                mrp: 1600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'EBV IgM antibody test.',
+                parameterList: ['EBV IgM']
+            },
+            {
+                name: 'ESR',
+                category: 'INFLAMMATION',
+                offer: 140,
+                mrp: 140,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Erythrocyte sedimentation rate.',
+                parameterList: ['ESR']
+            },
+            {
+                name: 'Estradiol (E2), Serum',
+                category: 'HORMONE',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Estradiol hormone test.',
+                parameterList: ['Estradiol (E2)']
+            },
+            {
+                name: 'Folate (Folic Acid), Serum',
+                category: 'VITAMIN',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum folate test.',
+                parameterList: ['Folate']
+            },
+            {
+                name: 'FT4',
+                category: 'THYROID',
+                offer: 210,
+                mrp: 210,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Free T4 test.',
+                parameterList: ['FT4']
+            },
+            {
+                name: 'Glucose 6 Phosphate Dehydrogenase (G6PD Quantitative)',
+                category: 'GENETIC',
+                offer: 850,
+                mrp: 850,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'G6PD quantitative test.',
+                parameterList: ['G6PD']
+            },
+            {
+                name: 'Glucose FBS/PPBS/RBS (Each)',
+                category: 'DIABETES',
+                offer: 60,
+                mrp: 60,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'FBS/PPBS/RBS glucose test (each).',
+                parameterList: ['Glucose']
+            },
+            {
+                name: 'Growth Hormone (GH)',
+                category: 'HORMONE',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Growth hormone test.',
+                parameterList: ['Growth Hormone']
+            },
+            {
+                name: 'HCG, Beta, Total Quantitative, Maternal',
+                category: 'MATERNITY',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Beta HCG quantitative test.',
+                parameterList: ['Beta HCG']
+            },
+            {
+                name: 'Hemoglobin HPLC/Electrophoresis',
+                category: 'HEMATOLOGY',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Hemoglobin HPLC/electrophoresis test.',
+                parameterList: ['Hemoglobin HPLC']
+            },
+            {
+                name: 'Hepatitis A Virus IgM (HAV-IgM)',
+                category: 'HEPATITIS',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HAV IgM antibody test.',
+                parameterList: ['HAV IgM']
+            },
+            {
+                name: 'Hepatitis A Virus IgG (HAV IgG)',
+                category: 'HEPATITIS',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HAV IgG antibody test.',
+                parameterList: ['HAV IgG']
+            },
+            {
+                name: 'Hepatitis B Envelope Antibody (AntiHBe)',
+                category: 'HEPATITIS',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Anti-HBe antibody test.',
+                parameterList: ['Anti-HBe']
+            },
+            {
+                name: 'Hepatitis B Envelope Antigen (HBeAg) - Serum',
+                category: 'HEPATITIS',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HBeAg antigen test.',
+                parameterList: ['HBeAg']
+            },
+            {
+                name: 'Hepatitis B Surface Antigen (HBsAg) - ELISA',
+                category: 'HEPATITIS',
+                offer: 550,
+                mrp: 550,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HBsAg ELISA test.',
+                parameterList: ['HBsAg']
+            },
+            {
+                name: 'HIV 1 & 2 Antibody - ELISA',
+                category: 'INFECTION',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HIV 1 & 2 antibody ELISA test.',
+                parameterList: ['HIV 1&2 ELISA']
+            },
+            {
+                name: 'HIV 1 Western Blot',
+                category: 'INFECTION',
+                offer: 1550,
+                mrp: 1550,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HIV 1 Western Blot confirmatory test.',
+                parameterList: ['HIV 1 Western Blot']
+            },
+            {
+                name: 'HIV Monitoring: CD3/CD4/CD8, HIV Quantitative (Viral Load)',
+                category: 'INFECTION',
+                offer: 3350,
+                mrp: 3350,
+                parameters: 2,
+                approxCount: '2',
+                shortDescription: 'HIV monitoring panel with viral load.',
+                parameterList: ['CD3/CD4/CD8', 'HIV Viral Load']
+            },
+            {
+                name: 'HLA-B27, Flow Cytometry',
+                category: 'AUTOIMMUNE',
+                offer: 1500,
+                mrp: 1500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'HLA-B27 flow cytometry test.',
+                parameterList: ['HLA-B27']
+            },
+            {
+                name: 'Homocysteine, Quantitative, Serum',
+                category: 'CARDIO',
+                offer: 1200,
+                mrp: 1200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum homocysteine test.',
+                parameterList: ['Homocysteine']
+            },
+            {
+                name: 'Immunoglobulin A (IgA)',
+                category: 'IMMUNOLOGY',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'IgA immunoglobulin test.',
+                parameterList: ['IgA']
+            },
+            {
+                name: 'Immunoglobulin G (IgG)',
+                category: 'IMMUNOLOGY',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'IgG immunoglobulin test.',
+                parameterList: ['IgG']
+            },
+            {
+                name: 'Immunoglobulin IgE, Serum',
+                category: 'IMMUNOLOGY',
+                offer: 550,
+                mrp: 550,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'IgE immunoglobulin test.',
+                parameterList: ['IgE']
+            },
+            {
+                name: 'Immunoglobulin M (IgM)',
+                category: 'IMMUNOLOGY',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'IgM immunoglobulin test.',
+                parameterList: ['IgM']
+            },
+            {
+                name: 'Insulin - Fasting',
+                category: 'DIABETES',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Fasting insulin test.',
+                parameterList: ['Insulin (Fasting)']
+            },
+            {
+                name: 'Insulin - Post Prandial',
+                category: 'DIABETES',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Post prandial insulin test.',
+                parameterList: ['Insulin (PP)']
+            },
+            {
+                name: 'Insulin-Like Growth Factor-I (IGF-I)',
+                category: 'HORMONE',
+                offer: 3400,
+                mrp: 3400,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'IGF-I hormone test.',
+                parameterList: ['IGF-I']
+            },
+            {
+                name: 'Iron Studies (Without Ferritin)',
+                category: 'IRON',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Iron studies panel (without ferritin).',
+                parameterList: ['Iron Studies']
+            },
+            {
+                name: 'Kidney Panel (KFT)',
+                category: 'KIDNEY',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Kidney function tests panel.',
+                parameterList: ['KFT']
+            },
+            {
+                name: 'LBC PAP Smear',
+                category: 'WOMEN',
+                offer: 1600,
+                mrp: 1600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Pap smear screening test.',
+                parameterList: ['LBC PAP Smear']
+            },
+            {
+                name: 'Lead',
+                category: 'TOXICOLOGY',
+                offer: 1850,
+                mrp: 1850,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Blood lead level test.',
+                parameterList: ['Lead']
+            },
+            {
+                name: 'Lipase',
+                category: 'ENZYME',
+                offer: 750,
+                mrp: 750,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Pancreatic enzyme lipase test.',
+                parameterList: ['Lipase']
+            },
+            {
+                name: 'Lipid Profile, Basic',
+                category: 'CARDIO',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Basic lipid profile panel.',
+                parameterList: ['Lipid Profile (Basic)']
+            },
+            {
+                name: 'Liver Panel 1; LFT',
+                category: 'LIVER',
+                offer: 600,
+                mrp: 600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Liver function tests panel.',
+                parameterList: ['LFT']
+            },
+            {
+                name: 'Lupus Anticoagulant',
+                category: 'AUTOIMMUNE',
+                offer: 1300,
+                mrp: 1300,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Lupus anticoagulant screening test.',
+                parameterList: ['Lupus Anticoagulant']
+            },
+            {
+                name: 'Microalbumin/Creatinine Ratio - Urine',
+                category: 'KIDNEY',
+                offer: 700,
+                mrp: 700,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Urine microalbumin/creatinine ratio test.',
+                parameterList: ['Microalbumin/Creatinine Ratio']
+            },
+            {
+                name: 'Mycobacterium Tuberculosis PCR; Mycosure; TB PCR',
+                category: 'MICROBIOLOGY',
+                offer: 1650,
+                mrp: 1650,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'TB PCR detection test.',
+                parameterList: ['TB PCR']
+            },
+            {
+                name: 'P-ANCA (MPO)',
+                category: 'AUTOIMMUNE',
+                offer: 1850,
+                mrp: 1850,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Perinuclear ANCA (MPO) test.',
+                parameterList: ['P-ANCA (MPO)']
+            },
+            {
+                name: 'Parietal Cell Antibody',
+                category: 'AUTOIMMUNE',
+                offer: 2250,
+                mrp: 2250,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Parietal cell antibody test.',
+                parameterList: ['Parietal Cell Antibody']
+            },
+            {
+                name: 'Phenytoin (Eptoin)',
+                category: 'THERAPEUTIC',
+                offer: 1400,
+                mrp: 1400,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Phenytoin drug level monitoring.',
+                parameterList: ['Phenytoin']
+            },
+            {
+                name: 'Phospholipid Antibody, IgG/IgM (Each)',
+                category: 'AUTOIMMUNE',
+                offer: 850,
+                mrp: 850,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Phospholipid antibody IgG/IgM test.',
+                parameterList: ['Phospholipid Antibody']
+            },
+            {
+                name: 'Pro BNP',
+                category: 'CARDIO',
+                offer: 1900,
+                mrp: 1900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Pro BNP cardiac marker test.',
+                parameterList: ['Pro BNP']
+            },
+            {
+                name: 'Progesterone, Serum',
+                category: 'HORMONE',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum progesterone test.',
+                parameterList: ['Progesterone']
+            },
+            {
+                name: 'Protein C',
+                category: 'COAGULATION',
+                offer: 2800,
+                mrp: 2800,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Protein C activity test.',
+                parameterList: ['Protein C']
+            },
+            {
+                name: 'Protein Electrophoresis, Serum',
+                category: 'IMMUNOLOGY',
+                offer: 950,
+                mrp: 950,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum protein electrophoresis test.',
+                parameterList: ['Protein Electrophoresis']
+            },
+            {
+                name: 'Protein S',
+                category: 'COAGULATION',
+                offer: 2800,
+                mrp: 2800,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Protein S activity test.',
+                parameterList: ['Protein S']
+            },
+            {
+                name: 'Protein/Creatinine Ratio - Urine Spot',
+                category: 'KIDNEY',
+                offer: 700,
+                mrp: 700,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Urine protein/creatinine ratio test.',
+                parameterList: ['Protein/Creatinine Ratio']
+            },
+            {
+                name: 'Prothrombin Time; PT',
+                category: 'COAGULATION',
+                offer: 450,
+                mrp: 450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Prothrombin time (PT) test.',
+                parameterList: ['PT']
+            },
+            {
+                name: 'PSA (Prostate-Specific Antigen), Free',
+                category: 'UROLOGY',
+                offer: 1250,
+                mrp: 1250,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Free PSA test.',
+                parameterList: ['PSA Free']
+            },
+            {
+                name: 'PSA (Prostate-Specific Antigen), Total',
+                category: 'UROLOGY',
+                offer: 650,
+                mrp: 650,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Total PSA test.',
+                parameterList: ['PSA Total']
+            },
+            {
+                name: 'PSA Profile',
+                category: 'UROLOGY',
+                offer: 1500,
+                mrp: 1500,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'PSA profile (free + total).',
+                parameterList: ['PSA Profile']
+            },
+            {
+                name: 'PTH (Parathyroid Hormone), Intact',
+                category: 'HORMONE',
+                offer: 1400,
+                mrp: 1400,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Intact parathyroid hormone (PTH) test.',
+                parameterList: ['PTH Intact']
+            },
+            {
+                name: 'Quantiferon-TB Gold; Gamma Interferon',
+                category: 'INFECTION',
+                offer: 2100,
+                mrp: 2100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Quantiferon TB Gold test.',
+                parameterList: ['Quantiferon-TB Gold']
+            },
+            {
+                name: 'RA Factor Quantitative',
+                category: 'AUTOIMMUNE',
+                offer: 550,
+                mrp: 550,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Rheumatoid factor quantitative test.',
+                parameterList: ['RA Factor']
+            },
+            {
+                name: 'Rubellavirus IgG Antibody',
+                category: 'INFECTION',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Rubella IgG antibody test.',
+                parameterList: ['Rubella IgG']
+            },
+            {
+                name: 'Rubellavirus IgM Antibody',
+                category: 'INFECTION',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Rubella IgM antibody test.',
+                parameterList: ['Rubella IgM']
+            },
+            {
+                name: 'Sex Hormone Binding Globulin (SHBG)',
+                category: 'HORMONE',
+                offer: 2100,
+                mrp: 2100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'SHBG hormone test.',
+                parameterList: ['SHBG']
+            },
+            {
+                name: 'Stool R/E',
+                category: 'MICROBIOLOGY',
+                offer: 200,
+                mrp: 200,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Stool routine examination.',
+                parameterList: ['Stool R/E']
+            },
+            {
+                name: 'Testosterone, Free',
+                category: 'HORMONE',
+                offer: 1100,
+                mrp: 1100,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Free testosterone test.',
+                parameterList: ['Testosterone Free']
+            },
+            {
+                name: 'Testosterone, Total',
+                category: 'HORMONE',
+                offer: 550,
+                mrp: 550,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Total testosterone test.',
+                parameterList: ['Testosterone Total']
+            },
+            {
+                name: 'Tissue Transglutaminase IgA Antibody',
+                category: 'IMMUNOLOGY',
+                offer: 1450,
+                mrp: 1450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'tTG IgA antibody test.',
+                parameterList: ['tTG IgA']
+            },
+            {
+                name: 'Tissue Transglutaminase IgG Antibody',
+                category: 'IMMUNOLOGY',
+                offer: 1450,
+                mrp: 1450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'tTG IgG antibody test.',
+                parameterList: ['tTG IgG']
+            },
+            {
+                name: 'Tissue Transglutaminase IgM Antibody',
+                category: 'IMMUNOLOGY',
+                offer: 1450,
+                mrp: 1450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'tTG IgM antibody test.',
+                parameterList: ['tTG IgM']
+            },
+            {
+                name: 'TORCH Panel-5, IgG',
+                category: 'MATERNITY',
+                offer: 1450,
+                mrp: 1450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'TORCH panel 5 (IgG).',
+                parameterList: ['TORCH Panel-5 IgG']
+            },
+            {
+                name: 'TORCH Panel, IgG & IgM (TORCH 10)',
+                category: 'MATERNITY',
+                offer: 2250,
+                mrp: 2250,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'TORCH panel 10 (IgG & IgM).',
+                parameterList: ['TORCH Panel 10']
+            },
+            {
+                name: 'TORCH Panel-5, IgM',
+                category: 'MATERNITY',
+                offer: 1450,
+                mrp: 1450,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'TORCH panel 5 (IgM).',
+                parameterList: ['TORCH Panel-5 IgM']
+            },
+            {
+                name: 'Toxoplasma gondii IgG Antibody',
+                category: 'INFECTION',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Toxoplasma IgG antibody test.',
+                parameterList: ['Toxoplasma IgG']
+            },
+            {
+                name: 'Toxoplasma gondii IgM Antibody',
+                category: 'INFECTION',
+                offer: 900,
+                mrp: 900,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Toxoplasma IgM antibody test.',
+                parameterList: ['Toxoplasma IgM']
+            },
+            {
+                name: 'Vitamin D 1, 25-Dihydroxy',
+                category: 'VITAMIN',
+                offer: 1600,
+                mrp: 1600,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Active vitamin D (1,25-dihydroxy) test.',
+                parameterList: ['Vitamin D 1,25-Dihydroxy']
+            },
+            {
+                name: 'Uric Acid, Serum',
+                category: 'METABOLIC',
+                offer: 160,
+                mrp: 160,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Serum uric acid test.',
+                parameterList: ['Uric Acid']
+            },
+            {
+                name: 'Urine R/E',
+                category: 'KIDNEY',
+                offer: 160,
+                mrp: 160,
+                parameters: 1,
+                approxCount: '1',
+                shortDescription: 'Urine routine examination.',
+                parameterList: ['Urine R/E']
+            }
         ];
 
         // Utility Functions
@@ -1019,6 +2538,201 @@
             `).join('');
         };
 
+        // Render Individual Tests
+        const renderIndividualTestsGrid = () => {
+            const grid = document.getElementById('individualTestsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = individualTests.map((test, idx) => `
+                <div class="border border-gray-200 rounded-xl p-6 bg-white hover:shadow-lg transition">
+                    <div class="mb-3">
+                        <span class="inline-block bg-red-50 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                            ${escapeHtml(test.category)}
+                        </span>
+                    </div>
+                    <h3 class="font-[Poppins] font-bold text-lg text-gray-900 mb-2">${escapeHtml(test.name)}</h3>
+                    <p class="text-sm text-gray-600 mb-4">${escapeHtml(test.shortDescription || '')}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-2xl font-bold text-gray-900">${formatMoney(test.offer)}</div>
+                        <a href="contact.html#booking" class="book-individual bg-red-700 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-red-800 transition" data-idx="${idx}">
+                            Book Test
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.book-individual').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = Number(this.getAttribute('data-idx'));
+                    const test = individualTests[idx];
+                    if (test) saveSelectedPackage(test);
+                });
+            });
+        };
+
+        let searchTerm = '';
+
+        const matchesSearch = (value, term) => {
+            if (!term) return true;
+            return String(value || '').toLowerCase().includes(term);
+        };
+
+        const buildSearchResults = () => {
+            if (!searchTerm) return [];
+
+            const results = [];
+
+            packages.forEach((pkg, idx) => {
+                const price = typeof pkg.offer === 'number' && pkg.offer > 0 ? pkg.offer : pkg.mrp;
+                const haystack = [
+                    pkg.name,
+                    pkg.shortDescription,
+                    pkg.description,
+                    pkg.category,
+                    pkg.parameters,
+                    Array.isArray(pkg.parameterList) ? pkg.parameterList.join(' ') : ''
+                ].join(' ');
+                if (matchesSearch(haystack, searchTerm)) {
+                    results.push({
+                        kind: 'package',
+                        idx,
+                        name: pkg.name,
+                        category: pkg.category || 'PACKAGE',
+                        description: pkg.shortDescription || pkg.description || descriptionFor(pkg.name),
+                        price
+                    });
+                }
+            });
+
+            advancedPackages.forEach((pkg, idx) => {
+                const haystack = [pkg.name, pkg.category, pkg.description].join(' ');
+                if (matchesSearch(haystack, searchTerm)) {
+                    results.push({
+                        kind: 'advanced',
+                        idx,
+                        name: pkg.name,
+                        category: pkg.category || 'REPORT',
+                        description: pkg.description,
+                        price: pkg.price
+                    });
+                }
+            });
+
+            individualTests.forEach((test, idx) => {
+                const haystack = [
+                    test.name,
+                    test.category,
+                    test.shortDescription,
+                    Array.isArray(test.parameterList) ? test.parameterList.join(' ') : ''
+                ].join(' ');
+                if (matchesSearch(haystack, searchTerm)) {
+                    results.push({
+                        kind: 'test',
+                        idx,
+                        name: test.name,
+                        category: test.category || 'TEST',
+                        description: test.shortDescription || '',
+                        price: test.offer
+                    });
+                }
+            });
+
+            return results;
+        };
+
+        const renderAllTestsSearchResults = () => {
+            const resultsSection = document.getElementById('allTestsSearchResults');
+            const resultsGrid = document.getElementById('allTestsSearchGrid');
+            const resultsCount = document.getElementById('allTestsSearchCount');
+            const emptyState = document.getElementById('allTestsSearchEmpty');
+            const highlightBanner = document.getElementById('ultraPremiumHighlight');
+
+            if (!resultsSection || !resultsGrid || !resultsCount || !emptyState) return;
+
+            if (!searchTerm) {
+                resultsSection.classList.add('hidden');
+                emptyState.classList.add('hidden');
+                if (highlightBanner) highlightBanner.classList.remove('hidden');
+                resultsGrid.innerHTML = '';
+                resultsCount.textContent = '';
+                return;
+            }
+
+            const results = buildSearchResults();
+            resultsSection.classList.remove('hidden');
+            if (highlightBanner) highlightBanner.classList.add('hidden');
+            resultsCount.textContent = `${results.length} result${results.length === 1 ? '' : 's'}`;
+
+            if (!results.length) {
+                resultsGrid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            resultsGrid.innerHTML = results.map((item) => {
+                const priceText = item.price ? formatMoney(item.price) : '';
+                const badgeClass = item.kind === 'advanced'
+                    ? 'bg-yellow-500 bg-opacity-20 text-yellow-700'
+                    : 'bg-red-50 text-red-700';
+
+                const actionLabel = item.kind === 'package'
+                    ? 'Book Package'
+                    : item.kind === 'advanced'
+                        ? 'Book Report'
+                        : 'Book Test';
+
+                const viewParamsBtn = item.kind === 'package'
+                    ? `<button type="button" class="result-view-params inline-flex items-center justify-center w-full bg-white text-gray-900 border border-gray-200 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-50 transition" data-kind="${item.kind}" data-idx="${item.idx}">View Parameters</button>`
+                    : '';
+
+                return `
+                    <div class="border border-gray-100 rounded-2xl p-5 bg-white hover:shadow-sm transition">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <div class="text-xs font-semibold uppercase mb-2">
+                                    <span class="inline-flex items-center rounded-full px-3 py-1 ${badgeClass}">
+                                        ${escapeHtml(item.category)}
+                                    </span>
+                                </div>
+                                <h4 class="font-[Poppins] font-semibold text-gray-900 text-lg leading-snug">${escapeHtml(item.name)}</h4>
+                            </div>
+                            ${priceText ? `<div class="text-lg font-bold text-gray-900">${escapeHtml(priceText)}</div>` : ''}
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2">${escapeHtml(item.description || '')}</p>
+                        <div class="mt-4 grid grid-cols-1 ${viewParamsBtn ? 'sm:grid-cols-2' : ''} gap-3">
+                            ${viewParamsBtn}
+                            <a href="contact.html#booking" class="result-book inline-flex items-center justify-center w-full bg-gray-900 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-black transition" data-kind="${item.kind}" data-idx="${item.idx}">${actionLabel}</a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            resultsGrid.querySelectorAll('.result-view-params').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const idx = Number(btn.getAttribute('data-idx'));
+                    const pkg = packages[idx];
+                    if (!pkg) return;
+                    showParameterModal(pkg);
+                });
+            });
+
+            resultsGrid.querySelectorAll('.result-book').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const kind = btn.getAttribute('data-kind');
+                    const idx = Number(btn.getAttribute('data-idx'));
+                    if (kind === 'package') {
+                        const pkg = packages[idx];
+                        if (pkg) saveSelectedPackage(pkg);
+                    } else if (kind === 'test') {
+                        const test = individualTests[idx];
+                        if (test) saveSelectedPackage(test);
+                    }
+                });
+            });
+        };
+
         // Parameter Modal
         const modal = document.getElementById('packageModal');
         const modalBackdrop = document.getElementById('packageModalBackdrop');
@@ -1097,8 +2811,39 @@
         });
 
         // Initial Render
+        const searchInput = document.getElementById('allTestsSearchInput');
+        const searchButton = document.getElementById('allTestsSearchButton');
+        const clearButton = document.getElementById('allTestsClearButton');
+        if (searchInput) {
+            searchInput.addEventListener('input', (event) => {
+                searchTerm = String(event.target.value || '').trim().toLowerCase();
+                if (clearButton) {
+                    clearButton.classList.toggle('hidden', !searchTerm);
+                }
+                renderAllTestsSearchResults();
+            });
+        }
+        if (searchButton && searchInput) {
+            searchButton.addEventListener('click', () => {
+                searchTerm = String(searchInput.value || '').trim().toLowerCase();
+                renderAllTestsSearchResults();
+                searchInput.focus();
+            });
+        }
+        if (clearButton && searchInput) {
+            clearButton.addEventListener('click', () => {
+                searchInput.value = '';
+                searchTerm = '';
+                clearButton.classList.add('hidden');
+                renderAllTestsSearchResults();
+                searchInput.focus();
+            });
+        }
+
         renderPackagesGrid('all');
         renderAdvancedGrid();
+        renderIndividualTestsGrid();
+        renderAllTestsSearchResults();
     })();
 </script>
 

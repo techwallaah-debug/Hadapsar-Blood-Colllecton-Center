@@ -176,7 +176,7 @@
                                     <option value="Men Hormone & Wellness" data-price="2800">Men Hormone & Wellness</option>
                                     <option value="Fever & Infection Advanced" data-price="1800">Fever & Infection Advanced</option>
                                     <option value="Arthritis & Inflammation" data-price="1600">Arthritis & Inflammation</option>
-                                    <option value="Ultra Premium Comprehensive" data-price="7000">Ultra Premium Comprehensive</option>
+                                    <option value="Ultra Premium Comprehensive" data-price="5999">Ultra Premium Comprehensive</option>
                                     <option value="Other / Not sure">Other / Not sure</option>
                                 </select>
                             </div>
@@ -198,12 +198,17 @@
 
                     <input type="hidden" id="package_info" name="package_info" value="">
 
-                    <button type="submit" class="w-full bg-gradient-to-r from-red-700 to-red-800 text-white py-3.5 rounded-xl font-semibold hover:from-red-800 hover:to-red-900 transition shadow-sm hover:shadow-md">
-                        <i class="fab fa-whatsapp mr-2"></i>Book Now on WhatsApp
-                    </button>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <button type="submit" data-flow="whatsapp" class="w-full bg-gradient-to-r from-red-700 to-red-800 text-white py-3.5 rounded-xl font-semibold hover:from-red-800 hover:to-red-900 transition shadow-sm hover:shadow-md">
+                            <i class="fab fa-whatsapp mr-2"></i>Submit & Open WhatsApp
+                        </button>
+                        <button type="submit" data-flow="silent" class="w-full bg-white text-red-700 border border-red-200 py-3.5 rounded-xl font-semibold hover:bg-red-50 transition shadow-sm">
+                            <i class="fas fa-check-circle mr-2"></i>Submit Only
+                        </button>
+                    </div>
 
                     <p class="text-xs text-gray-500 text-center">
-                        <i class="fas fa-bolt text-red-700 mr-1"></i>You will receive a Booking ID for tracking, and we will receive it on email and WhatsApp.
+                        <i class="fas fa-bolt text-red-700 mr-1"></i>Both options save your booking and send it to our team. WhatsApp opens only if you choose it.
                     </p>
                 </form>
             </div>
