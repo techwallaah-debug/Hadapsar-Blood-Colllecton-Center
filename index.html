@@ -208,7 +208,7 @@
                     <div class="bg-white text-red-700 rounded-2xl px-6 sm:px-8 py-4 sm:py-6 text-center">
                         <div class="text-3xl sm:text-4xl font-bold">₹5,999</div>
                         <div class="text-sm text-red-600 line-through mt-1">₹7,199</div>
-                        <a href="contact.html#booking" class="mt-4 inline-block bg-red-700 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-800 transition">Book Now</a>
+                        <a id="ultraPremiumBookNow" href="contact.html#booking" class="mt-4 inline-block bg-red-700 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-800 transition">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -254,22 +254,6 @@
         </div>
     </div>
 </div>
-
-<!-- Advanced Testing Reports Section -->
-<section class="py-12 sm:py-16 lg:py-20 bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-8 sm:mb-12">
-            <h2 class="font-[Poppins] font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-3">
-                Advanced Testing <span class="text-yellow-500">Reports</span>
-            </h2>
-            <p class="text-gray-300 text-sm sm:text-lg">Specialist-recommended panels • doctor referral preferred</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="advancedGrid">
-            <!-- Rendered by JavaScript -->
-        </div>
-    </div>
-</section>
 
 <!-- Individual Tests Section -->
 <section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
@@ -877,19 +861,6 @@
                 shortDescription: 'Our most complete annual health review — 110+ parameters across all major systems. Designed for HNI and CXO clients in Amanora and Magarpatta.',
                 parameterList: ['CBC', 'ESR', 'Blood Sugar', 'HbA1c', 'Lipid Profile', 'LFT', 'KFT', 'Thyroid', 'Urine Routine', 'Vitamin D', 'Vitamin B12', 'Ferritin', 'Cancer Markers']
             }
-        ];
-
-        const advancedPackages = [
-            { name: 'Autoimmune ILD Panel', category: 'AUTOIMMUNE', price: 9550, description: 'Lung & immune system markers for interstitial lung disease screening.' },
-            { name: 'ANA ENA Combo Panel', category: 'AUTOIMMUNE', price: 5810, description: 'Comprehensive autoimmune antibody profiling with 29 parameters.' },
-            { name: 'CKD Management Panel', category: 'KIDNEY', price: 2960, description: 'Chronic kidney disease monitoring with 27 detailed renal parameters.' },
-            { name: 'Nutritional Anemia Panel', category: 'ANEMIA', price: 3150, description: 'Complete anemia workup including iron deficiency and nutritional markers.' },
-            { name: 'Hepatitis B Monitoring', category: 'HEPATITIS', price: 7680, description: 'Ongoing hepatitis B tracking with viral load and immune markers.' },
-            { name: 'Antenatal Complete Package', category: 'PREGNANCY', price: 6010, description: 'Comprehensive antenatal screening with 73 parameters for expectant mothers.' },
-            { name: 'IL-6 Extended Panel', category: 'INFLAMMATION', price: 9260, description: 'Interleukin-6 and 58 extended inflammatory markers for clinical guidance.' },
-            { name: 'Cancer Breast Comprehensive', category: 'CANCER MARKERS', price: 7490, description: 'Multi-marker breast cancer profiling for at-risk patients.' },
-            { name: 'Pre-Operative Basic Package', category: 'PRE-OPERATIVE', price: 2360, description: '52-parameter pre-surgery screening for safe surgical planning.' },
-            { name: 'Chronic Fatigue Syndrome', category: 'FATIGUE', price: 3740, description: '49-parameter panel targeting chronic fatigue and lifestyle causes.' }
         ];
 
         const individualTests = [
@@ -2516,28 +2487,6 @@
             });
         };
 
-        // Render Advanced Testing Reports
-        const renderAdvancedGrid = () => {
-            const grid = document.getElementById('advancedGrid');
-            grid.innerHTML = advancedPackages.map(pkg => `
-                <div class="border border-gray-700 rounded-xl p-6 bg-gray-800 hover:bg-gray-750 transition">
-                    <div class="mb-3">
-                        <span class="inline-block bg-yellow-500 bg-opacity-20 text-yellow-400 text-xs font-bold px-3 py-1 rounded-full uppercase">
-                            ${escapeHtml(pkg.category)}
-                        </span>
-                    </div>
-                    <h3 class="font-[Poppins] font-bold text-xl text-white mb-2">${escapeHtml(pkg.name)}</h3>
-                    <p class="text-sm text-gray-300 mb-4">${escapeHtml(pkg.description)}</p>
-                    <div class="flex items-center justify-between">
-                        <div class="text-2xl font-bold text-yellow-400">${formatMoney(pkg.price)}</div>
-                        <a href="contact.html#booking" class="bg-yellow-500 bg-opacity-20 text-yellow-400 border border-yellow-500 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-opacity-30 transition">
-                            Book
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-        };
-
         // Render Individual Tests
         const renderIndividualTestsGrid = () => {
             const grid = document.getElementById('individualTestsGrid');
@@ -2604,20 +2553,6 @@
                 }
             });
 
-            advancedPackages.forEach((pkg, idx) => {
-                const haystack = [pkg.name, pkg.category, pkg.description].join(' ');
-                if (matchesSearch(haystack, searchTerm)) {
-                    results.push({
-                        kind: 'advanced',
-                        idx,
-                        name: pkg.name,
-                        category: pkg.category || 'REPORT',
-                        description: pkg.description,
-                        price: pkg.price
-                    });
-                }
-            });
-
             individualTests.forEach((test, idx) => {
                 const haystack = [
                     test.name,
@@ -2673,15 +2608,9 @@
 
             resultsGrid.innerHTML = results.map((item) => {
                 const priceText = item.price ? formatMoney(item.price) : '';
-                const badgeClass = item.kind === 'advanced'
-                    ? 'bg-yellow-500 bg-opacity-20 text-yellow-700'
-                    : 'bg-red-50 text-red-700';
-
                 const actionLabel = item.kind === 'package'
                     ? 'Book Package'
-                    : item.kind === 'advanced'
-                        ? 'Book Report'
-                        : 'Book Test';
+                    : 'Book Test';
 
                 const viewParamsBtn = item.kind === 'package'
                     ? `<button type="button" class="result-view-params inline-flex items-center justify-center w-full bg-white text-gray-900 border border-gray-200 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-50 transition" data-kind="${item.kind}" data-idx="${item.idx}">View Parameters</button>`
@@ -2743,6 +2672,7 @@
         const modalPrices = document.getElementById('packageModalPrices');
         const modalParams = document.getElementById('packageModalParams');
         const modalBook = document.getElementById('packageModalBook');
+        const ultraPremiumBookNow = document.getElementById('ultraPremiumBookNow');
 
         const closeModal = () => {
             if (!modal) return;
@@ -2795,6 +2725,13 @@
             if (e.key === 'Escape') closeModal();
         });
 
+        if (ultraPremiumBookNow) {
+            const ultraPremiumPackage = packages.find((pkg) => String(pkg.name || '').toLowerCase() === 'ultra premium comprehensive');
+            if (ultraPremiumPackage) {
+                ultraPremiumBookNow.addEventListener('click', () => saveSelectedPackage(ultraPremiumPackage));
+            }
+        }
+
         // Filter Button Handler
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -2841,7 +2778,6 @@
         }
 
         renderPackagesGrid('all');
-        renderAdvancedGrid();
         renderIndividualTestsGrid();
         renderAllTestsSearchResults();
     })();

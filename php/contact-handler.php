@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $name = sanitize_input($_POST['name'] ?? '');
 $age = sanitize_input($_POST['age'] ?? '');
 $phone = sanitize_input($_POST['phone'] ?? '');
+$email = sanitize_input($_POST['email'] ?? '');
 $bookingDate = sanitize_input($_POST['booking_date'] ?? '');
 $preferredSlot = sanitize_input($_POST['preferred_slot'] ?? '');
 $collectionAddress = sanitize_input($_POST['collection_address'] ?? '');
@@ -70,7 +71,7 @@ if (!is_dir(__DIR__ . '/../data')) {
 }
 
 if (!file_exists($filepath)) {
-    $header = "Booking ID,Name,Age,WhatsApp,Booking Date,Preferred Slot,Collection Address,Package Name,Package Price,Package Info,Created At,Status\n";
+    $header = "Booking ID,Name,Age,WhatsApp,Email,Booking Date,Preferred Slot,Collection Address,Package Name,Package Price,Package Info,Created At,Status\n";
     file_put_contents($filepath, $header);
 }
 
@@ -89,6 +90,7 @@ $bookingData = [
     'name' => $name,
     'age' => $normalizedAge,
     'phone' => $normalizedPhone,
+    'email' => $email,
     'appointment_date' => $appointmentDate,
     'preferred_slot' => $preferredSlot,
     'collection_address' => $collectionAddress,
@@ -104,6 +106,7 @@ $csvLine = implode(',', [
     '"' . addslashes($bookingData['name']) . '"',
     $bookingData['age'],
     $bookingData['phone'],
+    '"' . addslashes($bookingData['email']) . '"',
     '"' . addslashes($bookingData['appointment_date']) . '"',
     '"' . addslashes($bookingData['preferred_slot']) . '"',
     '"' . addslashes($bookingData['collection_address']) . '"',
@@ -170,6 +173,10 @@ function send_admin_email($data) {
                         <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['phone']}</td>
                     </tr>
                     <tr>
+                        <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Email</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>" . (!empty($data['email']) ? $data['email'] : '—') . "</td>
+                    </tr>
+                    <tr>
                         <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Booking Date</td>
                         <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['appointment_date']}</td>
                     </tr>
@@ -217,6 +224,9 @@ function build_whatsapp_message($data) {
     $message .= "\nPatient Name: {$data['name']}";
     $message .= "\nAge: {$data['age']}";
     $message .= "\nWhatsApp Number: {$data['phone']}";
+    if (!empty($data['email'])) {
+        $message .= "\nEmail: {$data['email']}";
+    }
     $message .= "\nBooking Date: {$data['appointment_date']}";
     $message .= "\nPreferred Slot: {$data['preferred_slot']}";
     $message .= "\nCollection Address: {$data['collection_address']}";

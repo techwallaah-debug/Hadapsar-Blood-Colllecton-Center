@@ -106,10 +106,13 @@ function normalize_row(array $row, string $source, int $rowIndex) {
         return null;
     }
 
+    $email = pick_first($row, ['Email', 'email']);
+
     return [
         'id' => $bookingId,
         'name' => $name,
         'phone' => $phone,
+        'email' => $email,
         'service' => $service,
         'slot' => $slot,
         'date' => $date,

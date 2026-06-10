@@ -403,15 +403,13 @@ document.addEventListener('DOMContentLoaded', function() {
     bookingForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const submitter = e.submitter;
-        const flow = submitter && submitter.dataset && submitter.dataset.flow ? submitter.dataset.flow : 'whatsapp';
-        const submitButton = submitter || bookingForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton ? submitButton.textContent : '';
+        const submitButton = bookingForm.querySelector('button[type="submit"]');
+        const originalButtonHTML = submitButton ? submitButton.innerHTML : '';
 
         try {
             if (submitButton) {
                 submitButton.disabled = true;
-                submitButton.textContent = 'Submitting...';
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Booking...';
             }
 
             const formData = new FormData(bookingForm);
@@ -426,10 +424,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(result.message || 'Submission failed');
             }
 
-            showToast(`Submitted. Booking ID: ${result.booking_id}`, 'success');
+            showToast(`Booked! Booking ID: ${result.booking_id}`, 'success');
             bookingForm.reset();
 
-            if (flow === 'whatsapp' && result.whatsapp_url) {
+            // Always open WhatsApp with booking details
+            if (result.whatsapp_url) {
                 window.open(result.whatsapp_url, '_blank', 'noopener,noreferrer');
             }
         } catch (error) {
@@ -437,7 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } finally {
             if (submitButton) {
                 submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
+                submitButton.innerHTML = originalButtonHTML;
             }
         }
     });
@@ -477,3 +476,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ====== PACKAGE / TEST SEARCH MODAL ======
+(function(){
+    document.addEventListener('DOMContentLoaded', function(){
+        const packageSelect = document.getElementById('package_select');
+        const modal = document.getElementById('packageSearchModal');
+        const searchInput = document.getElementById('packageSearchInput');
+        const resultsEl = document.getElementById('packageSearchResults');
+        const closeBtn = document.getElementById('packageSearchClose');
+        const countEl = document.getElementById('packageSearchCount');
+        let packagesData = [];
+        let testsData = [];
+
+        async function loadData(){
+            try{
+                const res = await fetch('tests.html');
+                const text = await res.text();
+                const mp = text.match(/const\s+packages\s*=\s*(\[[\s\S]*?\]);/m);
+                const mt = text.match(/const\s+individualTests\s*=\s*(\[[\s\S]*?\]);/m);
+                if(mp && mp[1]) packagesData = new Function('return '+mp[1])();
+                if(mt && mt[1]) testsData = new Function('return '+mt[1])();
+            }catch(err){ console.error('Failed to load tests data', err); }
+        }
+
+        function openModal(){ if(modal) { modal.classList.remove('hidden'); setTimeout(()=>searchInput && searchInput.focus(),50); renderResults(''); } }
+        function closeModal(){ if(modal) { modal.classList.add('hidden'); } if(searchInput) searchInput.value=''; if(resultsEl) resultsEl.innerHTML=''; }
+
+        function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+        function renderResults(query){
+            if(!resultsEl) return;
+            const q = String(query||'').toLowerCase().trim();
+            const pkgFiltered = packagesData.filter(p=> (p.name && p.name.toLowerCase().includes(q)) || (p.description && p.description.toLowerCase().includes(q)) );
+            const testFiltered = testsData.filter(t=> (t.name && t.name.toLowerCase().includes(q)) || (t.shortDescription && t.shortDescription.toLowerCase().includes(q)) );
+            const combined = pkgFiltered.concat(testFiltered);
+            countEl && (countEl.textContent = String(combined.length));
+            resultsEl.innerHTML = combined.map(item=>{
+                const price = item.offer || item.price || item.mrp || '';
+                const desc = item.shortDescription || item.description || '';
+                return `<button type="button" data-name="${escapeHtml(item.name)}" data-price="${price||''}" class="w-full text-left p-3 rounded-lg hover:bg-gray-50 border border-gray-100 flex justify-between items-center"><div><div class="font-semibold">${escapeHtml(item.name)}</div><div class="text-xs text-gray-500">${escapeHtml(desc)}</div></div><div class="text-sm text-gray-700">${price? '₹'+Number(price).toLocaleString('en-IN') : ''}</div></button>`;
+            }).join('');
+
+            // attach handlers
+            resultsEl.querySelectorAll('button[data-name]').forEach(btn=>{
+                btn.addEventListener('click', function(){
+                    const name = this.dataset.name || '';
+                    const price = this.dataset.price || '';
+                    const pkgInputName = document.getElementById('package_name');
+                    const pkgInputPrice = document.getElementById('package_price');
+                    const packageInfo = document.getElementById('package_info');
+                    if(pkgInputName) pkgInputName.value = name;
+                    if(pkgInputPrice) pkgInputPrice.value = price ? `Rs. ${Number(price).toLocaleString('en-IN')}` : '';
+                    if(packageInfo) packageInfo.value = price ? `Package: ${name} | Price: Rs. ${price}` : `Package: ${name}`;
+                    if(packageSelect){
+                        const has = Array.from(packageSelect.options).some(o=>o.value===name);
+                        if(!has){ const o=document.createElement('option'); o.value=name; o.textContent=name; if(price) o.dataset.price=price; packageSelect.appendChild(o); }
+                        packageSelect.value = name; packageSelect.dispatchEvent(new Event('change'));
+                    }
+                    closeModal();
+                });
+            });
+        }
+
+        if(packageSelect && modal && searchInput && resultsEl && closeBtn){
+            packageSelect.addEventListener('mousedown', function(e){ e.preventDefault(); openModal(); });
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+            searchInput.addEventListener('input', function(){ renderResults(this.value); });
+            // load data once
+            loadData();
+        }
+    });
+})();

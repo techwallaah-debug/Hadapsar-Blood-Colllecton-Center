@@ -124,6 +124,11 @@
                     </div>
 
                     <div>
+                        <label for="email" class="block text-sm font-semibold text-gray-800 mb-2">Email <span class="text-gray-400 font-normal">(optional)</span></label>
+                        <input type="email" id="email" name="email" placeholder="patient@example.com" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
+                    </div>
+
+                    <div>
                         <label for="booking_date" class="block text-sm font-semibold text-gray-800 mb-2">Booking Date *</label>
                         <input type="date" id="booking_date" name="booking_date" required class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
                     </div>
@@ -159,7 +164,7 @@
                         <div class="text-xs font-semibold uppercase tracking-wide text-gray-500">Package Details</div>
                         <div class="mt-4 space-y-4">
                             <div>
-                                <label for="package_select" class="block text-sm font-semibold text-gray-800 mb-2">Choose Package</label>
+                                <label for="package_select" class="block text-sm font-semibold text-gray-800 mb-2">Choose Package / tests</label>
                                 <select id="package_select" name="package_select" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
                                     <option value="">Choose a package (optional)</option>
                                     <option value="Executive Full Body - Male" data-audience="Male 30+" data-price="3000">Executive Full Body - Male</option>
@@ -192,23 +197,26 @@
                                 <label for="package_price" class="block text-sm font-semibold text-gray-800 mb-2">Package Price</label>
                                 <input type="text" id="package_price" name="package_price" readonly placeholder="Rs. 3,000" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white/70 focus:outline-none transition">
                             </div>
+
+                            <div id="selectedPackageCard" class="hidden rounded-xl border border-red-100 bg-red-50/60 p-4">
+                                <div class="text-xs font-semibold uppercase tracking-wide text-red-700">Selected Package / Test</div>
+                                <div id="selectedPackageName" class="mt-2 font-[Poppins] font-semibold text-gray-900 text-lg"></div>
+                                <div id="selectedPackageDesc" class="mt-1 text-sm text-gray-600"></div>
+                                <div id="selectedPackageMeta" class="mt-2 text-sm font-semibold text-red-700"></div>
+                                <div id="selectedPackageParams" class="mt-2 text-xs text-gray-500"></div>
+                            </div>
                         </div>
                         <p class="text-xs text-gray-600 mt-4"><i class="fas fa-home mr-1"></i>Home collection included.</p>
                     </div>
 
                     <input type="hidden" id="package_info" name="package_info" value="">
 
-                    <div class="grid gap-3 sm:grid-cols-2">
-                        <button type="submit" data-flow="whatsapp" class="w-full bg-gradient-to-r from-red-700 to-red-800 text-white py-3.5 rounded-xl font-semibold hover:from-red-800 hover:to-red-900 transition shadow-sm hover:shadow-md">
-                            <i class="fab fa-whatsapp mr-2"></i>Submit & Open WhatsApp
-                        </button>
-                        <button type="submit" data-flow="silent" class="w-full bg-white text-red-700 border border-red-200 py-3.5 rounded-xl font-semibold hover:bg-red-50 transition shadow-sm">
-                            <i class="fas fa-check-circle mr-2"></i>Submit Only
-                        </button>
-                    </div>
+                    <button type="submit" data-flow="whatsapp" class="w-full bg-gradient-to-r from-red-700 to-red-800 text-white py-4 rounded-xl font-semibold text-lg hover:from-red-800 hover:to-red-900 transition shadow-md hover:shadow-lg transform hover:scale-[1.01] active:scale-[0.99]">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i>Book Appointment Now
+                    </button>
 
                     <p class="text-xs text-gray-500 text-center">
-                        <i class="fas fa-bolt text-red-700 mr-1"></i>Both options save your booking and send it to our team. WhatsApp opens only if you choose it.
+                        <i class="fas fa-bolt text-red-700 mr-1"></i>Your booking is saved to our system and sent automatically via WhatsApp for instant confirmation.
                     </p>
                 </form>
             </div>
@@ -383,11 +391,257 @@
     </div>
 </footer>
 
+<!-- Package / Test search modal -->
+<div id="packageSearchModal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="absolute inset-0 flex items-start justify-center p-6">
+        <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div class="p-4 border-b flex items-center justify-between gap-3">
+                <div class="flex-1">
+                    <input id="packageSearchInput" type="search" placeholder="Search packages or tests" class="w-full rounded-lg border px-4 py-3 focus:outline-none" />
+                </div>
+                <button id="packageSearchClose" type="button" class="ml-2 text-sm text-gray-600 px-3 py-2">Close</button>
+            </div>
+            <div class="p-4">
+                <div id="packageSearchResults" class="space-y-2 max-h-72 overflow-y-auto"></div>
+                <div class="text-xs text-gray-500 mt-3">Showing <span id="packageSearchCount">0</span> results - packages shown first, then individual tests.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Scripts -->
 <script src="js/script.js"></script>
-</body>
-</html>
+<script src="js/tests-data.js"></script>
+<script>
+    (async function () {
+        const packageSelect = document.getElementById('package_select');
+        const packageInfoInput = document.getElementById('package_info');
+        const packageNameInput = document.getElementById('package_name');
+        const packagePriceInput = document.getElementById('package_price');
+        const summaryCard = document.getElementById('selectedPackageCard');
+        const summaryName = document.getElementById('selectedPackageName');
+        const summaryDesc = document.getElementById('selectedPackageDesc');
+        const summaryMeta = document.getElementById('selectedPackageMeta');
+        const summaryParams = document.getElementById('selectedPackageParams');
+        const modal = document.getElementById('packageSearchModal');
+        const searchInput = document.getElementById('packageSearchInput');
+        const searchResults = document.getElementById('packageSearchResults');
+        const searchCount = document.getElementById('packageSearchCount');
+        const searchClose = document.getElementById('packageSearchClose');
 
-<script src="js/script.js"></script>
+        if (!packageSelect || !modal || !searchInput || !searchResults || !searchCount || !searchClose) {
+            return;
+        }
+
+        const formatPrice = (value) => {
+            if (value === null || value === undefined || value === '') return '';
+            return `Rs. ${Number(value).toLocaleString('en-IN')}`;
+        };
+
+        const getItemPrice = (item) => item && (item.offer || item.price || item.mrp || '');
+
+        const escapeHtml = (value) => String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        const showSelectedItem = (item) => {
+            const name = item ? item.name || '' : '';
+            const price = getItemPrice(item);
+            const description = item ? item.shortDescription || item.description || '' : '';
+            const parameters = item && Array.isArray(item.parameterList) ? item.parameterList.join(', ') : '';
+
+            if (packageNameInput) packageNameInput.value = name;
+            if (packagePriceInput) packagePriceInput.value = price ? formatPrice(price) : '';
+            if (packageInfoInput) {
+                const infoParts = [];
+                if (name) infoParts.push(`Package/Test: ${name}`);
+                if (description) infoParts.push(`Info: ${description}`);
+                if (price) infoParts.push(`Price: ${formatPrice(price)}`);
+                if (parameters) infoParts.push(`Parameters: ${parameters}`);
+                packageInfoInput.value = infoParts.join(' | ');
+            }
+
+            if (summaryCard) {
+                if (!name) {
+                    summaryCard.classList.add('hidden');
+                } else {
+                    if (summaryName) summaryName.textContent = name;
+                    if (summaryDesc) summaryDesc.textContent = description;
+                    if (summaryMeta) summaryMeta.textContent = price ? formatPrice(price) : '';
+                    if (summaryParams) summaryParams.textContent = parameters ? `Parameters: ${parameters}` : '';
+                    summaryCard.classList.remove('hidden');
+                }
+            }
+        };
+
+        const getStoredSelection = () => {
+            try {
+                return JSON.parse(localStorage.getItem('selectedPackage') || 'null');
+            } catch (error) {
+                return null;
+            }
+        };
+
+        const normalizeItem = (item, kind) => ({
+            kind,
+            name: item.name,
+            description: item.shortDescription || item.description || '',
+            price: getItemPrice(item),
+            data: item
+        });
+
+        const renderModalItems = (items, query) => {
+            const term = String(query || '').trim().toLowerCase();
+            const filtered = !term ? items : items.filter((item) => {
+                const parts = [item.name, item.description, item.kind, item.price];
+                return parts.join(' ').toLowerCase().includes(term);
+            });
+
+            searchCount.textContent = String(filtered.length);
+
+            if (!filtered.length) {
+                searchResults.innerHTML = '<div class="rounded-xl border border-dashed border-gray-200 p-4 text-sm text-gray-500">No packages or tests matched your search.</div>';
+                return;
+            }
+
+            searchResults.innerHTML = filtered.map((item, index) => `
+                <button type="button" data-index="${index}" class="w-full rounded-xl border border-gray-100 px-4 py-3 text-left hover:bg-gray-50 transition flex items-start justify-between gap-4">
+                    <div>
+                        <div class="font-semibold text-gray-900">${escapeHtml(item.name)}</div>
+                        <div class="text-xs text-gray-500 mt-1">${escapeHtml(item.description)}</div>
+                    </div>
+                    <div class="shrink-0 text-sm font-semibold text-red-700">${escapeHtml(item.price ? formatPrice(item.price) : '')}</div>
+                </button>
+            `).join('');
+
+            searchResults.querySelectorAll('button[data-index]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const matched = filtered[Number(button.getAttribute('data-index'))];
+                    if (matched) {
+                        showSelectedItem(matched.data);
+
+                        const optionExists = Array.from(packageSelect.options).some((option) => option.value === matched.name);
+                        if (!optionExists) {
+                            const option = document.createElement('option');
+                            option.value = matched.name;
+                            option.textContent = matched.name;
+                            if (matched.price) {
+                                option.dataset.price = String(matched.price);
+                            }
+                            packageSelect.appendChild(option);
+                        }
+
+                        packageSelect.value = matched.name;
+                        packageSelect.dispatchEvent(new Event('change'));
+                    }
+
+                    modal.classList.add('hidden');
+                });
+            });
+        };
+
+        try {
+            const data = await loadTestsData();
+            const packages = Array.isArray(data.packages) ? data.packages : [];
+            const individualTests = Array.isArray(data.individualTests) ? data.individualTests : [];
+
+            const combinedItems = [
+                ...packages.map((item) => normalizeItem(item, 'package')),
+                ...individualTests.map((item) => normalizeItem(item, 'test'))
+            ];
+
+            const placeholder = packageSelect.querySelector('option[value=""]');
+            packageSelect.innerHTML = '';
+            if (placeholder) {
+                packageSelect.appendChild(placeholder);
+            } else {
+                const fallback = document.createElement('option');
+                fallback.value = '';
+                fallback.textContent = 'Choose a package/test (optional)';
+                packageSelect.appendChild(fallback);
+            }
+
+            combinedItems.forEach((item) => {
+                const option = document.createElement('option');
+                option.value = item.name;
+                option.textContent = item.name;
+                if (item.price) {
+                    option.dataset.price = String(item.price);
+                }
+                packageSelect.appendChild(option);
+            });
+
+            const restoreSelection = () => {
+                const stored = getStoredSelection();
+                if (!stored || !stored.name) {
+                    showSelectedItem(null);
+                    return;
+                }
+
+                const match = combinedItems.find((item) => item.name === stored.name);
+                if (match) {
+                    packageSelect.value = match.name;
+                    showSelectedItem(match.data);
+                    packageSelect.dispatchEvent(new Event('change'));
+                    return;
+                }
+
+                const fallbackItem = {
+                    name: stored.name,
+                    shortDescription: stored.shortDescription || '',
+                    offer: stored.price || '',
+                    parameterList: Array.isArray(stored.parameterList) ? stored.parameterList : []
+                };
+                showSelectedItem(fallbackItem);
+            };
+
+            const updateFromSelect = () => {
+                const option = packageSelect.options[packageSelect.selectedIndex];
+                if (!option || !option.value) {
+                    showSelectedItem(null);
+                    return;
+                }
+
+                const match = combinedItems.find((item) => item.name === option.value);
+                if (match) {
+                    showSelectedItem(match.data);
+                } else {
+                    const price = option.dataset.price || '';
+                    const name = option.value;
+                    showSelectedItem({ name, offer: price, shortDescription: '' });
+                }
+            };
+
+            const openModal = () => {
+                modal.classList.remove('hidden');
+                searchInput.value = '';
+                renderModalItems(combinedItems, '');
+                searchInput.focus();
+            };
+
+            packageSelect.addEventListener('mousedown', (event) => {
+                event.preventDefault();
+                openModal();
+            });
+            packageSelect.addEventListener('change', updateFromSelect);
+            searchInput.addEventListener('input', (event) => renderModalItems(combinedItems, event.target.value));
+            searchClose.addEventListener('click', () => modal.classList.add('hidden'));
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            restoreSelection();
+            renderModalItems(combinedItems, '');
+        } catch (error) {
+            console.error('Unable to load package/test data', error);
+        }
+    })();
+</script>
 </body>
 </html>
