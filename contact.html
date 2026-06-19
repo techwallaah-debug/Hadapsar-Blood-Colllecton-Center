@@ -54,18 +54,23 @@
 
 <!-- Navigation Bar -->
 <nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14 sm:h-16">
             <!-- Logo - Linked to Home -->
-            <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition">
-                <img src="assets/images/hadapsar-logo.png" alt="Hadapsar Blood Collection Center" class="h-12 w-12">
-                <div>
-                    <h1 class="text-red-700 font-[Poppins] font-bold text-lg">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
+            <a href="index.html" class="flex items-center space-x-1.5 sm:space-x-2 min-w-0 hover:opacity-80 transition">
+                <img src="assets/images/hadapsar-logo.png" alt="Hadapsar Blood Collection Center" class="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0">
+                <div class="min-w-0">
+                    <h1 class="text-red-700 font-[Poppins] font-bold text-sm sm:text-lg leading-tight">Hadapsar <span class="text-blue-900">Blood Center</span></h1>
                 </div>
             </a>
 
-            <!-- Book Home Visit CTA Button -->
-            <a href="contact.html" class="bg-red-700 text-white px-6 py-2 rounded-full hover:bg-red-800 transition font-medium">Book Home Visit</a>
+            <!-- Book Home Visit CTA Button - Desktop -->
+            <a href="contact.html" class="hidden sm:inline-block bg-red-700 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-red-800 transition font-medium text-sm sm:text-base">Book Home Visit</a>
+
+            <!-- Book Home Visit CTA Button - Mobile -->
+            <a href="contact.html#booking" class="sm:hidden bg-red-700 text-white px-3 py-2 rounded-full hover:bg-red-800 transition font-medium text-xs inline-flex items-center gap-1 flex-shrink-0">
+                <i class="fas fa-home"></i> <span>Book</span>
+            </a>
         </div>
     </div>
 </nav>
@@ -161,54 +166,40 @@
                     </div>
 
                     <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                        <div class="text-xs font-semibold uppercase tracking-wide text-gray-500">Package Details</div>
-                        <div class="mt-4 space-y-4">
-                            <div>
-                                <label for="package_select" class="block text-sm font-semibold text-gray-800 mb-2">Choose Package / tests</label>
-                                <select id="package_select" name="package_select" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition">
-                                    <option value="">Choose a package (optional)</option>
-                                    <option value="Executive Full Body - Male" data-audience="Male 30+" data-price="3000">Executive Full Body - Male</option>
-                                    <option value="Executive Full Body - Female" data-audience="Female 30+" data-price="3000">Executive Full Body - Female</option>
-                                    <option value="Senior Executive - Male" data-audience="Male 50+" data-price="3500">Senior Executive - Male</option>
-                                    <option value="Senior Executive - Female" data-audience="Female 50+" data-price="3500">Senior Executive - Female</option>
-                                    <option value="Cardiac Risk Premium" data-price="2500">Cardiac Risk Premium</option>
-                                    <option value="Diabetes Plus" data-price="1200">Diabetes Plus</option>
-                                    <option value="Thyroid Plus" data-price="1000">Thyroid Plus</option>
-                                    <option value="Liver Health Plus" data-price="1400">Liver Health Plus</option>
-                                    <option value="Kidney Health Plus" data-price="1400">Kidney Health Plus</option>
-                                    <option value="Vitamin & Nutrition Elite" data-price="2200">Vitamin & Nutrition Elite</option>
-                                    <option value="Women Hormone & Wellness" data-price="2800">Women Hormone & Wellness</option>
-                                    <option value="Men Hormone & Wellness" data-price="2800">Men Hormone & Wellness</option>
-                                    <option value="Fever & Infection Advanced" data-price="1800">Fever & Infection Advanced</option>
-                                    <option value="Arthritis & Inflammation" data-price="1600">Arthritis & Inflammation</option>
-                                    <option value="Ultra Premium Comprehensive" data-price="5999">Ultra Premium Comprehensive</option>
-                                    <option value="Other / Not sure">Other / Not sure</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="package_name" class="block text-sm font-semibold text-gray-800 mb-2">Package Name</label>
-                                <input type="text" id="package_name" name="package_name" readonly placeholder="Executive Full Body - Male" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white/70 focus:outline-none transition">
-                            </div>
-
-                            <!-- Audience field removed as requested -->
-
-                            <div>
-                                <label for="package_price" class="block text-sm font-semibold text-gray-800 mb-2">Package Price</label>
-                                <input type="text" id="package_price" name="package_price" readonly placeholder="Rs. 3,000" class="w-full rounded-xl border border-gray-300 px-4 py-3 bg-white/70 focus:outline-none transition">
-                            </div>
-
-                            <div id="selectedPackageCard" class="hidden rounded-xl border border-red-100 bg-red-50/60 p-4">
-                                <div class="text-xs font-semibold uppercase tracking-wide text-red-700">Selected Package / Test</div>
-                                <div id="selectedPackageName" class="mt-2 font-[Poppins] font-semibold text-gray-900 text-lg"></div>
-                                <div id="selectedPackageDesc" class="mt-1 text-sm text-gray-600"></div>
-                                <div id="selectedPackageMeta" class="mt-2 text-sm font-semibold text-red-700"></div>
-                                <div id="selectedPackageParams" class="mt-2 text-xs text-gray-500"></div>
-                            </div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="text-xs font-semibold uppercase tracking-wide text-gray-500">Package / Test Selection</div>
+                            <span id="multiSelectCount" class="text-xs font-medium text-gray-400 hidden">0 selected</span>
                         </div>
+
+                        <label class="block text-sm font-semibold text-gray-800 mb-2">Choose Packages / Tests <span class="text-gray-400 font-normal">(optional)</span></label>
+
+                        <!-- Multi-select chip area -->
+                        <div id="multiSelectArea" class="multi-select-area" role="listbox" aria-label="Selected packages and tests">
+                            <div id="multiSelectEmpty" class="multi-select-empty">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Tap to add packages or tests</span>
+                            </div>
+                            <!-- chips will be injected here -->
+                            <button type="button" id="multiSelectAddBtn" class="multi-select-add-btn hidden" aria-label="Add more packages or tests">
+                                <i class="fas fa-plus"></i> Add More
+                            </button>
+                        </div>
+
+                        <!-- Running total -->
+                        <div id="multiSelectTotal" class="multi-select-total hidden">
+                            <i class="fas fa-receipt"></i>
+                            <span id="multiSelectTotalText">Total: ₹0</span>
+                        </div>
+
+                        <!-- Selected items detailed list -->
+                        <div id="selectedItemsList" class="selected-items-list"></div>
+
                         <p class="text-xs text-gray-600 mt-4"><i class="fas fa-home mr-1"></i>Home collection included.</p>
                     </div>
 
+                    <!-- Hidden fields for form submission -->
+                    <input type="hidden" id="package_name" name="package_name" value="">
+                    <input type="hidden" id="package_price" name="package_price" value="">
                     <input type="hidden" id="package_info" name="package_info" value="">
 
                     <button type="submit" data-flow="whatsapp" class="w-full bg-gradient-to-r from-red-700 to-red-800 text-white py-4 rounded-xl font-semibold text-lg hover:from-red-800 hover:to-red-900 transition shadow-md hover:shadow-lg transform hover:scale-[1.01] active:scale-[0.99]">
@@ -335,10 +326,8 @@
                 <h3 class="font-[Poppins] font-bold text-lg mb-4">Hadapsar Blood Center</h3>
                 <p class="text-gray-300 text-sm">Home-visit blood collection only (no walk-in lab).</p>
                 <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-white hover:text-red-400"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/hadapsar.blood.collection_labs?igsh=MWlkOTU4bmw5bDh6eQ%3D%3D" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-400" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/918390246575" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-400" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -391,20 +380,33 @@
     </div>
 </footer>
 
-<!-- Package / Test search modal -->
+<!-- Package / Test search modal (multi-select) -->
 <div id="packageSearchModal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="absolute inset-0 flex items-start justify-center p-6">
-        <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-            <div class="p-4 border-b flex items-center justify-between gap-3">
+    <div class="absolute inset-0 bg-black/60 modal-overlay-enter"></div>
+    <div class="absolute inset-0 flex items-start justify-center p-4 sm:p-6">
+        <div class="w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden modal-content-enter mt-4 sm:mt-8 flex flex-col" style="max-height: calc(100vh - 3rem);">
+            <div class="p-4 border-b flex items-center justify-between gap-3 shrink-0">
                 <div class="flex-1">
-                    <input id="packageSearchInput" type="search" placeholder="Search packages or tests" class="w-full rounded-lg border px-4 py-3 focus:outline-none" />
+                    <input id="packageSearchInput" type="search" placeholder="Search packages or tests..." class="w-full rounded-lg border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-500 transition" />
                 </div>
-                <button id="packageSearchClose" type="button" class="ml-2 text-sm text-gray-600 px-3 py-2">Close</button>
+                <button id="packageSearchClose" type="button" class="ml-2 text-sm text-gray-500 hover:text-gray-800 px-3 py-2 rounded-lg hover:bg-gray-100 transition">
+                    <i class="fas fa-times mr-1"></i>Close
+                </button>
             </div>
-            <div class="p-4">
-                <div id="packageSearchResults" class="space-y-2 max-h-72 overflow-y-auto"></div>
-                <div class="text-xs text-gray-500 mt-3">Showing <span id="packageSearchCount">0</span> results - packages shown first, then individual tests.</div>
+            <div class="p-4 flex-1 overflow-y-auto">
+                <div id="packageSearchResults" class="space-y-2"></div>
+                <div class="text-xs text-gray-500 mt-3">Showing <span id="packageSearchCount">0</span> results — packages shown first, then individual tests.</div>
+            </div>
+            <!-- Sticky footer -->
+            <div id="modalFooterBar" class="modal-footer-bar shrink-0">
+                <div class="footer-summary">
+                    <span id="modalFooterCount"><strong>0</strong> selected</span>
+                    <span id="modalFooterTotal" class="ml-3 hidden">· <strong>₹0</strong></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="modalClearAllBtn" class="footer-clear-btn hidden">Clear All</button>
+                    <button type="button" id="modalDoneBtn" class="footer-done-btn">Done</button>
+                </div>
             </div>
         </div>
     </div>
@@ -415,28 +417,41 @@
 <script src="js/tests-data.js"></script>
 <script>
     (async function () {
-        const packageSelect = document.getElementById('package_select');
-        const packageInfoInput = document.getElementById('package_info');
-        const packageNameInput = document.getElementById('package_name');
-        const packagePriceInput = document.getElementById('package_price');
-        const summaryCard = document.getElementById('selectedPackageCard');
-        const summaryName = document.getElementById('selectedPackageName');
-        const summaryDesc = document.getElementById('selectedPackageDesc');
-        const summaryMeta = document.getElementById('selectedPackageMeta');
-        const summaryParams = document.getElementById('selectedPackageParams');
+        // ===== DOM REFERENCES =====
         const modal = document.getElementById('packageSearchModal');
         const searchInput = document.getElementById('packageSearchInput');
         const searchResults = document.getElementById('packageSearchResults');
         const searchCount = document.getElementById('packageSearchCount');
         const searchClose = document.getElementById('packageSearchClose');
+        const modalDoneBtn = document.getElementById('modalDoneBtn');
+        const modalClearAllBtn = document.getElementById('modalClearAllBtn');
+        const modalFooterCount = document.getElementById('modalFooterCount');
+        const modalFooterTotal = document.getElementById('modalFooterTotal');
 
-        if (!packageSelect || !modal || !searchInput || !searchResults || !searchCount || !searchClose) {
+        const multiSelectArea = document.getElementById('multiSelectArea');
+        const multiSelectEmpty = document.getElementById('multiSelectEmpty');
+        const multiSelectAddBtn = document.getElementById('multiSelectAddBtn');
+        const multiSelectTotal = document.getElementById('multiSelectTotal');
+        const multiSelectTotalText = document.getElementById('multiSelectTotalText');
+        const multiSelectCountEl = document.getElementById('multiSelectCount');
+        const selectedItemsList = document.getElementById('selectedItemsList');
+
+        const packageNameInput = document.getElementById('package_name');
+        const packagePriceInput = document.getElementById('package_price');
+        const packageInfoInput = document.getElementById('package_info');
+
+        if (!modal || !searchInput || !searchResults || !multiSelectArea) {
             return;
         }
 
+        // ===== STATE =====
+        let selectedItems = []; // Array of { name, description, price, data }
+        let combinedItems = []; // All available items
+
+        // ===== UTILITIES =====
         const formatPrice = (value) => {
             if (value === null || value === undefined || value === '') return '';
-            return `Rs. ${Number(value).toLocaleString('en-IN')}`;
+            return `₹${Number(value).toLocaleString('en-IN')}`;
         };
 
         const getItemPrice = (item) => item && (item.offer || item.price || item.mrp || '');
@@ -448,44 +463,6 @@
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
 
-        const showSelectedItem = (item) => {
-            const name = item ? item.name || '' : '';
-            const price = getItemPrice(item);
-            const description = item ? item.shortDescription || item.description || '' : '';
-            const parameters = item && Array.isArray(item.parameterList) ? item.parameterList.join(', ') : '';
-
-            if (packageNameInput) packageNameInput.value = name;
-            if (packagePriceInput) packagePriceInput.value = price ? formatPrice(price) : '';
-            if (packageInfoInput) {
-                const infoParts = [];
-                if (name) infoParts.push(`Package/Test: ${name}`);
-                if (description) infoParts.push(`Info: ${description}`);
-                if (price) infoParts.push(`Price: ${formatPrice(price)}`);
-                if (parameters) infoParts.push(`Parameters: ${parameters}`);
-                packageInfoInput.value = infoParts.join(' | ');
-            }
-
-            if (summaryCard) {
-                if (!name) {
-                    summaryCard.classList.add('hidden');
-                } else {
-                    if (summaryName) summaryName.textContent = name;
-                    if (summaryDesc) summaryDesc.textContent = description;
-                    if (summaryMeta) summaryMeta.textContent = price ? formatPrice(price) : '';
-                    if (summaryParams) summaryParams.textContent = parameters ? `Parameters: ${parameters}` : '';
-                    summaryCard.classList.remove('hidden');
-                }
-            }
-        };
-
-        const getStoredSelection = () => {
-            try {
-                return JSON.parse(localStorage.getItem('selectedPackage') || 'null');
-            } catch (error) {
-                return null;
-            }
-        };
-
         const normalizeItem = (item, kind) => ({
             kind,
             name: item.name,
@@ -493,6 +470,212 @@
             price: getItemPrice(item),
             data: item
         });
+
+        // ===== SELECTION MANAGEMENT =====
+        const isSelected = (name) => selectedItems.some((s) => s.name === name);
+
+        const addItem = (item) => {
+            if (isSelected(item.name)) return;
+            selectedItems.push({
+                name: item.name,
+                description: item.description || '',
+                price: item.price || '',
+                data: item.data || item
+            });
+            renderAll();
+        };
+
+        const removeItem = (name) => {
+            // Animate chip exit
+            const chip = multiSelectArea.querySelector(`[data-chip-name="${CSS.escape(name)}"]`);
+            const card = selectedItemsList.querySelector(`[data-card-name="${CSS.escape(name)}"]`);
+            if (chip) chip.classList.add('removing');
+            if (card) card.classList.add('removing');
+
+            setTimeout(() => {
+                selectedItems = selectedItems.filter((s) => s.name !== name);
+                renderAll();
+            }, 250);
+        };
+
+        const toggleItem = (item) => {
+            if (isSelected(item.name)) {
+                selectedItems = selectedItems.filter((s) => s.name !== item.name);
+            } else {
+                selectedItems.push({
+                    name: item.name,
+                    description: item.description || '',
+                    price: item.price || '',
+                    data: item.data || item
+                });
+            }
+            renderAll();
+            // Re-render modal if open
+            if (!modal.classList.contains('hidden')) {
+                renderModalItems(combinedItems, searchInput.value);
+                updateModalFooter();
+            }
+        };
+
+        const clearAll = () => {
+            selectedItems = [];
+            renderAll();
+            if (!modal.classList.contains('hidden')) {
+                renderModalItems(combinedItems, searchInput.value);
+                updateModalFooter();
+            }
+        };
+
+        // ===== RENDERING =====
+        const getTotal = () => selectedItems.reduce((sum, s) => sum + (Number(s.price) || 0), 0);
+
+        const renderAll = () => {
+            renderChips();
+            renderDetailCards();
+            syncHiddenFields();
+            updateCountBadge();
+        };
+
+        const renderChips = () => {
+            // Remove existing chips (but not the empty state or add button)
+            multiSelectArea.querySelectorAll('.multi-select-chip').forEach((el) => el.remove());
+
+            if (selectedItems.length === 0) {
+                multiSelectEmpty.classList.remove('hidden');
+                multiSelectAddBtn.classList.add('hidden');
+                multiSelectArea.classList.remove('has-items');
+                multiSelectTotal.classList.add('hidden');
+            } else {
+                multiSelectEmpty.classList.add('hidden');
+                multiSelectAddBtn.classList.remove('hidden');
+                multiSelectArea.classList.add('has-items');
+
+                // Insert chips before the add button
+                selectedItems.forEach((item) => {
+                    const chip = document.createElement('div');
+                    chip.className = 'multi-select-chip';
+                    chip.setAttribute('data-chip-name', item.name);
+                    chip.setAttribute('role', 'option');
+
+                    const priceStr = item.price ? ` · ${formatPrice(item.price)}` : '';
+                    chip.innerHTML = `
+                        <span class="chip-text">${escapeHtml(item.name)}</span>
+                        ${item.price ? `<span class="chip-price">${escapeHtml(formatPrice(item.price))}</span>` : ''}
+                        <button type="button" class="chip-remove" aria-label="Remove ${escapeHtml(item.name)}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+
+                    chip.querySelector('.chip-remove').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        removeItem(item.name);
+                    });
+
+                    multiSelectArea.insertBefore(chip, multiSelectAddBtn);
+                });
+
+                // Show total
+                const total = getTotal();
+                if (total > 0) {
+                    multiSelectTotal.classList.remove('hidden');
+                    multiSelectTotalText.textContent = `Total: ${formatPrice(total)}`;
+                } else {
+                    multiSelectTotal.classList.add('hidden');
+                }
+            }
+        };
+
+        const renderDetailCards = () => {
+            if (!selectedItemsList) return;
+
+            if (selectedItems.length === 0) {
+                selectedItemsList.innerHTML = '';
+                return;
+            }
+
+            selectedItemsList.innerHTML = selectedItems.map((item) => `
+                <div class="selected-item-card" data-card-name="${escapeHtml(item.name)}">
+                    <div class="item-info">
+                        <div class="item-name">${escapeHtml(item.name)}</div>
+                        ${item.description ? `<div class="item-desc">${escapeHtml(item.description)}</div>` : ''}
+                    </div>
+                    ${item.price ? `<div class="item-price">${escapeHtml(formatPrice(item.price))}</div>` : ''}
+                    <button type="button" class="item-remove" aria-label="Remove ${escapeHtml(item.name)}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            selectedItemsList.querySelectorAll('.item-remove').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const card = btn.closest('.selected-item-card');
+                    const name = card ? card.getAttribute('data-card-name') : '';
+                    if (name) removeItem(name);
+                });
+            });
+        };
+
+        const syncHiddenFields = () => {
+            if (packageNameInput) {
+                packageNameInput.value = selectedItems.map((s) => s.name).join(', ');
+            }
+
+            const total = getTotal();
+            if (packagePriceInput) {
+                packagePriceInput.value = total > 0 ? `Rs. ${total.toLocaleString('en-IN')}` : '';
+            }
+
+            if (packageInfoInput) {
+                if (selectedItems.length === 0) {
+                    packageInfoInput.value = '';
+                } else {
+                    const parts = selectedItems.map((s) => {
+                        const priceStr = s.price ? ` (${formatPrice(s.price)})` : '';
+                        return `Package/Test: ${s.name}${priceStr}`;
+                    });
+                    if (total > 0) {
+                        parts.push(`Total: ${formatPrice(total)}`);
+                    }
+                    packageInfoInput.value = parts.join(' | ');
+                }
+            }
+        };
+
+        const updateCountBadge = () => {
+            if (multiSelectCountEl) {
+                if (selectedItems.length > 0) {
+                    multiSelectCountEl.textContent = `${selectedItems.length} selected`;
+                    multiSelectCountEl.classList.remove('hidden');
+                } else {
+                    multiSelectCountEl.classList.add('hidden');
+                }
+            }
+        };
+
+        // ===== MODAL =====
+        const updateModalFooter = () => {
+            const count = selectedItems.length;
+            const total = getTotal();
+
+            if (modalFooterCount) {
+                modalFooterCount.innerHTML = `<strong>${count}</strong> selected`;
+            }
+            if (modalFooterTotal) {
+                if (total > 0) {
+                    modalFooterTotal.innerHTML = `· <strong>${formatPrice(total)}</strong>`;
+                    modalFooterTotal.classList.remove('hidden');
+                } else {
+                    modalFooterTotal.classList.add('hidden');
+                }
+            }
+            if (modalClearAllBtn) {
+                if (count > 0) {
+                    modalClearAllBtn.classList.remove('hidden');
+                } else {
+                    modalClearAllBtn.classList.add('hidden');
+                }
+            }
+        };
 
         const renderModalItems = (items, query) => {
             const term = String(query || '').trim().toLowerCase();
@@ -504,139 +687,124 @@
             searchCount.textContent = String(filtered.length);
 
             if (!filtered.length) {
-                searchResults.innerHTML = '<div class="rounded-xl border border-dashed border-gray-200 p-4 text-sm text-gray-500">No packages or tests matched your search.</div>';
+                searchResults.innerHTML = '<div class="rounded-xl border border-dashed border-gray-200 p-4 text-sm text-gray-500 text-center">No packages or tests matched your search.</div>';
                 return;
             }
 
-            searchResults.innerHTML = filtered.map((item, index) => `
-                <button type="button" data-index="${index}" class="w-full rounded-xl border border-gray-100 px-4 py-3 text-left hover:bg-gray-50 transition flex items-start justify-between gap-4">
-                    <div>
-                        <div class="font-semibold text-gray-900">${escapeHtml(item.name)}</div>
-                        <div class="text-xs text-gray-500 mt-1">${escapeHtml(item.description)}</div>
-                    </div>
-                    <div class="shrink-0 text-sm font-semibold text-red-700">${escapeHtml(item.price ? formatPrice(item.price) : '')}</div>
-                </button>
-            `).join('');
+            searchResults.innerHTML = filtered.map((item, index) => {
+                const selected = isSelected(item.name);
+                return `
+                    <button type="button" data-index="${index}" class="modal-result-row${selected ? ' is-selected' : ''}">
+                        <div class="modal-result-checkbox">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div style="flex:1;min-width:0;">
+                            <div class="font-semibold text-gray-900" style="font-size:14px;">${escapeHtml(item.name)}</div>
+                            <div class="text-xs text-gray-500 mt-1" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(item.description)}</div>
+                        </div>
+                        <div class="shrink-0 text-sm font-semibold text-red-700">${escapeHtml(item.price ? formatPrice(item.price) : '')}</div>
+                    </button>
+                `;
+            }).join('');
 
             searchResults.querySelectorAll('button[data-index]').forEach((button) => {
                 button.addEventListener('click', () => {
                     const matched = filtered[Number(button.getAttribute('data-index'))];
                     if (matched) {
-                        showSelectedItem(matched.data);
-
-                        const optionExists = Array.from(packageSelect.options).some((option) => option.value === matched.name);
-                        if (!optionExists) {
-                            const option = document.createElement('option');
-                            option.value = matched.name;
-                            option.textContent = matched.name;
-                            if (matched.price) {
-                                option.dataset.price = String(matched.price);
-                            }
-                            packageSelect.appendChild(option);
-                        }
-
-                        packageSelect.value = matched.name;
-                        packageSelect.dispatchEvent(new Event('change'));
+                        toggleItem(matched);
                     }
-
-                    modal.classList.add('hidden');
                 });
             });
         };
 
+        const openModal = () => {
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+            searchInput.value = '';
+            renderModalItems(combinedItems, '');
+            updateModalFooter();
+            setTimeout(() => searchInput.focus(), 100);
+        };
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+        };
+
+        // ===== LOCALSTORAGE RESTORE =====
+        const restoreStoredSelection = () => {
+            try {
+                const stored = JSON.parse(localStorage.getItem('selectedPackage') || 'null');
+                if (!stored || !stored.name) return;
+
+                // Find in combined items
+                const match = combinedItems.find((item) => item.name === stored.name);
+                if (match) {
+                    addItem(match);
+                } else {
+                    // Fallback: create item from stored data
+                    addItem({
+                        name: stored.name,
+                        description: stored.shortDescription || '',
+                        price: stored.price || '',
+                        data: stored
+                    });
+                }
+
+                // Clear so it doesn't keep re-adding
+                localStorage.removeItem('selectedPackage');
+            } catch (error) {
+                // Ignore parse errors
+            }
+        };
+
+        // ===== EVENT BINDINGS =====
+        multiSelectArea.addEventListener('click', (e) => {
+            // Don't open modal if clicking a chip remove button
+            if (e.target.closest('.chip-remove')) return;
+            openModal();
+        });
+
+        multiSelectAddBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openModal();
+        });
+
+        searchClose.addEventListener('click', closeModal);
+        if (modalDoneBtn) modalDoneBtn.addEventListener('click', closeModal);
+        if (modalClearAllBtn) modalClearAllBtn.addEventListener('click', clearAll);
+
+        modal.addEventListener('click', (e) => {
+            // Close when clicking the overlay (first child)
+            if (e.target === modal || e.target.classList.contains('modal-overlay-enter')) {
+                closeModal();
+            }
+        });
+
+        // ESC key closes modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            renderModalItems(combinedItems, e.target.value);
+        });
+
+        // ===== LOAD DATA & INIT =====
         try {
             const data = await loadTestsData();
             const packages = Array.isArray(data.packages) ? data.packages : [];
             const individualTests = Array.isArray(data.individualTests) ? data.individualTests : [];
 
-            const combinedItems = [
+            combinedItems = [
                 ...packages.map((item) => normalizeItem(item, 'package')),
                 ...individualTests.map((item) => normalizeItem(item, 'test'))
             ];
 
-            const placeholder = packageSelect.querySelector('option[value=""]');
-            packageSelect.innerHTML = '';
-            if (placeholder) {
-                packageSelect.appendChild(placeholder);
-            } else {
-                const fallback = document.createElement('option');
-                fallback.value = '';
-                fallback.textContent = 'Choose a package/test (optional)';
-                packageSelect.appendChild(fallback);
-            }
-
-            combinedItems.forEach((item) => {
-                const option = document.createElement('option');
-                option.value = item.name;
-                option.textContent = item.name;
-                if (item.price) {
-                    option.dataset.price = String(item.price);
-                }
-                packageSelect.appendChild(option);
-            });
-
-            const restoreSelection = () => {
-                const stored = getStoredSelection();
-                if (!stored || !stored.name) {
-                    showSelectedItem(null);
-                    return;
-                }
-
-                const match = combinedItems.find((item) => item.name === stored.name);
-                if (match) {
-                    packageSelect.value = match.name;
-                    showSelectedItem(match.data);
-                    packageSelect.dispatchEvent(new Event('change'));
-                    return;
-                }
-
-                const fallbackItem = {
-                    name: stored.name,
-                    shortDescription: stored.shortDescription || '',
-                    offer: stored.price || '',
-                    parameterList: Array.isArray(stored.parameterList) ? stored.parameterList : []
-                };
-                showSelectedItem(fallbackItem);
-            };
-
-            const updateFromSelect = () => {
-                const option = packageSelect.options[packageSelect.selectedIndex];
-                if (!option || !option.value) {
-                    showSelectedItem(null);
-                    return;
-                }
-
-                const match = combinedItems.find((item) => item.name === option.value);
-                if (match) {
-                    showSelectedItem(match.data);
-                } else {
-                    const price = option.dataset.price || '';
-                    const name = option.value;
-                    showSelectedItem({ name, offer: price, shortDescription: '' });
-                }
-            };
-
-            const openModal = () => {
-                modal.classList.remove('hidden');
-                searchInput.value = '';
-                renderModalItems(combinedItems, '');
-                searchInput.focus();
-            };
-
-            packageSelect.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                openModal();
-            });
-            packageSelect.addEventListener('change', updateFromSelect);
-            searchInput.addEventListener('input', (event) => renderModalItems(combinedItems, event.target.value));
-            searchClose.addEventListener('click', () => modal.classList.add('hidden'));
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.classList.add('hidden');
-                }
-            });
-
-            restoreSelection();
+            restoreStoredSelection();
+            renderAll();
             renderModalItems(combinedItems, '');
         } catch (error) {
             console.error('Unable to load package/test data', error);

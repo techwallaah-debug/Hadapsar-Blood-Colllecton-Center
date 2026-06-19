@@ -198,7 +198,7 @@ function send_admin_email($data) {
                     </tr>
                     <tr>
                         <td style='padding: 10px 12px; background: #f9fafb; border: 1px solid #e5e7eb; font-weight: 600;'>Package Info</td>
-                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>{$data['package_info']}</td>
+                        <td style='padding: 10px 12px; border: 1px solid #e5e7eb;'>" . nl2br(str_replace(' | ', "\n", $data['package_info'])) . "</td>
                     </tr>
                 </table>
 
@@ -232,14 +232,19 @@ function build_whatsapp_message($data) {
     $message .= "\nCollection Address: {$data['collection_address']}";
 
     $message .= "\n\nPackage Details";
-    if (!empty($data['package_name'])) {
-        $message .= "\nPackage Name: {$data['package_name']}";
-    }
-    if (!empty($data['package_price'])) {
-        $message .= "\nPackage Price: {$data['package_price']}";
-    }
     if (!empty($data['package_info'])) {
-        $message .= "\nPackage Info: {$data['package_info']}";
+        // Multi-package: split by pipe and format each entry
+        $infoParts = array_map('trim', explode(' | ', $data['package_info']));
+        foreach ($infoParts as $part) {
+            if ($part !== '') {
+                $message .= "\n• " . $part;
+            }
+        }
+    } elseif (!empty($data['package_name'])) {
+        $message .= "\nPackage: {$data['package_name']}";
+        if (!empty($data['package_price'])) {
+            $message .= " — {$data['package_price']}";
+        }
     }
 
     $message .= "\n\nHome collection included.";
