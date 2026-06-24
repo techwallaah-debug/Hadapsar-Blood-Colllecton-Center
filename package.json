@@ -4,7 +4,8 @@
   "description": "This is a fully responsive website for **Hadapsar Blood Collection Center** - a professional blood collection and diagnostic testing center in Hadapsar, Pune. The website is built with **HTML, CSS, JavaScript, PHP, and Tailwind CSS** for maximum performance and beautiful design.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No automated tests configured for this static site.\""
+    "test": "echo \"No automated tests configured for this static site.\"",
+    "build:css": "npx tailwindcss -i ./css/input.css -o ./css/tailwind.css --minify"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
     "@motionone/dom": "^10.18.0",
     "lottie-web": "^5.13.0",
     "lucide": "^1.14.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
   }
 }

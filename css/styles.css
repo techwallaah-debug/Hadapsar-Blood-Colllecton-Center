@@ -1028,3 +1028,34 @@ a, button {
         transform: translateY(0) scale(1);
     }
 }
+
+/* ========== MOBILE RESPONSIVE OVERFLOW FIXES ========== */
+
+/* Grid children: allow shrinking below their intrinsic content width.
+   Prevents booking form card and sidebar from pushing beyond the viewport. */
+.grid > * {
+    min-width: 0;
+}
+
+/* On mobile (below lg breakpoint), contain overflow within grid children.
+   Does not affect lg:sticky since sticky only applies on lg+ screens. */
+@media (max-width: 1023px) {
+    .grid > * {
+        overflow: hidden;
+    }
+}
+
+/* Chip text: truncate gracefully when container is narrow */
+.multi-select-chip .chip-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+/* Ensure form elements never exceed their container on small screens */
+@media (max-width: 480px) {
+    input, select, textarea, button {
+        max-width: 100%;
+    }
+}
+

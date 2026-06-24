@@ -43,8 +43,8 @@
         }
         </script>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS (compiled locally) -->
+    <link rel="stylesheet" href="css/tailwind.css">
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
@@ -656,11 +656,6 @@
         </div>
     </div>
 </footer>
-
-<!-- Scripts -->
-<script src="js/script.js"></script>
-</body>
-</html>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -2437,7 +2432,13 @@
 
         const matchesSearch = (value, term) => {
             if (!term) return true;
-            return String(value || '').toLowerCase().includes(term);
+            const clean = (str) => String(str || '').toLowerCase().replace(/[^a-z0-9]/g, ' ');
+            const haystack = clean(value);
+            const searchTokens = clean(term).split(/\s+/).filter(token => token.length > 0);
+            
+            if (searchTokens.length === 0) return true;
+            
+            return searchTokens.every(token => haystack.includes(token));
         };
 
         const buildSearchResults = () => {
@@ -2525,6 +2526,9 @@
                 const actionLabel = item.kind === 'package'
                     ? 'Book Package'
                     : 'Book Test';
+                const badgeClass = item.kind === 'package'
+                    ? 'bg-blue-100 text-blue-800'
+                    : 'bg-green-100 text-green-800';
 
                 const viewParamsBtn = item.kind === 'package'
                     ? `<button type="button" class="result-view-params inline-flex items-center justify-center w-full bg-white text-gray-900 border border-gray-200 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-50 transition" data-kind="${item.kind}" data-idx="${item.idx}">View Parameters</button>`

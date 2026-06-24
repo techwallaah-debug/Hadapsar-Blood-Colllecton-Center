@@ -43,7 +43,7 @@
         }
         </script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +76,7 @@
 </nav>
 
 <!-- Booking Form -->
-<section class="pt-10 pb-16 bg-gradient-to-br from-slate-50 via-white to-red-50/30">
+<section class="pt-10 pb-16 bg-gradient-to-br from-slate-50 via-white to-red-50/30 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-8 rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50 to-teal-50 px-5 py-4 sm:px-6 sm:py-5 animate-fade-in-up">
             <div class="flex flex-wrap justify-center items-center gap-3 text-xs sm:text-sm text-center">
@@ -101,9 +101,9 @@
         </div>
 
         <div class="grid lg:grid-cols-[2.1fr_1.25fr] gap-6 lg:gap-8 items-start">
-            <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 md:p-8 animate-fade-in-up animation-delay-200">
+            <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 md:p-8 animate-fade-in-up animation-delay-200 overflow-hidden min-w-0">
                 <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 border-b border-gray-100">
-                    <div>
+                    <div class="min-w-0 flex-1">
                         <h3 class="font-[Poppins] font-semibold text-gray-900 text-xl">Booking Details</h3>
                         <p class="text-sm text-gray-500 mt-1">Fill the patient and package details for your home collection.</p>
                     </div>
@@ -212,7 +212,7 @@
                 </form>
             </div>
 
-            <aside class="bg-white border border-gray-200 rounded-2xl p-6 md:p-7 shadow-sm animate-fade-in-up animation-delay-400 lg:sticky lg:top-24">
+            <aside class="bg-white border border-gray-200 rounded-2xl p-6 md:p-7 shadow-sm animate-fade-in-up animation-delay-400 lg:sticky lg:top-24 overflow-hidden min-w-0">
                 <h3 class="font-[Poppins] font-bold text-xl mb-2">Need Help Right Now?</h3>
                 <p class="text-sm text-gray-600 mb-4">Our team is available for quick support on call and WhatsApp.</p>
 
@@ -677,11 +677,22 @@
             }
         };
 
+        const matchesSearch = (value, term) => {
+            if (!term) return true;
+            const clean = (str) => String(str || '').toLowerCase().replace(/[^a-z0-9]/g, ' ');
+            const haystack = clean(value);
+            const searchTokens = clean(term).split(/\s+/).filter(token => token.length > 0);
+            
+            if (searchTokens.length === 0) return true;
+            
+            return searchTokens.every(token => haystack.includes(token));
+        };
+
         const renderModalItems = (items, query) => {
             const term = String(query || '').trim().toLowerCase();
             const filtered = !term ? items : items.filter((item) => {
                 const parts = [item.name, item.description, item.kind, item.price];
-                return parts.join(' ').toLowerCase().includes(term);
+                return matchesSearch(parts.join(' '), term);
             });
 
             searchCount.textContent = String(filtered.length);

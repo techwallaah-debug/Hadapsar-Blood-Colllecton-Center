@@ -43,7 +43,7 @@
         }
         </script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2369,7 +2369,13 @@
 
         const matchesSearch = (value, term) => {
             if (!term) return true;
-            return String(value || '').toLowerCase().includes(term);
+            const clean = (str) => String(str || '').toLowerCase().replace(/[^a-z0-9]/g, ' ');
+            const haystack = clean(value);
+            const searchTokens = clean(term).split(/\s+/).filter(token => token.length > 0);
+            
+            if (searchTokens.length === 0) return true;
+            
+            return searchTokens.every(token => haystack.includes(token));
         };
 
         const renderPackagesGrid = (filter = 'all') => {

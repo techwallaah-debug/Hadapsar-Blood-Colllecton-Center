@@ -43,7 +43,7 @@
         }
         </script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -326,11 +326,6 @@
 </footer>
 
 <!-- Scripts -->
-<script src="js/script.js"></script>
-</body>
-</html>
-
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script src="js/script.js"></script>
 
@@ -342,16 +337,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const glossaryTerms = document.querySelectorAll('.glossary-term');
     let currentCategory = 'all';
 
+    const matchesSearch = (value, term) => {
+        if (!term) return true;
+        const clean = (str) => String(str || '').toLowerCase().replace(/[^a-z0-9]/g, ' ');
+        const haystack = clean(value);
+        const searchTokens = clean(term).split(/\s+/).filter(token => token.length > 0);
+        
+        if (searchTokens.length === 0) return true;
+        
+        return searchTokens.every(token => haystack.includes(token));
+    };
+
     // Search functionality
     searchInput.addEventListener('keyup', function() {
-        const searchTerm = this.value.toLowerCase();
+        const searchTerm = this.value;
         glossaryTerms.forEach(term => {
-            const text = term.textContent.toLowerCase();
+            const text = term.textContent;
             const category = term.getAttribute('data-category');
-            const matchesSearch = text.includes(searchTerm);
+            const matchesSearchVal = matchesSearch(text, searchTerm);
             const matchesCategory = currentCategory === 'all' || category === currentCategory;
 
-            if (matchesSearch && matchesCategory) {
+            if (matchesSearchVal && matchesCategory) {
                 term.style.display = 'block';
                 term.classList.add('animate-fade-in-up');
             } else {
@@ -370,14 +376,14 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('bg-red-700', 'text-white');
 
             // Filter terms
-            const searchTerm = searchInput.value.toLowerCase();
+            const searchTerm = searchInput.value;
             glossaryTerms.forEach(term => {
-                const text = term.textContent.toLowerCase();
+                const text = term.textContent;
                 const category = term.getAttribute('data-category');
-                const matchesSearch = text.includes(searchTerm) || searchTerm === '';
+                const matchesSearchVal = matchesSearch(text, searchTerm);
                 const matchesCategory = currentCategory === 'all' || category === currentCategory;
 
-                if (matchesSearch && matchesCategory) {
+                if (matchesSearchVal && matchesCategory) {
                     term.style.display = 'block';
                     term.classList.add('animate-fade-in-up');
                 } else {
